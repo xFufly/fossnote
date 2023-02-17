@@ -28,7 +28,7 @@ async function bind(req, res, currentSession) {
     newIv = forge.md.md5.create().update(new forge.util.ByteBuffer(newIv).bytes()).digest().toHex();
     
     session.setAesSession(session_id, {
-        key: currentSession.aes.key,
+        key: JSON.parse(currentSession.aes).key,
         iv: newIv
     }).then((ok) => {
         var theme = 8;
@@ -54,7 +54,7 @@ async function bind(req, res, currentSession) {
             } else if (espace_id === "25") {
                 espaceNom += "Accompagnants";
             }
-            encryptAES((currentSession.numeroOrdre + 2).toString(), currentSession.aes.key, newIv).then((enryptedNumeroOrdre) => {
+            encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, newIv).then((enryptedNumeroOrdre) => {
                 const response = {
                     nom: 'FonctionParametres',
                     session: parseInt(session_id),

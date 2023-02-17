@@ -11,6 +11,7 @@ const session = require('../../../databases/session');
 
 const funcParams = require('./fonctions/parametres');
 const funcParamsHome = require('./fonctions/parametreshome');
+const funcIdentification = require('./fonctions/identification');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
@@ -23,13 +24,14 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
 
     try {
         const currentSession = await session.getSession(session_id);
-        var key = currentSession.aes.key;
-        var iv = currentSession.aes.iv;
-        var numeroOrdreDecrypted = decryptAES(numero_ordre, key, iv);
+        var key = JSON.parse(currentSession.aes).key;
+        var iv = JSON.parse(currentSession.aes).iv;
+        var numeroOrdreDecrypted = await decryptAES(numero_ordre, key, iv);
         if ((currentSession.numeroOrdre + 1) === parseInt(numeroOrdreDecrypted)) {
-            session.setNumeroOrdreSession(currentSession.numeroOrdre + 2);
+            var check = await session.setNumeroOrdreSession(currentSession.numeroOrdre + 2, session_id);
+            console.log(check + " " + currentSession.numeroOrdre + " " + session_id);
         } else {
-
+            console.log(parseInt(numeroOrdreDecrypted) + " | " + (currentSession.numeroOrdre));
         }
 
         if (nom === "FonctionParametres") {
@@ -38,6 +40,8 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
             } else {
                 await funcParamsHome.bind(req, res, currentSession);
             }
+        } else if (nom === "Identification") {
+            await funcIdentification.bind(req, res, currentSession);
         }
     } catch (error) {
         console.error(error);

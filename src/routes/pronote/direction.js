@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
   var key = new forge.util.ByteBuffer();
   key = forge.md.md5.create().update(key.bytes()).digest().toHex();
 
-  session.createSession(session_id, 0, session_params, rsaData.privateKeyPem, {key: key, iv: null});
+  session.createSession(session_id, 0, session_params, rsaData.privateKeyPem, {key: key, iv: null}, {});
 
   const file_path = path.join(__dirname, '../../views/pronote/direction.html');
   const html_content = fs.readFileSync(file_path, { encoding: 'utf-8' });

@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const session = require("./databases/session");
+const eleves = require("./databases/eleves");
+
 app.use(express.json())
 
 // Définit le dossier public

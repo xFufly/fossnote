@@ -1,46 +1,69 @@
-const Datastore = require('nedb-promises');
-
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('session.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  } else {
+    console.log('Connected to the "session" database.');
+  }
+});
 const SESSION_DURATION = 10 * 60 * 1000; // 10 minutes
 
-const db = Datastore.create({ filename: 'session.db', autoload: true });
+db.run(`CREATE TABLE IF NOT EXISTS sessions (
+  _id TEXT PRIMARY KEY,
+  numeroOrdre INTEGER,
+  session_params TEXT,
+  privateKeyPem TEXT,
+  expiresAt INTEGER,
+  aes TEXT,
+  challenge TEXT
+)`);
 
-// Index sur le champ "expire_at" pour la suppression des sessions expirées
-db.ensureIndex({ fieldName: 'expiresAt', expireAfterSeconds: 0 });
-
-// Fonction pour créer une nouvelle session
-async function createSession(session_id, numeroOrdre, session_params, privateKeyPem, aes) {
-  const expiresAt = new Date(Date.now() + SESSION_DURATION);
-  await db.insert({ _id: session_id, numeroOrdre, session_params, privateKeyPem, expiresAt, aes });
+async function createSession(session_id, numeroOrdre, session_params, privateKeyPem, aes, challenge) {
+  db.run(`DELETE FROM sessions WHERE expiresAt <= ?`, Date.now());
+  const expiresAt = Date.now() + SESSION_DURATION;
+  const stmt = db.prepare(`INSERT INTO sessions (_id, numeroOrdre, session_params, privateKeyPem, expiresAt, aes, challenge) VALUES (?, ?, ?, ?, ?, ?, ?)`);
+  stmt.run(session_id, numeroOrdre, JSON.stringify(session_params), privateKeyPem, expiresAt, JSON.stringify(aes), JSON.stringify(challenge));
+  stmt.finalize();
   return session_id;
 }
 
-// Fonction pour récupérer une session existante
 async function getSession(session_id) {
-  const session = await db.findOne({ _id: session_id, expiresAt: { $gt: new Date() } });
-  return session ? session : null;
+  return new Promise((resolve, reject) => {
+    db.get(`SELECT * FROM sessions WHERE _id = ? AND expiresAt > ?`, session_id, Date.now(), (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
+    });
+  });
 }
 
-// Fonction pour mettre à jour le paramètre "aes" d'une session
 async function setAesSession(session_id, aes) {
-    const session = await getSession(session_id);
-    if (session) {
-      session.aes = aes;
-      await db.update({ _id: session_id }, session);
-      return true;
-    }
-    return false;
+  const session = await getSession(session_id);
+  if (session) {
+    const stmt = db.prepare(`UPDATE sessions SET aes = ? WHERE _id = ?`);
+    stmt.run(JSON.stringify(aes), session_id);
+    stmt.finalize();
+    return true;
+  }
+  return false;
 }
-  
-// Fonction pour mettre à jour le paramètre "numeroOrdre" d'une session
-async function setNumeroOrdreSession(session_id, numeroOrdre) {
-    const session = await getSession(session_id);
-    if (session) {
-      session.numeroOrdre = numeroOrdre;
-      await db.update({ _id: session_id }, session);
-      return true;
-    }
-    return false;
-}
-  
 
-module.exports = { createSession, getSession, setAesSession, setNumeroOrdreSession };
+async function setNumeroOrdreSession(session_id, numeroOrdre) {
+  const session = await getSession(session_id);
+  if (session && session.expiresAt > Date.now()) {
+    const stmt = db.prepare(`UPDATE sessions SET numeroOrdre = ? WHERE _id = ?`);
+    stmt.run(numeroOrdre, session_id);
+    stmt.finalize();
+    return true;
+  }
+  return false;
+}
+
+module.exports = {
+  createSession,
+  getSession,
+  setAesSession,
+  setNumeroOrdreSession
+};

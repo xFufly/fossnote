@@ -54,9 +54,59 @@ async function decryptAES(data, key, iv) {
     return lChiffreur.finish() && lChiffreur.output.bytes();
 }
 
+async function generateChallenge(username, password, iv) {
+    const randomString = forge.util.bytesToHex(forge.random.getBytesSync(16));
+    const mtp = forge.md.sha256.create().update(forge.util.hexToBytes(randomString + password)).digest().toHex().toUpperCase();
+    const key = forge.md.md5.create().update(getBuffer(getCle(randomString)).bytes()).digest();
+    const cipher = forge.cipher.createCipher('AES-CBC', key);
+    cipher.start({ iv: iv });
+    const challenge = forge.util.encodeUtf8(username + randomString);
+    cipher.update(forge.util.createBuffer(challenge));
+    cipher.finish();
+    const challengeEncrypted = forge.util.bytesToHex(cipher.output.getBytes());
+    /*const hexArr = forge.util.hexToBytes(challengeEncrypted);
+    const filteredHexArr = filterHexArray(hexArr);
+    const challengeDecrypted = forge.util.decodeUtf8(forge.util.bytesToHex(filteredHexArr));
+    cipher.start({ iv: iv });
+    cipher.update(forge.util.createBuffer(challengeDecrypted));
+    cipher.finish();*/
+    return {alea: randomString, challenge: challengeEncrypted};
+}
+
+function filterHexArray(hexArray) {
+    const filteredArr = [];
+    for (let i = 0; i < hexArray.length; i++) {
+        if (i % 2 === 0) {
+            filteredArr.push(hexArray[i]);
+        }
+    }
+    return filteredArr;
+}
+
+function getCle(alea, username, password) {
+    return username + forge.md.sha256.create().update(alea).update(forge.util.encodeUtf8(password)).digest().toHex().toUpperCase();
+}
+
+function getBuffer(aChaine) {
+    return new forge.util.ByteBuffer(forge.util.encodeUtf8(aChaine));
+}
+
+function removeEverySecondCharacter(str) {
+    let newStr = '';
+    for (let i = 0; i < str.length; i += 2) {
+        newStr += str[i];
+    }
+    return newStr;
+  }
+  
+
 module.exports = {
     generateRSAInfos,
     decryptRSA,
     decryptAES,
-    encryptAES
+    encryptAES,
+    generateChallenge,
+    getCle,
+    getBuffer,
+    filterHexArray
 };

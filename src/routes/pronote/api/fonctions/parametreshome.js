@@ -20,7 +20,7 @@ async function bind(req, res, currentSession) {
     const date = new Date();
     const dateServeurHttp = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
 
-            encryptAES((currentSession.numeroOrdre + 2).toString(), currentSession.aes.key, currentSession.aes.iv).then((enryptedNumeroOrdre) => {
+            encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv).then((enryptedNumeroOrdre) => {
                 const response = {
                     nom: 'FonctionParametres',
                     session: parseInt(session_id),
