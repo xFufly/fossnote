@@ -14,6 +14,7 @@ Ensuite allez sur `localhost:3000/pronote/`.
 ## Fonctionnalités actuelles (front-end):
 
 - Page index implémentée : `/pronote/` (entièrement implémentée)
+
 - Pages espaces (seulement affichage des panels de connexion):
     - élèves : `/pronote/eleve.html`
     - professeurs : `/pronote/professeur.html`
@@ -23,7 +24,16 @@ Ensuite allez sur `localhost:3000/pronote/`.
     - direction : `/pronote/direction.html`
 
 ## Fonctionnalités actuelles (back-end):
-- La création de session (entièrement implémentée)
+- La création de session (entièrement implémentée) :
+    - Génération d'un identifiant de session en fonction du temps
+    - Génération aléatoire de paramètres RSA (Modulus, Exponent et Private Key Pem)
+    - Ajout des informations de session dans une base de données : `session.db` (nedb) 
+    - `appelfonction("FonctionParametres")` (voir protocoles)
 
-## Protocole Pronote : 
+- En cours de développement...
+
+## Protocole Client : 
+A venir...
+
+## Protocole Server : 
 A venir...
