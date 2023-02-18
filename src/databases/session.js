@@ -8,15 +8,18 @@ const db = new sqlite3.Database('session.db', (err) => {
 });
 const SESSION_DURATION = 10 * 60 * 1000; // 10 minutes
 
-db.run(`CREATE TABLE IF NOT EXISTS sessions (
-  _id TEXT PRIMARY KEY,
-  numeroOrdre INTEGER,
-  session_params TEXT,
-  privateKeyPem TEXT,
-  expiresAt INTEGER,
-  aes TEXT,
-  challenge TEXT
-)`);
+// Fonction pour créer la table "sessions"
+function createSessionsTable() {
+  db.run(`CREATE TABLE IF NOT EXISTS sessions (
+    _id TEXT PRIMARY KEY,
+    numeroOrdre INTEGER,
+    session_params TEXT,
+    privateKeyPem TEXT,
+    expiresAt INTEGER,
+    aes TEXT,
+    challenge TEXT
+  )`);
+}
 
 async function createSession(session_id, numeroOrdre, session_params, privateKeyPem, aes, challenge) {
   db.run(`DELETE FROM sessions WHERE expiresAt <= ?`, Date.now());
@@ -28,15 +31,18 @@ async function createSession(session_id, numeroOrdre, session_params, privateKey
 }
 
 async function getSession(session_id) {
-  return new Promise((resolve, reject) => {
+  const session = await new Promise((resolve, reject) => {
     db.get(`SELECT * FROM sessions WHERE _id = ? AND expiresAt > ?`, session_id, Date.now(), (err, row) => {
       if (err) {
         reject(err);
       } else {
         resolve(row);
+        console.log("pwp: " + row);
       }
     });
   });
+  await new Promise(resolve => setTimeout(resolve, 1000)); // pause de 1000 ms
+  return await session;
 }
 
 async function setAesSession(session_id, aes) {
@@ -50,7 +56,7 @@ async function setAesSession(session_id, aes) {
   return false;
 }
 
-async function setNumeroOrdreSession(session_id, numeroOrdre) {
+async function setNumeroOrdreSession(numeroOrdre, session_id) {
   const session = await getSession(session_id);
   if (session && session.expiresAt > Date.now()) {
     const stmt = db.prepare(`UPDATE sessions SET numeroOrdre = ? WHERE _id = ?`);
@@ -60,6 +66,9 @@ async function setNumeroOrdreSession(session_id, numeroOrdre) {
   }
   return false;
 }
+
+// Appel de la fonction pour créer la table "sessions"
+createSessionsTable();
 
 module.exports = {
   createSession,

@@ -28,14 +28,18 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         var iv = JSON.parse(currentSession.aes).iv;
         var numeroOrdreDecrypted = await decryptAES(numero_ordre, key, iv);
         if ((currentSession.numeroOrdre + 1) === parseInt(numeroOrdreDecrypted)) {
-            var check = await session.setNumeroOrdreSession(currentSession.numeroOrdre + 2, session_id);
-            console.log(check + " " + currentSession.numeroOrdre + " " + session_id);
+            var numeroOrdreUpdated = await session.setNumeroOrdreSession(currentSession.numeroOrdre + 2, session_id);
+            if (numeroOrdreUpdated) {
+
+            } else {
+
+            }
         } else {
-            console.log(parseInt(numeroOrdreDecrypted) + " | " + (currentSession.numeroOrdre));
+
         }
 
         if (nom === "FonctionParametres") {
-            if(req.body.donneesSec.hasOwnProperty('donnees')) {
+            if (req.body.donneesSec.hasOwnProperty('donnees')) {
                 await funcParams.bind(req, res, currentSession);
             } else {
                 await funcParamsHome.bind(req, res, currentSession);

@@ -8,7 +8,7 @@ const session = require('../../databases/session');
 var forge = require('node-forge');
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   if (!is_compatible(req.headers['user-agent'])) {
     res.status(400).send('Client is incompatible');
     return;
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
   var key = new forge.util.ByteBuffer();
   key = forge.md.md5.create().update(key.bytes()).digest().toHex();
 
-  session.createSession(session_id, 0, session_params, rsaData.privateKeyPem, {key: key, iv: null}, {});
+  await session.createSession(session_id, 0, session_params, rsaData.privateKeyPem, {key: key, iv: null}, {});
 
   const file_path = path.join(__dirname, '../../views/pronote/eleve.html');
   const html_content = fs.readFileSync(file_path, { encoding: 'utf-8' });
