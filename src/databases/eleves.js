@@ -1,15 +1,15 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('eleves.db', (err) => {
+const db = new sqlite3.Database('database.db', (err) => {
   if (err) {
     console.error(err.message);
   } else {
-    console.log('Connected to the "eleves" database.');
+    console.log('Connected to the database.');
   }
 });
 
 db.serialize(() => {
-  const table = `CREATE TABLE IF NOT EXISTS users (
+  const table = `CREATE TABLE IF NOT EXISTS students (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT,
     prenom TEXT,
@@ -23,13 +23,13 @@ db.serialize(() => {
     if (err) {
       console.error(err.message);
     } else {
-      console.log('Table "users" created.');
+      console.log('Table "students" init.');
     }
   });
   
-  const exampleUser = `INSERT INTO users (nom, prenom, usertype, classe, groupes, username, password)
-  SELECT 'DIDE', 'Tom', 3, '3A', 'groupe1,groupe2', 'TDIDE', 'Password123!'
-  WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'TDIDE')`;
+  const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password)
+  SELECT 'DIDE', 'Tom', 3, '3A', 'groupe1,groupe2', 'tdide', 'Password123!'
+  WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'TDIDE')`;
   db.run(exampleUser, (err) => {
     if (err) {
       console.error(err.message);
@@ -41,7 +41,7 @@ db.serialize(() => {
 
 // Fonction pour créer un nouvel utilisateur
 async function createUser(nom, prenom, usertype, classe, groupes, ids) {
-  const insert = `INSERT INTO users (nom, prenom, usertype, classe, groupes, username, password)
+  const insert = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password)
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
   const values = [nom, prenom, usertype, classe, groupes.join(','), ids.username, ids.password];
   return new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ async function createUser(nom, prenom, usertype, classe, groupes, ids) {
 
 // Fonction pour récupérer un utilisateur existant par son identifiant
 async function getUser(id) {
-  const select = `SELECT * FROM users WHERE username = ?`;
+  const select = `SELECT * FROM students WHERE username = ?`;
   const values = [id];
   return new Promise((resolve, reject) => {
     db.get(select, values, (err, row) => {
@@ -92,7 +92,7 @@ async function getUser(id) {
 
 // Fonction pour mettre à jour le mot de passe d'un utilisateur
 async function setPassword(id, password) {
-  const update = `UPDATE users SET password = ? WHERE username = ?`;
+  const update = `UPDATE students SET password = ? WHERE username = ?`;
   const values = [password, id];
   return new Promise((resolve, reject) => {
     db.run(update, values, function(err) {

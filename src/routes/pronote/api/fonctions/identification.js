@@ -16,12 +16,11 @@ async function bind(req, res, currentSession) {
     var espace = req.body.donneesSec.donnees.genreEspace;
     if(espace === 3) {
         
-        var user = await eleves.getUser(username);
+        var user = await eleves.getUser(username.toLowerCase());
         if(user !== null) {
-            var challenge = await generateChallenge(username, user.ids.password, currentSession.aes.iv);
+            var challenge = await generateChallenge(username.toLowerCase(), user.ids.password, JSON.parse(currentSession.aes).iv);
 
-            var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), currentSession.aes.key, currentSession.aes.iv);
-            console.log(currentSession.numeroOrdre + 2);
+            var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
             var response = {
                 nom: "Identification",
                 session: parseInt(session_id),
@@ -31,7 +30,7 @@ async function bind(req, res, currentSession) {
                     donnees: {
                         alea: challenge.alea,
                         modeCompMdp: 0,
-                        modeCompLog: 0,
+                        modeCompLog: 1,
                         challenge: challenge.challenge
                     }
                 }

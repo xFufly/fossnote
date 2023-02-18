@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('session.db', (err) => {
+const db = new sqlite3.Database('database.db', (err) => {
   if (err) {
     console.error(err.message);
   } else {
@@ -37,11 +37,10 @@ async function getSession(session_id) {
         reject(err);
       } else {
         resolve(row);
-        console.log("pwp: " + row);
       }
     });
   });
-  await new Promise(resolve => setTimeout(resolve, 1000)); // pause de 1000 ms
+  await new Promise(resolve => setTimeout(resolve, 10)); // pause de 10 ms
   return await session;
 }
 
