@@ -55,6 +55,17 @@ async function setAesSession(session_id, aes) {
   return false;
 }
 
+async function setChallengeSession(session_id, challenge) {
+  const session = await getSession(session_id);
+  if (session) {
+    const stmt = db.prepare(`UPDATE sessions SET challenge = ? WHERE _id = ?`);
+    stmt.run(JSON.stringify(challenge), session_id);
+    stmt.finalize();
+    return true;
+  }
+  return false;
+}
+
 async function setNumeroOrdreSession(numeroOrdre, session_id) {
   const session = await getSession(session_id);
   if (session && session.expiresAt > Date.now()) {
@@ -73,5 +84,6 @@ module.exports = {
   createSession,
   getSession,
   setAesSession,
-  setNumeroOrdreSession
+  setNumeroOrdreSession,
+  setChallengeSession
 };

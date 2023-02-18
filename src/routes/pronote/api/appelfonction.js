@@ -12,6 +12,7 @@ const session = require('../../../databases/session');
 const funcParams = require('./fonctions/parametres');
 const funcParamsHome = require('./fonctions/parametreshome');
 const funcIdentification = require('./fonctions/identification');
+const funcAuth = require('./fonctions/authentification');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
@@ -30,12 +31,12 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         if ((currentSession.numeroOrdre + 1) === parseInt(numeroOrdreDecrypted)) {
             var numeroOrdreUpdated = await session.setNumeroOrdreSession(currentSession.numeroOrdre + 2, session_id);
             if (numeroOrdreUpdated) {
-
+                console.log("0w0");
             } else {
-
+                console.log("AwA");
             }
         } else {
-
+            console.log("PwP");
         }
 
         if (nom === "FonctionParametres") {
@@ -46,6 +47,8 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
             }
         } else if (nom === "Identification") {
             await funcIdentification.bind(req, res, currentSession);
+        } else if (nom === "Authentification") {
+            funcAuth.bind(req, res, currentSession);
         }
     } catch (error) {
         console.error(error);

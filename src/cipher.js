@@ -65,7 +65,9 @@ async function generateChallenge(username, password, iv) {
     cipher.finish();
     const challengeEncrypted = forge.util.bytesToHex(cipher.output.getBytes());
     const solvedChallenge = decryptChallenge(challengeEncrypted, randomString, username, password, aesiv);
-    return {alea: randomString, challenge: challengeEncrypted, solved: solvedChallenge};
+    console.log(forge.util.bytesToHex(key));
+    console.log(key);
+    return {alea: randomString, challenge: challengeEncrypted, solved: solvedChallenge, key: forge.util.bytesToHex(key), username: username};
 }
 
 function decryptChallenge(challenge, alea, username, password, iv) {
@@ -102,8 +104,6 @@ function decryptChallenge(challenge, alea, username, password, iv) {
     return encrypted;
 }
 
-
-
 function getCle(alea, username, password) {
     return username + forge.md.sha256.create().update(alea).update(forge.util.encodeUtf8(password)).digest().toHex().toUpperCase();
 }
@@ -112,15 +112,23 @@ function getBuffer(aChaine) {
     return new forge.util.ByteBuffer(forge.util.encodeUtf8(aChaine));
 } 
 
-function removeAlea(data) {
-    const N = data.length;
-    const LTableauSansAlea = new Array(N);
-    for (let I = 0; I < N; I += 1) {
-        if (I % 2 === 0) {
-            LTableauSansAlea.push(data.charAt(I));
-        }
-    }
-    return LTableauSansAlea.join('');
+function generateFinalKey(key, iv) {
+    // Générez 16 bytes aléatoires
+    var bytes = forge.random.getBytesSync(16);
+
+    // Convertissez les bytes en une chaîne de nombres séparés par des virgules
+    var byteValues = Array.prototype.slice.call(bytes).join(',');
+
+    console.log(key);
+
+    // Chiffrez la chaîne de nombres avec une clé de chiffrement AES aléatoire
+    var cipher = forge.cipher.createCipher('AES-ECB', forge.util.hexToBytes(key));
+    cipher.start({iv: forge.util.hexToBytes(iv)});
+    cipher.update(forge.util.createBuffer(byteValues));
+    cipher.finish();
+    var encrypted = cipher.output.getBytes();
+
+    return {solved: bytes.toHex(), key: encrypted.toHex()};
 }
 
 module.exports = {
@@ -131,5 +139,5 @@ module.exports = {
     generateChallenge,
     getCle,
     getBuffer,
-    removeAlea
+    generateFinalKey
 };

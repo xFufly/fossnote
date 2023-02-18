@@ -6,6 +6,7 @@ const {
 } = require('../../../../cipher');
 
 const eleves = require('../../../../databases/eleves');
+const session = require('../../../../databases/session');
 
 async function bind(req, res, currentSession) {
     const {
@@ -15,10 +16,10 @@ async function bind(req, res, currentSession) {
     var username = req.body.donneesSec.donnees.identifiant;
     var espace = req.body.donneesSec.donnees.genreEspace;
     if(espace === 3) {
-        
         var user = await eleves.getUser(username.toLowerCase());
         if(user !== null) {
             var challenge = await generateChallenge(username.toLowerCase(), user.ids.password, JSON.parse(currentSession.aes).iv);
+            await session.setChallengeSession(session_id, challenge);
 
             var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
             var response = {
@@ -37,6 +38,8 @@ async function bind(req, res, currentSession) {
             }
             res.json(response);
             return true;
+        } else {
+
         }
     }
 }
