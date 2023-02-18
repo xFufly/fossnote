@@ -28,7 +28,7 @@ db.serialize(() => {
   });
   
   const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password)
-  SELECT 'DIDE', 'Tom', 3, '3A', 'groupe1,groupe2', 'tdide', 'Password123!'
+  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!'
   WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'TDIDE')`;
   db.run(exampleUser, (err) => {
     if (err) {
