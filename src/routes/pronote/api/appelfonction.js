@@ -51,10 +51,22 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
             await funcIdentification.bind(req, res, currentSession);
         } else if (nom === "Authentification") {
             await funcAuth.bind(req, res, currentSession);
-        } else if (nom == "ParametresUtilisateur") {
-            if(espace_id == "3") {
+        } else if (nom === "ParametresUtilisateur") {
+            if(espace_id === "3") {
                 await funcStudentSettings.bind(req, res, currentSession);
             }
+        } else if (nom === "Navigation") {
+            var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
+            var response = {
+                nom: "Navigation",
+                session: parseInt(session_id),
+                numeroOrdre: numeroOrdre,
+                donneesSec: {
+                    nom: "Navigation",
+                    donnees: {}
+                }
+            }
+            res.json(response);
         }
     } catch (error) {
         console.error(error);
