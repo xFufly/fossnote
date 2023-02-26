@@ -37,7 +37,9 @@ Ensuite allez sur `localhost:3000/pronote/`.
     - `appelFonction("Authentification")` (voir protocoles)
     - `appelFonction("ParametresUtilisateur")` (voir protocoles)
     
-- Navigation : En cours de développement...
+- Navigation : `appelFonction("ParametresUtilisateur")` (voir protocoles)
+
+- PageAcceuil : En cours de développement...
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
