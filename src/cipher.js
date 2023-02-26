@@ -65,9 +65,7 @@ async function generateChallenge(username, password, iv) {
     cipher.finish();
     const challengeEncrypted = forge.util.bytesToHex(cipher.output.getBytes());
     const solvedChallenge = decryptChallenge(challengeEncrypted, randomString, username, password, aesiv);
-    console.log(forge.util.bytesToHex(key));
-    console.log(key);
-    return {alea: randomString, challenge: challengeEncrypted, solved: solvedChallenge, key: forge.util.bytesToHex(key), username: username};
+    return {alea: randomString, challenge: challengeEncrypted, solved: solvedChallenge, key: forge.md.md5.create().update(getBuffer(getCle(randomString, username, password)).bytes()).digest().toHex(), username: username};
 }
 
 function decryptChallenge(challenge, alea, username, password, iv) {
@@ -112,23 +110,33 @@ function getBuffer(aChaine) {
     return new forge.util.ByteBuffer(forge.util.encodeUtf8(aChaine));
 } 
 
-function generateFinalKey(key, iv) {
+async function generateFinalKey(key, iv) {
     // Générez 16 bytes aléatoires
-    var bytes = forge.random.getBytesSync(16);
+    var bytes = new forge.util.ByteBuffer(forge.random.generate(16));
 
     // Convertissez les bytes en une chaîne de nombres séparés par des virgules
-    var byteValues = Array.prototype.slice.call(bytes).join(',');
+    var toEncrypt = compBytes(bytes);
 
-    console.log(key);
+    var encrypted = encryptAES(toEncrypt, key, iv);
 
-    // Chiffrez la chaîne de nombres avec une clé de chiffrement AES aléatoire
-    var cipher = forge.cipher.createCipher('AES-ECB', forge.util.hexToBytes(key));
-    cipher.start({iv: forge.util.hexToBytes(iv)});
-    cipher.update(forge.util.createBuffer(byteValues));
-    cipher.finish();
-    var encrypted = cipher.output.getBytes();
+    var solved = await decompBytes(await decryptAES(encrypted, key, iv));
+    solved = forge.md.md5.create().update(solved.bytes()).digest().toHex();
+    return {solved: solved, key: encrypted};
+}
 
-    return {solved: bytes.toHex(), key: encrypted.toHex()};
+function decompBytes(data) {
+    const lBuff = new forge.util.ByteBuffer();
+    const lArrInt = data.split(',');
+    for (let i = 0; i < lArrInt.length; i++) {
+        lBuff.putInt(parseInt(lArrInt[i]), 8);
+    }
+    return lBuff;
+}
+
+function compBytes(byteBuffer) {
+    const byteValues = byteBuffer.getBytes();
+    const array = Array.from(byteValues, (byte) => byte.toString()).join(',');
+    return array.split(',').map((value) => parseInt(value, 10));
 }
 
 module.exports = {

@@ -31,7 +31,12 @@ async function bind(req, res, currentSession) {
 
         var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
-        var newKey = generateFinalKey(challengeKey, JSON.parse(currentSession.aes).iv);
+        var newKey = await generateFinalKey(challengeKey, JSON.parse(currentSession.aes).iv);
+
+        await session.setAesSession(session_id, {
+            key: newKey.solved,
+            iv: JSON.parse(currentSession.aes).iv
+        });
 
         var response = {
             nom: "Authentification",
@@ -47,11 +52,6 @@ async function bind(req, res, currentSession) {
             }
         }
         res.json(response);
-
-        await session.setAesSession(session_id, {
-            key: newKey.solved,
-            iv: JSON.parse(currentSession.aes).iv
-        });
 
         return true;
     } else {
