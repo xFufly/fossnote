@@ -37,6 +37,9 @@ async function bind(req, res, currentSession) {
             session: parseInt(session_id),
             numeroOrdre: enryptedNumeroOrdre,
             donneesSec: {
+                _Signature_: {
+                    ModeExclusif: false
+                },
                 donnees: {
                     "ressource": {
                         "L": fullName,

@@ -3,6 +3,9 @@ const session = require('../../../../databases/session');
 
 const forge = require('node-forge');
 
+const { getDateNow } = require('../../../../helpers');
+
+
 const {
     encryptAES,
     generateFinalKey
@@ -47,7 +50,11 @@ async function bind(req, res, currentSession) {
                 donnees: {
                     libelleUtil: fullName,
                     cle: newKey.key,
-                    derniereConnexion: {}
+                    modeSecurisationParDefaut: 3,
+                    derniereConnexion: {
+                        V: getDateNow(),
+                        _T: 7
+                    }
                 }
             }
         }
@@ -55,7 +62,21 @@ async function bind(req, res, currentSession) {
 
         return true;
     } else {
-        
+        var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
+
+        var response = {
+            nom: "Authentification",
+            session: parseInt(session_id),
+            numeroOrdre: numeroOrdre,
+            donneesSec: {
+                nom: "Authentification",
+                donnees: {
+                    Acces: 1
+                }
+            }
+        }
+        res.json(response);
+        return false;
     }
 }
 

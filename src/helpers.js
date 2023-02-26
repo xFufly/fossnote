@@ -11,6 +11,33 @@ function generate_session_id() {
     return Date.now().toString();
 }
 
+function getDateToday() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Ajoute 1 car le mois commence à 0
+    const year = today.getFullYear();
+    return day + '/' + month + '/' + year;
+}
+  
+function getDateTomorrow() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const day = ("0" + tomorrow.getDate()).slice(-2);
+    const month = ("0" + (tomorrow.getMonth() + 1)).slice(-2);
+    const year = tomorrow.getFullYear();
+    return day + "/" + month + "/" + year;
+}
+
+function getDateNow() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
 
 function get_metadata() {
     const rawdata = fs.readFileSync(`${__dirname}/config/metadata.json`);
@@ -91,5 +118,8 @@ module.exports = {
     getLastSchoolYear,
     getLastMondayOfAugust,
     getFirstWeekdayOfSeptember,
-    getCurrentSchoolYear
+    getCurrentSchoolYear,
+    getDateToday,
+    getDateTomorrow,
+    getDateNow
 };
