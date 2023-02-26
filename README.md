@@ -16,7 +16,7 @@ Ensuite allez sur `localhost:3000/pronote/`.
 - Page index implémentée : `/pronote/` (entièrement implémentée)
 
 - Pages espaces (seulement affichage des panels de connexion):
-    - élèves : `/pronote/eleve.html`
+    - élèves : `/pronote/eleve.html` (+ avancé que les autres)
     - professeurs : `/pronote/professeur.html`
     - vie scolaire : `/pronote/viescolaire.html`
     - parents : `/pronote/parent.html`
@@ -30,12 +30,14 @@ Ensuite allez sur `localhost:3000/pronote/`.
     - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
     - `appelfonction("FonctionParametres")` (voir protocoles)
 
-- Identification (pour espace élèves seulement) :
+- Connexion (pour espace élèves seulement) :
     - Génération "alea" et "challenge" (voir protocoles)
     - Stockage de la solution du challenge pour l'Authentification
     - `appelFonction("Identification")` (voir protocoles)
+    - `appelFonction("Authentification")` (voir protocoles)
+    - `appelFonction("ParametresUtilisateur")` (voir protocoles)
     
-- En cours de développement...
+- Navigation : En cours de développement...
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
