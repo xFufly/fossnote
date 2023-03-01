@@ -1643,7 +1643,7 @@ estDateDansAnneeScolaire(aDate){return this.dateEntreLesDates(aDate,this.premier
 GetDateDemiJour(ADate){return new Date(ADate.getFullYear(),ADate.getMonth(),ADate.getDate(),12);}
 premierJourOuvreDeLaSemaine(aNrSemaine){return IE.Cycles.datePremierJourOuvreCycle(aNrSemaine);}
 dernierJourOuvreDeLaSemaine(aNrSemaine){return IE.Cycles.dateDernierJourOuvreCycle(aNrSemaine);}
-GetJour(ADate,N){return new Date(ADate.getFullYear(),ADate.getMonth(),ADate.getDate(),N===null||N===undefined?0:24*N);}
+GetJour(ADate,N){console.log(ADate); return new Date(ADate.getFullYear(),ADate.getMonth(),ADate.getDate(),N===null||N===undefined?0:24*N);}
 GetJourDeSemaine(ADate,B){return(7+ADate.getDay()-(B?this.PremierLundi.getDay():1))%7;}
 GetSemaineSuivante(ADate,N){return new Date(ADate.getTime()+(N===null||N===undefined?1:N)*this.DureeSemaines);}
 GetJourSuivant(ADate,N){if(!ADate||!ADate.getTime){return null;}

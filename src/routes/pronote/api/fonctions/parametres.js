@@ -1,6 +1,6 @@
 const forge = require('node-forge');
 
-const { get_metadata, getCurrentSchoolYear, getFirstSchoolYear, getLastMondayOfAugust, getFirstWeekdayOfSeptember, getLastSchoolYear } = require('../../../../helpers');
+const { get_metadata, getCurrentSchoolYear, getFirstSchoolYear, getLastMondayOfAugust, getFirstWeekdayOfSeptember, getLastSchoolYear, getDateToday } = require('../../../../helpers');
 
 const {
     decryptRSA,
@@ -299,7 +299,11 @@ async function bind(req, res, currentSession) {
                                 ],
                                 DureeSequence: 0.0416666666666667, // To understand xD
                                 GestionParcoursExcellence: true,
-                                // JourOuvre : TODO (Jour ouverture étab après vacances)
+                                JourOuvre: {
+                                    V: getDateToday(),
+                                    _T: 7
+                                },
+                                // JourOuvre : TODO (Jour ouverture étab après vacances ou alors prochain jour de cours, ou le jour d'aujourd'hui si il y a cours)
                                 JoursDemiPension: {
                                     V: "[0..4]",
                                     _T: 26
