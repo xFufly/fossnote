@@ -1,5 +1,5 @@
-const session = require('../../../../../databases/session');
 const eleves = require('../../../../../databases/eleves');
+const grades = require('../../../../../databases/grades');
 
 const forge = require('node-forge');
 
@@ -26,6 +26,50 @@ async function bind(req, res, currentSession) {
 
     var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
+    var lastGrades = await grades.getLastNineGrades(user.id);
+
+    const transformedGrades = lastGrades.map(grade => ({
+        "N": "0001",
+        "G": 60,
+        "note": {
+          "_T": 10,
+          "V": grade.grade
+        },
+        "bareme": {
+          "_T": 10,
+          "V": grade.scale
+        },
+        "baremeParDefaut": {
+          "_T": 10,
+          "V": 20
+        },
+        "date": {
+          "_T": 7,
+          "V": grade.date
+        },
+        "ListeThemes": {
+            "_T": 24,
+            "V": [] // TODO / TO UNDERSTAND
+        },
+        "periode": { // TODO : Enable configuration
+            "_T": 24,
+            "V": {
+              "L": "Trimestre 2", 
+              "N": "0001"
+            }
+        },
+        "service": {
+            "_T": 24,
+            "V": {
+                "G": 12,
+                "L": grade.subject,
+                "N": "0001",
+                "couleur": "#F49737" // TODO : Enable configuration
+            }
+        }
+        // TODO : executionQCM
+    }));
+
     var response = { // To Sync With DB
         nom: "PageAccueil",
         session: parseInt(session_id),
@@ -38,7 +82,7 @@ async function bind(req, res, currentSession) {
                     "avecDetailService": true,
                     "listeDevoirs": {
                         "_T": 24,
-                        "V": []
+                        "V": transformedGrades
                     },
                     "page": {
                         "periode": {
@@ -77,7 +121,7 @@ async function bind(req, res, currentSession) {
                         "V": []
                     }
                 },
-                "menuDeLaCantine": {
+                "menuDeLaCantine": { // TODO : SYNC WITH DB
                     "listeRepas": {
                         "_T": 24,
                         "V": [{

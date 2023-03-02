@@ -3,6 +3,7 @@ const app = express();
 
 const session = require("./databases/session");
 const eleves = require("./databases/eleves");
+const grades = require("./databases/grades");
 
 app.use(express.json())
 
