@@ -16,12 +16,14 @@ Ensuite allez sur `localhost:3000/pronote/`.
 - Page index implémentée : `/pronote/` (entièrement implémentée)
 
 - Pages espaces (seulement affichage des panels de connexion):
-    - élèves : `/pronote/eleve.html` (+ avancé que les autres)
     - professeurs : `/pronote/professeur.html`
     - vie scolaire : `/pronote/viescolaire.html`
     - parents : `/pronote/parent.html`
     - accompagnants : `/pronote/accompagnant.html`
     - direction : `/pronote/direction.html`
+    
+- Pages espaces (panels connexion + panels acceuil) :
+    - élèves : `/pronote/eleve.html`
 
 ## Fonctionnalités actuelles (back-end):
 - La création de session (entièrement implémentée) :
@@ -37,9 +39,11 @@ Ensuite allez sur `localhost:3000/pronote/`.
     - `appelFonction("Authentification")` (voir protocoles)
     - `appelFonction("ParametresUtilisateur")` (voir protocoles)
     
-- Navigation : `appelFonction("ParametresUtilisateur")` (voir protocoles)
+- Navigation : `appelFonction("Navigation")` (voir protocoles)
 
-- PageAcceuil : En cours de développement...
+- PageAcceuil (pour espace élèves seulement) : `appelFonction("PageAcceuil")` (voir protocoles)
+
+- TODO : DB Sync (notes, EDT, ...)
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
