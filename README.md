@@ -41,6 +41,8 @@ Ensuite allez sur `localhost:3000/pronote/`.
     
 - Navigation : `appelFonction("Navigation")` (voir protocoles)
 
+- Presence : `appelFonction("Presence")` (voir protocoles)
+
 - PageAcceuil (pour espace élèves seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
 
 - DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (en cours de développement) (voir protocoles)
