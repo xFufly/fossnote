@@ -58,14 +58,14 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
             if(espace_id === "3") {
                 await funcStudentSettings.bind(req, res, currentSession);
             }
-        } else if (nom === "Navigation") {
+        } else if (nom === "Navigation" || nom === "Presence") {
             var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
             var response = {
-                nom: "Navigation",
+                nom: nom,
                 session: parseInt(session_id),
                 numeroOrdre: numeroOrdre,
                 donneesSec: {
-                    nom: "Navigation",
+                    nom: nom,
                     donnees: {}
                 }
             }

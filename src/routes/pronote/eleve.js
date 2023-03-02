@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     h: session_id,
     sCrA: true,
     sCoA: true,
-    poll: true,
+    poll: false,
     a: 3,
     d: false,
     MR: rsaData.publicKeyModulus,
