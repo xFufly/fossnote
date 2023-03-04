@@ -1,12 +1,7 @@
 const forge = require('node-forge');
 
 const {
-    get_metadata,
-    getCurrentSchoolYear,
-    getFirstSchoolYear,
-    getLastMondayOfAugust,
-    getFirstWeekdayOfSeptember,
-    getLastSchoolYear
+    get_metadata
 } = require('../../../../../helpers');
 
 const {

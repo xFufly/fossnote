@@ -54,6 +54,34 @@ async function bind(req, res, currentSession) {
             } else if (espace_id === "25") {
                 espaceNom += "Accompagnants";
             }
+
+            var periodes = get_metadata().Periodes;
+            const listePeriodes = [];
+
+            for (const [key, value] of Object.entries(periodes)) {
+                const L = value.name;
+                const N = "0001";
+                const G = 1;
+                const periodeNotation = parseInt(key.slice(1)) - 1;
+                const dateDebut = {
+                    "_T": 7,
+                    "V": value.from
+                };
+                const dateFin = {
+                    "_T": 7,
+                    "V": value.to
+                };
+
+                listePeriodes.push({
+                    L,
+                    N,
+                    G,
+                    periodeNotation,
+                    dateDebut,
+                    dateFin
+                });
+            }
+
             encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, newIv).then((enryptedNumeroOrdre) => {
                 const response = {
                     nom: 'FonctionParametres',
@@ -978,138 +1006,7 @@ async function bind(req, res, currentSession) {
                                     }],
                                     _T: 24
                                 },
-                                ListePeriodes: [{
-                                    "L": "Trimestre 1",
-                                    "N": "112085320510EE4",
-                                    "G": 1,
-                                    "periodeNotation": 0,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "26/11/2022"
-                                    }
-                                }, {
-                                    "L": "Trimestre 2",
-                                    "N": "112AE5020510EA1",
-                                    "G": 1,
-                                    "periodeNotation": 1,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "27/11/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "04/03/2023"
-                                    }
-                                }, {
-                                    "L": "Trimestre 3",
-                                    "N": "1129E5120510E0D",
-                                    "G": 1,
-                                    "periodeNotation": 2,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "05/03/2023"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Semestre 1",
-                                    "N": "112E85620510E87",
-                                    "G": 2,
-                                    "periodeNotation": 3,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "18/01/2023"
-                                    }
-                                }, {
-                                    "L": "Semestre 2",
-                                    "N": "112375720510EA5",
-                                    "G": 2,
-                                    "periodeNotation": 4,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "19/01/2023"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Année continue",
-                                    "N": "112035420510E5E",
-                                    "G": 3,
-                                    "periodeNotation": 5,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Bac blanc",
-                                    "N": "112A05520510E85",
-                                    "G": 0,
-                                    "periodeNotation": 6,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Brevet blanc",
-                                    "N": "1120C5A20510E83",
-                                    "G": 0,
-                                    "periodeNotation": 6,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Hors période",
-                                    "N": "1122C5B20510E0A",
-                                    "G": 0,
-                                    "periodeNotation": 6,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }, {
-                                    "L": "Contrôle en cours de formation",
-                                    "N": "112975820510E02",
-                                    "G": 0,
-                                    "periodeNotation": 6,
-                                    "dateDebut": {
-                                        "_T": 7,
-                                        "V": "01/09/2022"
-                                    },
-                                    "dateFin": {
-                                        "_T": 7,
-                                        "V": "08/07/2023"
-                                    }
-                                }],
-                                // ListePeriodes à faire, là c'est mal fait.
+                                ListePeriodes: listePeriodes,
                                 NbJDecalageDatePublicationParDefaut: 0,
                                 NbJDecalagePublicationAuxParents: 0,
                                 NeComptabiliserQueEvalsAnneeScoDsValidAuto: false,

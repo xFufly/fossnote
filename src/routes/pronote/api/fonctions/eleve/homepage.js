@@ -4,6 +4,8 @@ const grades = require('../../../../../databases/grades');
 const forge = require('node-forge');
 
 const {
+    get_metadata,
+    getCurrentPeriod,
     getDateToday,
     getDateTomorrow
 } = require('../../../../../helpers');
@@ -27,6 +29,10 @@ async function bind(req, res, currentSession) {
     var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
     var lastGrades = await grades.getLastNineGrades(user.id);
+
+    var periodes = get_metadata().Periodes;
+
+    var currentPeriode = getCurrentPeriod(periodes);
 
     const transformedGrades = lastGrades.map(grade => ({
         "N": "0001",
@@ -54,7 +60,7 @@ async function bind(req, res, currentSession) {
         "periode": { // TODO : Enable configuration
             "_T": 24,
             "V": {
-              "L": "Trimestre 2", 
+              "L": currentPeriode.name, 
               "N": "0001"
             }
         },
@@ -88,8 +94,8 @@ async function bind(req, res, currentSession) {
                         "periode": {
                             "_T": 24,
                             "V": {
-                                "L": "Trimestre 2",
-                                "N": "11200510AA257D1"
+                                "L": currentPeriode.name,
+                                "N": "0001"
                             }
                         }
                     }

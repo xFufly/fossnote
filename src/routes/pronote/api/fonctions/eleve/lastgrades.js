@@ -5,6 +5,11 @@ const {
     encryptAES
 } = require('../../../../../cipher');
 
+const {
+    get_metadata,
+    getCurrentPeriod
+} = require('../../../../../helpers');
+
 async function bind(req, res, currentSession) {
     const {
         session_id
@@ -15,11 +20,15 @@ async function bind(req, res, currentSession) {
 
     var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
-    var lastGrades = await grades.getGradesByStudent(user.id);
+    var periodes = get_metadata().Periodes;
+
+    var currentPeriod = getCurrentPeriod(periodes);
+
+    var currentGrades = await grades.getGradesBetweenDates(currentPeriod.from, currentPeriod.to, user.id);
 
     var ordre = 1;
 
-    const transformedServices = lastGrades.map(grade => ({
+    const transformedServices = currentGrades.map(grade => ({
         "G": 12,
         "L": grade.subject,
         "N": "0001",
@@ -52,7 +61,7 @@ async function bind(req, res, currentSession) {
         "ordre": ordre++
     }));
 
-    const transformedGrades = lastGrades.map(grade => ({
+    const transformedGrades = currentGrades.map(grade => ({
         "N": "0001",
         "G": 60,
         "note": {
@@ -78,7 +87,7 @@ async function bind(req, res, currentSession) {
         "periode": { // TODO : Enable configuration
             "_T": 24,
             "V": {
-              "L": "Trimestre 2", 
+              "L": currentPeriod.name, 
               "N": "0001"
             }
         },

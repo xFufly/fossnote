@@ -1,4 +1,5 @@
 const fs = require('fs');
+const moment = require('moment');
 
 function is_compatible(user_agent) {
     const regex = /Mozilla\/5.0 \(.+?\) AppleWebKit\/.+? \(KHTML, like Gecko\) Chrome\/.+? Safari\/.+?$/;
@@ -18,7 +19,7 @@ function getDateToday() {
     const year = today.getFullYear();
     return day + '/' + month + '/' + year;
 }
-  
+
 function getDateTomorrow() {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -110,6 +111,21 @@ function getCurrentSchoolYear() {
     return schoolYear;
 }
 
+function getCurrentPeriod(json) {
+    const today = moment().startOf('day');
+    
+    for (const periodKey in json) {
+      const period = json[periodKey];
+      const from = moment(period.from, 'DD/MM/YYYY').startOf('day');
+      const to = moment(period.to, 'DD/MM/YYYY').endOf('day');
+      if (today.isBetween(from, to)) {
+        return period;
+      }
+    }
+    
+    return null;
+  }
+
 module.exports = {
     is_compatible,
     generate_session_id,
@@ -121,5 +137,6 @@ module.exports = {
     getCurrentSchoolYear,
     getDateToday,
     getDateTomorrow,
-    getDateNow
+    getDateNow,
+    getCurrentPeriod
 };
