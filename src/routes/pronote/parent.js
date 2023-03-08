@@ -9,10 +9,10 @@ var forge = require('node-forge');
 
 
 router.get('/', (req, res) => {
-  if (!is_compatible(req.headers['user-agent'])) {
+  /*if (!is_compatible(req.headers['user-agent'])) {
     res.status(400).send('Client is incompatible');
     return;
-  }
+  }*/
   const session_id = generate_session_id();
   const metadata = get_metadata();
   const rsaData = generateRSAInfos();

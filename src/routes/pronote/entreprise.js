@@ -5,10 +5,10 @@ const path = require('path');
 const { is_compatible, generate_session_id } = require('../../helpers');
 
 router.get('/', (req, res) => {
-  if (!is_compatible(req.headers['user-agent'])) {
+  /*if (!is_compatible(req.headers['user-agent'])) {
     res.status(400).send('Client is incompatible');
     return;
-  }
+  }*/
   const session_id = generate_session_id();
   const session_params = {
     h: session_id,
