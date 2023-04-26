@@ -1,59 +1,25 @@
-# Fossnote
+# CAPalgorythm FR
 
-Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatible avec le client Pronote. (Free Open Source Selfhostable PRONOTE).
+Ce programme a pour but d'aider a mettre en relation des élèves sur des créneaux horaires donné en fonctiobn des matières. Ce logiciel a été créé dans le
+but de faciliter la mise en place d'un AP entre élèves.
+
+
+## Fonctionnalités actuelles :
+
+- Une GUI simple
+- Un support des versions de windows antérieures a partir de Windows 7
+- Un système de mise a jour automatique complet
+- Des bases de données en CSV
+- Des options d'activation / désactivation de fonctionnalités
+- Un micro-environnement python Optimisé pour le logiciel permettant de l'utiliser sur une clé USB
+- Une gestion automatisée des relations avec management possible pour l'utilisateur.
 
 ## Installation
+- Il vous suffit d'extraire le `ZIP` dans un dossier et c'est parti ! Double-cliquez sur Executer `CAPS.bat` ou `.exe` suivant votre version de windows.
 
-    $ git clone https://github.com/CaraPloof/fossnote
-    $ cd fossnote
-    $ npm install
-    $ npm start
+- Les supports MacOS et Linux sont prévus dans les version ultérieures.
 
-Ensuite allez sur `localhost:3000/pronote/`.
 
-## Fonctionnalités actuelles (front-end):
+## License
 
-- Page index implémentée : `/pronote/` (entièrement implémentée)
-
-- Pages espaces (seulement affichage des panels de connexion):
-    - professeurs : `/pronote/professeur.html`
-    - vie scolaire : `/pronote/viescolaire.html`
-    - parents : `/pronote/parent.html`
-    - accompagnants : `/pronote/accompagnant.html`
-    - direction : `/pronote/direction.html`
-    
-- Pages espaces (panels connexion + panels acceuil) :
-    - élèves : `/pronote/eleve.html`
-
-## Fonctionnalités actuelles (back-end):
-- La création de session (entièrement implémentée) :
-    - Génération d'un identifiant de session en fonction du temps
-    - Génération aléatoire de paramètres RSA (Modulus, Exponent et Private Key Pem)
-    - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
-    - `appelfonction("FonctionParametres")` (voir protocoles)
-
-- Connexion (pour espace élèves seulement) :
-    - Génération "alea" et "challenge" (voir protocoles)
-    - Stockage de la solution du challenge pour l'Authentification
-    - `appelFonction("Identification")` (voir protocoles)
-    - `appelFonction("Authentification")` (voir protocoles)
-    - `appelFonction("ParametresUtilisateur")` (voir protocoles)
-    
-- Navigation : `appelFonction("Navigation")` (voir protocoles)
-
-- Presence : `appelFonction("Presence")` (voir protocoles)
-
-- PageAcceuil (pour espace élèves seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
-
-- DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (en cours de développement) (voir protocoles)
-
-- TODO : DB Sync (notes, EDT, ...)
-
-## Identifiants exemples (création automatique au démarrage du serveur):
-- Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
-
-## Protocole Client : 
-A venir...
-
-## Protocole Server : 
-A venir...
+### UNDER MIT LICENSE
