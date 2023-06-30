@@ -18,6 +18,7 @@ const funcAuth = require('./fonctions/authentification');
 const funcStudentSettings = require('./fonctions/eleve/settings');
 const funcStudentHomepage = require('./fonctions/eleve/homepage');
 const funcStudentGrades = require('./fonctions/eleve/lastgrades');
+const funcStudentInfos = require('./fonctions/eleve/persopage');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
@@ -77,6 +78,10 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "DernieresNotes") {
             if(espace_id === "3") {
                 await funcStudentGrades.bind(req, res, currentSession);
+            }
+        } else if (nom === "PageInfosPerso") {
+            if(espace_id === "3") {
+                await funcStudentInfos.bind(req, res, currentSession);
             }
         }
     } catch (error) {

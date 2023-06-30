@@ -113,8 +113,6 @@ async function bind(req, res, currentSession) {
         // TODO: executionQCM
     }));
 
-    console.log(transformedGrades[1].service);
-
     const response = {
         "nom": "DernieresNotes",
         "session": parseInt(session_id),

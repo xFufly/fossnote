@@ -18,18 +18,31 @@ db.serialize(() => {
     groupes TEXT,
     username TEXT UNIQUE,
     password TEXT,
-    notes TEXT
+    notes TEXT,
+    adresse1 TEXT,
+    adresse2 TEXT,
+    adresse3 TEXT,
+    adresse4 TEXT,
+    codePostal TEXT,
+    eMail TEXT,
+    indicatifTel TEXT,
+    numeroINE TEXT,
+    pays TEXT,
+    province TEXT,
+    telephonePortable TEXT,
+    ville TEXT
   )`;
     db.run(table, (err) => {
         if (err) {
             console.error(err.message);
         } else {
-            console.log('Table "students" init.');
+            console.log('Table "students" initialized.');
         }
     });
 
-    const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes)
-  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023"}]' 
+    const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville)
+  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023"}]',
+  '', '', '', '', '', 'akaty@fossnote.com', '33', '123456789AB', 'France', 'Rhône-Alpes', '1234567890', 'Lyon'
   WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'TDIDE')`;
     db.run(exampleUser, (err) => {
         if (err) {
@@ -41,10 +54,10 @@ db.serialize(() => {
 });
 
 // Fonction pour créer un nouvel utilisateur avec des notes au format JSON
-async function createUser(nom, prenom, usertype, classe, groupes, ids, notes) {
-    const insert = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    const values = [nom, prenom, usertype, classe, groupes.join(','), ids.username, ids.password, JSON.stringify(notes)];
+async function createUser(nom, prenom, usertype, classe, groupes, ids, notes, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville) {
+    const insert = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [nom, prenom, usertype, classe, groupes.join(','), ids.username, ids.password, JSON.stringify(notes), adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville];
     return new Promise((resolve, reject) => {
         db.run(insert, values, function(err) {
             if (err) {
@@ -58,7 +71,19 @@ async function createUser(nom, prenom, usertype, classe, groupes, ids, notes) {
                     classe,
                     groupes,
                     ids,
-                    notes
+                    notes,
+                    adresse1,
+                    adresse2,
+                    adresse3,
+                    adresse4,
+                    codePostal,
+                    eMail,
+                    indicatifTel,
+                    numeroINE,
+                    pays,
+                    province,
+                    telephonePortable,
+                    ville
                 };
                 resolve(user);
             }
@@ -86,12 +111,25 @@ async function getUser(username) {
                     ids: {
                         username: row.username,
                         password: row.password
-                    }
+                    },
+                    adresse1: row.adresse1,
+                    adresse2: row.adresse2,
+                    adresse3: row.adresse3,
+                    adresse4: row.adresse4,
+                    codePostal: row.codePostal,
+                    eMail: row.eMail,
+                    indicatifTel: row.indicatifTel,
+                    numeroINE: row.numeroINE,
+                    pays: row.pays,
+                    province: row.province,
+                    telephonePortable: row.telephonePortable,
+                    ville: row.ville
                 } : null);
             }
         });
     });
 }
+
 
 // Fonction pour mettre à jour le mot de passe d'un utilisateur
 async function setPassword(id, password) {
