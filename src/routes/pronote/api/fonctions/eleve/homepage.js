@@ -1,5 +1,5 @@
 const eleves = require('../../../../../databases/eleves');
-const grades = require('../../../../../databases/grades');
+// const grades = require('../../../../../databases/grades');
 
 const forge = require('node-forge');
 
@@ -28,40 +28,40 @@ async function bind(req, res, currentSession) {
 
     var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
-    var lastGrades = await grades.getLastNineGrades(user.id);
+    const lastFiveNotes = await eleves.getLastFiveNotesByUsername(challengeInfos.username.toLowerCase());
 
     var periodes = get_metadata().Periodes;
 
-    var currentPeriode = getCurrentPeriod(periodes);
+    var currentPeriod = getCurrentPeriod(periodes);
 
-    const transformedGrades = lastGrades.map(grade => ({
+    const transformedGrades = lastFiveNotes.map(grade => ({
         "N": "0001",
         "G": 60,
         "note": {
-          "_T": 10,
-          "V": grade.grade
+            "_T": 10,
+            "V": grade.grade
         },
         "bareme": {
-          "_T": 10,
-          "V": grade.scale
+            "_T": 10,
+            "V": grade.outof
         },
         "baremeParDefaut": {
-          "_T": 10,
-          "V": 20
+            "_T": 10,
+            "V": 20
         },
         "date": {
-          "_T": 7,
-          "V": grade.date
+            "_T": 7,
+            "V": grade.date
         },
         "ListeThemes": {
             "_T": 24,
-            "V": [] // TODO / TO UNDERSTAND
+            "V": [] // TODO: TO UNDERSTAND / TO UPDATE
         },
-        "periode": { // TODO : Enable configuration
+        "periode": { // TODO: Enable configuration
             "_T": 24,
             "V": {
-              "L": currentPeriode.name, 
-              "N": "0001"
+                "L": currentPeriod.name,
+                "N": "0001"
             }
         },
         "service": {
@@ -70,10 +70,10 @@ async function bind(req, res, currentSession) {
                 "G": 12,
                 "L": grade.subject,
                 "N": "0001",
-                "couleur": "#F49737" // TODO : Enable configuration
+                "couleur": "#F49737" // TODO: Enable configuration
             }
         }
-        // TODO : executionQCM
+        // TODO: executionQCM
     }));
 
     var response = { // To Sync With DB
@@ -94,7 +94,7 @@ async function bind(req, res, currentSession) {
                         "periode": {
                             "_T": 24,
                             "V": {
-                                "L": currentPeriode.name,
+                                "L": currentPeriod.name,
                                 "N": "0001"
                             }
                         }

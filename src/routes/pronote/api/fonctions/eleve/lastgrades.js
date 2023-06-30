@@ -1,5 +1,4 @@
 const eleves = require('../../../../../databases/eleves');
-const grades = require('../../../../../databases/grades');
 
 const {
     encryptAES
@@ -16,79 +15,90 @@ async function bind(req, res, currentSession) {
     } = req.params;
     const challengeInfos = JSON.parse(currentSession.challenge);
 
-    var user = await eleves.getUser(challengeInfos.username.toLowerCase());
+    const user = await eleves.getUser(challengeInfos.username.toLowerCase());
 
-    var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
+    const numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
-    var periodes = get_metadata().Periodes;
+    const periodes = get_metadata().Periodes;
 
-    var currentPeriod = getCurrentPeriod(periodes);
+    const currentPeriod = getCurrentPeriod(periodes);
 
-    var currentGrades = await grades.getGradesBetweenDates(currentPeriod.from, currentPeriod.to, user.id);
+    const notes = await eleves.getNotesByUsername(challengeInfos.username.toLowerCase());
 
-    var ordre = 1;
+    let ordre = 12;
 
-    const transformedServices = currentGrades.map(grade => ({
-        "G": 12,
-        "L": grade.subject,
-        "N": "0001",
-        "couleur": "#F49737", // TODO : Enable configuration
-        "baremeMoyEleve": {
-            "_T": 10,
-            "V": "20"
-        },
-        "baremeMoyEleveParDefaut": {
-            "_T": 10,
-            "V": "20"
-        },
-        "estServiceEnGroupe": true,
-        "moyClasse": { // TODO
-            "_T": 10,
-            "V": "??"
-        },
-        "moyEleve": { // TODO
-            "_T": 10,
-            "V": "??"
-        },
-        "moyMax": { // TODO
-            "_T": 10,
-            "V": "??"
-        },
-        "moyMin": { // TODO
-            "_T": 10,
-            "V": "??"
-        },
-        "ordre": ordre++
-    }));
+    let services = {};
 
-    const transformedGrades = currentGrades.map(grade => ({
-        "N": "0001",
+    const transformedServices = notes.map(grade => {
+        if (!services.hasOwnProperty(grade.subject)) {
+            services[grade.subject] = ordre;
+            ordre++;
+        }
+    
+        return {
+            "G": 12,
+            "L": grade.subject,
+            "N": "1300" + services[grade.subject],
+            "couleur": "#F49737", // TODO: Enable configuration
+            "baremeMoyEleve": {
+                "_T": 10,
+                "V": "20"
+            },
+            "baremeMoyEleveParDefaut": {
+                "_T": 10,
+                "V": "20"
+            },
+            "estServiceEnGroupe": true,
+            "moyClasse": { // TODO
+                "_T": 10,
+                "V": "??"
+            },
+            "moyEleve": { // TODO
+                "_T": 10,
+                "V": "??"
+            },
+            "moyMax": { // TODO
+                "_T": 10,
+                "V": "??"
+            },
+            "moyMin": { // TODO
+                "_T": 10,
+                "V": "??"
+            },
+            "ordre": services[grade.subject]
+        };
+    });
+
+    gradeOrder = 0;
+
+    const transformedGrades = notes.map(grade => ({
+        "N": "3400" + gradeOrder.toString(),
         "G": 60,
         "note": {
-          "_T": 10,
-          "V": grade.grade
+            "_T": 10,
+            "V": grade.grade
         },
         "bareme": {
-          "_T": 10,
-          "V": grade.scale
+            "_T": 10,
+            "V": grade.outof
         },
         "baremeParDefaut": {
-          "_T": 10,
-          "V": 20
+            "_T": 10,
+            "V": 20
         },
         "date": {
-          "_T": 7,
-          "V": grade.date
+            "_T": 7,
+            "V": grade.date
         },
         "ListeThemes": {
             "_T": 24,
-            "V": [] // TODO / TO UNDERSTAND
+            "V": [] // TODO: TO UNDERSTAND / TO UPDATE
         },
-        "periode": { // TODO : Enable configuration
+        "periode": { // TODO: Enable configuration
             "_T": 24,
             "V": {
-              "L": currentPeriod.name, 
-              "N": "0001"
+                "L": currentPeriod.name,
+                "N": "0001"
             }
         },
         "service": {
@@ -96,14 +106,16 @@ async function bind(req, res, currentSession) {
             "V": {
                 "G": 12,
                 "L": grade.subject,
-                "N": "0001",
-                "couleur": "#F49737" // TODO : Enable configuration
+                "N": "1300" + services[grade.subject],
+                "couleur": "#F49737" // TODO: Enable configuration
             }
         }
-        // TODO : executionQCM
+        // TODO: executionQCM
     }));
 
-    var response = {
+    console.log(transformedGrades[1].service);
+
+    const response = {
         "nom": "DernieresNotes",
         "session": parseInt(session_id),
         "numeroOrdre": numeroOrdre,
@@ -122,7 +134,7 @@ async function bind(req, res, currentSession) {
                 }
             }
         }
-    }
+    };
 
     res.json(response);
     return true;

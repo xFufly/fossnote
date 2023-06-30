@@ -17,7 +17,8 @@ db.serialize(() => {
     classe TEXT,
     groupes TEXT,
     username TEXT UNIQUE,
-    password TEXT
+    password TEXT,
+    notes TEXT
   )`;
     db.run(table, (err) => {
         if (err) {
@@ -27,8 +28,8 @@ db.serialize(() => {
         }
     });
 
-    const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password)
-  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!'
+    const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes)
+  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023"}]' 
   WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'TDIDE')`;
     db.run(exampleUser, (err) => {
         if (err) {
@@ -39,11 +40,11 @@ db.serialize(() => {
     });
 });
 
-// Fonction pour créer un nouvel utilisateur
-async function createUser(nom, prenom, usertype, classe, groupes, ids) {
-    const insert = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password)
-    VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    const values = [nom, prenom, usertype, classe, groupes.join(','), ids.username, ids.password];
+// Fonction pour créer un nouvel utilisateur avec des notes au format JSON
+async function createUser(nom, prenom, usertype, classe, groupes, ids, notes) {
+    const insert = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [nom, prenom, usertype, classe, groupes.join(','), ids.username, ids.password, JSON.stringify(notes)];
     return new Promise((resolve, reject) => {
         db.run(insert, values, function(err) {
             if (err) {
@@ -56,7 +57,8 @@ async function createUser(nom, prenom, usertype, classe, groupes, ids) {
                     usertype,
                     classe,
                     groupes,
-                    ids
+                    ids,
+                    notes
                 };
                 resolve(user);
             }
@@ -64,10 +66,10 @@ async function createUser(nom, prenom, usertype, classe, groupes, ids) {
     });
 }
 
-// Fonction pour récupérer un utilisateur existant par son identifiant
-async function getUser(id) {
+// Fonction pour récupérer un utilisateur existant par son nom d'utilisateur
+async function getUser(username) {
     const select = `SELECT * FROM students WHERE username = ?`;
-    const values = [id];
+    const values = [username];
     return new Promise((resolve, reject) => {
         db.get(select, values, (err, row) => {
             if (err) {
@@ -80,6 +82,7 @@ async function getUser(id) {
                     usertype: row.usertype,
                     classe: row.classe,
                     groupes: row.groupes.split(','),
+                    notes : row.notes,
                     ids: {
                         username: row.username,
                         password: row.password
@@ -107,8 +110,77 @@ async function setPassword(id, password) {
     });
 }
 
+// Fonction pour ajouter des notes au format JSON à un utilisateur existant
+async function addNotesToUser(id, notes) {
+    const select = `SELECT notes FROM students WHERE username = ?`;
+    const values = [id];
+    return new Promise((resolve, reject) => {
+        db.get(select, values, (err, row) => {
+            if (err) {
+                reject(err);
+            } else if (row) {
+                const existingNotes = JSON.parse(row.notes);
+                const updatedNotes = existingNotes.concat(notes);
+                const update = `UPDATE students SET notes = ? WHERE username = ?`;
+                const updateValues = [JSON.stringify(updatedNotes), id];
+                db.run(update, updateValues, function(err) {
+                    if (err) {
+                        reject(err);
+                    } else if (this.changes === 1) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                });
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
+
+// Fonction pour obtenir les 5 dernières notes d'un utilisateur en fonction de son nom d'utilisateur
+async function getLastFiveNotesByUsername(username) {
+    const select = `SELECT notes FROM students WHERE username = ?`;
+    const values = [username];
+    return new Promise((resolve, reject) => {
+        db.get(select, values, (err, row) => {
+            if (err) {
+                reject(err);
+            } else if (row) {
+                const notes = JSON.parse(row.notes);
+                const lastFiveNotes = notes.slice(-5); // Obtient les 5 derniers éléments du tableau de notes
+                resolve(lastFiveNotes);
+            } else {
+                resolve([]);
+            }
+        });
+    });
+}
+
+// Fonction pour obtenir les 5 dernières notes d'un utilisateur en fonction de son nom d'utilisateur
+async function getNotesByUsername(username) {
+    const select = `SELECT notes FROM students WHERE username = ?`;
+    const values = [username];
+    return new Promise((resolve, reject) => {
+        db.get(select, values, (err, row) => {
+            if (err) {
+                reject(err);
+            } else if (row) {
+                const notes = JSON.parse(row.notes);
+                resolve(notes);
+            } else {
+                resolve([]);
+            }
+        });
+    });
+}
+
 module.exports = {
     createUser,
     getUser,
-    setPassword
+    setPassword,
+    addNotesToUser,
+    getLastFiveNotesByUsername,
+    getNotesByUsername
 };
