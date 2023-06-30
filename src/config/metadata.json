@@ -1,9 +1,9 @@
 {
-    "name": "SITE DE DEMONSTRATION test",
-    "title": "SITE DE DEMONSTRATION test - PRONOTE",
-    "description": "PRONOTE Espace Direction - SITE DE DEMONSTRATION test - Marseille - gestion des notes, absences, punitions, cahier de textes pour les établissements scolaires.",
-    "DC_creator": "SITE DE DEMONSTRATION test",
-    "DC_publisher": "PRONOTE",
+    "name": "SITE DE DEMONSTRATION",
+    "title": "SITE DE DEMONSTRATION - FOSSNOTE",
+    "description": "FOSSNOTE Espace Direction - SITE DE DEMONSTRATION - Lyon - gestion des notes, absences, punitions, cahier de textes pour les établissements scolaires.",
+    "DC_creator": "SITE DE DEMONSTRATION",
+    "DC_publisher": "FOSSNOTE",
     "Periodes": {
         "p1": {
             "name": "Trimestre 1",
