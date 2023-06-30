@@ -1,6 +1,10 @@
 const eleves = require('../../../../../databases/eleves');
 // const grades = require('../../../../../databases/grades');
 
+const {
+    getHomeworksByClassNC // NC for No Callback
+} = require('../../../../../databases/homeworks');
+
 const forge = require('node-forge');
 
 const {
@@ -75,6 +79,56 @@ async function bind(req, res, currentSession) {
         }
         // TODO: executionQCM
     }));
+
+    const homeworks = await getHomeworksByClassNC(user.classe);
+
+    let serviceOrder = 12;
+    let services = {};
+    let homeworksOrder = 1;
+    let lessons = {};
+    
+    transformedHomeworks = homeworks.map(homework => {
+        if (!services.hasOwnProperty(homework.subject)) {
+            services[homework.subject] = serviceOrder;
+            serviceOrder++;
+        }
+    
+        return {
+            "G": 0,
+            "ordre": homeworksOrder++,
+            "couleurFond": homework.hexColor,
+            "couleurTexte": "#000000",
+            "donneLe": {
+                "_T": 7,
+                "V": homework.date
+            },
+            "pourLe": {
+                "_T": 7,
+                "V": homework.endDate
+            },
+            "listeDocumentJoint": {
+                "_T": 24,
+                "V": []
+            },
+            "matiere": {
+                "_T": 24,
+                "V": {
+                    "L": homework.subject,
+                    "N": "8200" + services[homework.subject]
+                }
+            },
+            "N": "1500" + homeworksOrder,
+            "TAFFait": homework.locked == 1 ? true : false,
+            "avecRendu": false,
+            "peuRendre": false,
+            "descriptif": {
+                "_T": 21,
+                "V": ("<div>" + homework.description + "</div>").replace("\n", "<br/>")
+            },
+            "duree": 0,
+            "niveauDifficulte": 0
+        };
+    });
 
     var response = { // To Sync With DB
         nom: "PageAccueil",
@@ -372,41 +426,7 @@ async function bind(req, res, currentSession) {
                 "travailAFaire": {
                     "listeTAF": {
                         "_T": 24,
-                        "V": [
-                            {
-                                "N": "155C58019E7EEB3",
-                                "G": 0,
-                                "matiere": {
-                                    "_T": 24,
-                                    "V": {
-                                        "L": "MATHEMATIQUES",
-                                        "N": "82B6644D123177"
-                                    }
-                                },
-                                "descriptif": {
-                                    "_T": 21,
-                                    "V": "<div>To sync with a db</div>"
-                                },
-                                "ordre": 44984,
-                                "pourLe": {
-                                    "_T": 7,
-                                    "V": "27/02/2023"
-                                },
-                                "donneLe": {
-                                    "_T": 7,
-                                    "V": "24/02/2023"
-                                },
-                                "couleurFond": "#F49737",
-                                "couleurTexte": "#000000",
-                                "niveauDifficulte": 0,
-                                "duree": 0,
-                                "listeDocumentJoint": {
-                                    "_T": 24,
-                                    "V": []
-                                },
-                                "TAFFait": false
-                            }
-                        ]
+                        "V": transformedHomeworks
                     }
                 },
                 "discussions": {

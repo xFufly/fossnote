@@ -4,7 +4,7 @@ const db = new sqlite3.Database('database.db', (err) => {
     if (err) {
         console.error(err.message);
     } else {
-        console.log('Connected to the database.');
+        console.log('Connected to the database (students initialization).');
     }
 });
 
@@ -42,13 +42,13 @@ db.serialize(() => {
 
     const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville)
   SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023"}]',
-  '', '', '', '', '', 'akaty@fossnote.com', '33', '123456789AB', 'France', 'Rhône-Alpes', '1234567890', 'Lyon'
-  WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'TDIDE')`;
+  '', '', '', '', '', 'akaty@fossnote.com', '33', '123456789AB', 'France', 'Rhône-Alpes', '0712345678', 'Lyon'
+  WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'akaty')`;
     db.run(exampleUser, (err) => {
         if (err) {
             console.error(err.message);
         } else {
-            console.log('Example user created.');
+            console.log('Example user initialized.');
         }
     });
 });
@@ -107,7 +107,7 @@ async function getUser(username) {
                     usertype: row.usertype,
                     classe: row.classe,
                     groupes: row.groupes.split(','),
-                    notes : row.notes,
+                    notes: row.notes,
                     ids: {
                         username: row.username,
                         password: row.password

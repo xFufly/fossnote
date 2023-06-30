@@ -1058,19 +1058,6 @@ async function bind(req, res, currentSession) {
                             ]
                         },
                         {
-                            "G": 52,
-                            "Onglet": [{
-                                    "G": 42
-                                },
-                                {
-                                    "G": 101
-                                },
-                                {
-                                    "G": 195
-                                }
-                            ]
-                        },
-                        {
                             "G": 2,
                             "Onglet": [{
                                     "G": 8
