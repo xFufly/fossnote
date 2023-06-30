@@ -45,9 +45,13 @@ Ensuite allez sur `localhost:3000/pronote/`.
 
 - PageAcceuil (pour espace élèves seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
 
-- DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (en cours de développement) (voir protocoles)
+- DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (voir protocoles)
 
-- TODO : DB Sync (notes, EDT, ...)
+- PageInfosPerso (pour espace élèves seulement) : `appelFonction("PageInfosPerso")` (voir protocoles)
+
+- PageCahierDeTexte (pour espace élèves seulement) : `appelFonction("PageInfosPerso")` (voir protocoles)
+
+- Ce qui va venir ensuite : Premières fonctionnalités prof
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
