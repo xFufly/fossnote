@@ -1,4 +1,5 @@
 const eleves = require('../../../../databases/eleves');
+const teachers = require('../../../../databases/teachers');
 const session = require('../../../../databases/session');
 
 const forge = require('node-forge');
@@ -29,6 +30,9 @@ async function bind(req, res, currentSession) {
         const espaceId = parseInt(espace_id);
         if(espaceId === 3) {
             var user = await eleves.getUser(challengeInfos.username.toLowerCase());
+            fullName = user.nom + " " + user.prenom;
+        } else if(espaceId === 1) {
+            var user = await teachers.getTeacher(challengeInfos.username.toLowerCase());
             fullName = user.nom + " " + user.prenom;
         }
 

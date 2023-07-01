@@ -16,14 +16,14 @@ Ensuite allez sur `localhost:3000/pronote/`.
 - Page index implémentée : `/pronote/` (entièrement implémentée)
 
 - Pages espaces (seulement affichage des panels de connexion):
-    - professeurs : `/pronote/professeur.html`
     - vie scolaire : `/pronote/viescolaire.html`
     - parents : `/pronote/parent.html`
     - accompagnants : `/pronote/accompagnant.html`
     - direction : `/pronote/direction.html`
     
-- Pages espaces (panels connexion + panels acceuil) :
-    - élèves : `/pronote/eleve.html`
+- Pages espaces :
+    - professeurs : `/pronote/professeur.html` (page d'acceuil)
+    - élèves : `/pronote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
 
 ## Fonctionnalités actuelles (back-end):
 - La création de session (entièrement implémentée) :
@@ -32,7 +32,7 @@ Ensuite allez sur `localhost:3000/pronote/`.
     - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
     - `appelfonction("FonctionParametres")` (voir protocoles)
 
-- Connexion (pour espace élèves seulement) :
+- Connexion (pour espace élèves et professeurs seulement) :
     - Génération "alea" et "challenge" (voir protocoles)
     - Stockage de la solution du challenge pour l'Authentification
     - `appelFonction("Identification")` (voir protocoles)
@@ -43,7 +43,7 @@ Ensuite allez sur `localhost:3000/pronote/`.
 
 - Presence : `appelFonction("Presence")` (voir protocoles)
 
-- PageAcceuil (pour espace élèves seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
+- PageAcceuil (pour espace élèves et professeurs seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
 
 - DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (voir protocoles)
 
@@ -51,13 +51,20 @@ Ensuite allez sur `localhost:3000/pronote/`.
 
 - PageCahierDeTexte (pour espace élèves seulement) : `appelFonction("PageInfosPerso")` (voir protocoles)
 
-- Ce qui va venir ensuite : Premières fonctionnalités prof
+- SaisiePenseBete (pour espace professeurs seulement) : `appelFonction("SaisiePenseBete")` (voir protocoles)
+
+- Ce qui va venir ensuite : Capacité pour un prof à mettre des notes à un élève.
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
+- Espace professeurs : Identifiant: `pgothier` Mot de passe : `Password123!`
 
 ## Protocole Client : 
 A venir...
 
 ## Protocole Server : 
 A venir...
+
+
+## Crédits :
+Projet initié par Fufly / CaraPloof.

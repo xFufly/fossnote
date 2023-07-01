@@ -21,6 +21,10 @@ const funcStudentGrades = require('./fonctions/eleve/lastgrades');
 const funcStudentInfos = require('./fonctions/eleve/persopage');
 const funcStudentHomeworks = require('./fonctions/eleve/homeworks');
 
+const funcTeacherSettings = require('./fonctions/prof/settings');
+const funcTeacherHomepage = require('./fonctions/prof/homepage');
+const funcTeacherPostIt = require('./fonctions/prof/postit');
+
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
     const {
@@ -59,6 +63,8 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "ParametresUtilisateur") {
             if(espace_id === "3") {
                 await funcStudentSettings.bind(req, res, currentSession);
+            } else if(espace_id === "1") {
+                await funcTeacherSettings.bind(req, res, currentSession);
             }
         } else if (nom === "Navigation" || nom === "Presence") {
             var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
@@ -75,6 +81,8 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "PageAccueil") {
             if(espace_id === "3") {
                 await funcStudentHomepage.bind(req, res, currentSession);
+            } else if(espace_id === "1") {
+                await funcTeacherHomepage.bind(req, res, currentSession);
             }
         } else if (nom === "DernieresNotes") {
             if(espace_id === "3") {
@@ -87,6 +95,10 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "PageCahierDeTexte") {
             if(espace_id === "3") {
                 await funcStudentHomeworks.bind(req, res, currentSession);
+            }
+        } else if (nom === "SaisiePenseBete") {
+            if(espace_id === "1") {
+                await funcTeacherPostIt.bind(req, res, currentSession);
             }
         }
     } catch (error) {

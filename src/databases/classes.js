@@ -13,13 +13,14 @@ db.serialize(() => {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     headTeacher TEXT,
-    teachers TEXT
+    teachers TEXT,
+    classRepresentatives TEXT
   )`;
     db.run(table, (err) => {
         if (err) {
             console.error(err.message);
         } else {
-            // createDemoClass("3A", "pgothier", "pgothier,lgousse") // TODO: func createDemoClass
+            // createDemoClass("3A", "pgothier", "pgothier,lgousse", "akaty,") // TODO: func createDemoClass
             console.log('Table "classes" initialized.');
         }
     });

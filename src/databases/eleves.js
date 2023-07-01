@@ -48,7 +48,7 @@ db.serialize(() => {
         if (err) {
             console.error(err.message);
         } else {
-            console.log('Example user initialized.');
+            console.log('Example student initialized.');
         }
     });
 });

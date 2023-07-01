@@ -1,7 +1,8 @@
 const forge = require('node-forge');
 
 const {
-    get_metadata
+    get_metadata,
+    getCurrentPeriod
 } = require('../../../../../helpers');
 
 const {
@@ -23,19 +24,22 @@ async function bind(req, res, currentSession) {
     const date = new Date();
     const dateServeurHttp = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
 
+    const periodes = get_metadata().Periodes;
+    const currentPeriod = getCurrentPeriod(periodes);
+
     encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv).then(async (enryptedNumeroOrdre) => {
         const challengeInfos = JSON.parse(currentSession.challenge);
         var user = await eleves.getUser(challengeInfos.username.toLowerCase());
         var fullName = user.nom + " " + user.prenom;
         const response = {
-            nom: 'ParametresUtilisateur',
-            session: parseInt(session_id),
-            numeroOrdre: enryptedNumeroOrdre,
-            donneesSec: {
-                _Signature_: {
-                    ModeExclusif: false
+            "nom": 'ParametresUtilisateur',
+            "session": parseInt(session_id),
+            "numeroOrdre": enryptedNumeroOrdre,
+            "donneesSec": {
+                "_Signature_": {
+                    "ModeExclusif": false
                 },
-                donnees: {
+                "donnees": {
                     "ressource": {
                         "L": fullName,
                         "N": "0001", // TO UNDERSTAND
@@ -1088,7 +1092,7 @@ async function bind(req, res, currentSession) {
                         8
                     ]
                 },
-                nom: 'ParametresUtilisateur'
+                "nom": 'ParametresUtilisateur'
             }
         };
         res.json(response);

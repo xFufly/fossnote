@@ -1,5 +1,6 @@
 const eleves = require('../../../../../databases/eleves');
 // const grades = require('../../../../../databases/grades');
+const teachers = require('../../../../../databases/teachers');
 
 const {
     getHomeworksByClassNC // NC for No Callback
@@ -26,109 +27,16 @@ async function bind(req, res, currentSession) {
 
     var fullName = "";
 
-    var user = await eleves.getUser(challengeInfos.username.toLowerCase());
+    var user = await teachers.getTeacher(challengeInfos.username.toLowerCase());
     fullName = user.nom + " " + user.prenom;
 
 
     var numeroOrdre = await encryptAES((currentSession.numeroOrdre + 2).toString(), JSON.parse(currentSession.aes).key, JSON.parse(currentSession.aes).iv);
 
-    const lastFiveNotes = await eleves.getLastFiveNotesByUsername(challengeInfos.username.toLowerCase());
-
     var periodes = get_metadata().Periodes;
 
     var currentPeriod = getCurrentPeriod(periodes);
-
-    const transformedGrades = lastFiveNotes.map(grade => ({
-        "N": "0001",
-        "G": 60,
-        "note": {
-            "_T": 10,
-            "V": grade.grade
-        },
-        "bareme": {
-            "_T": 10,
-            "V": grade.outof
-        },
-        "baremeParDefaut": {
-            "_T": 10,
-            "V": 20
-        },
-        "date": {
-            "_T": 7,
-            "V": grade.date
-        },
-        "ListeThemes": {
-            "_T": 24,
-            "V": [] // TODO: TO UNDERSTAND / TO UPDATE
-        },
-        "periode": { // TODO: Enable configuration
-            "_T": 24,
-            "V": {
-                "L": currentPeriod.name,
-                "N": "0001"
-            }
-        },
-        "service": {
-            "_T": 24,
-            "V": {
-                "G": 12,
-                "L": grade.subject,
-                "N": "0001",
-                "couleur": "#F49737" // TODO: Enable configuration
-            }
-        }
-        // TODO: executionQCM
-    }));
-
-    const homeworks = await getHomeworksByClassNC(user.classe);
-
-    let serviceOrder = 12;
-    let services = {};
-    let homeworksOrder = 1;
-    let lessons = {};
     
-    transformedHomeworks = homeworks.map(homework => {
-        if (!services.hasOwnProperty(homework.subject)) {
-            services[homework.subject] = serviceOrder;
-            serviceOrder++;
-        }
-    
-        return {
-            "G": 0,
-            "ordre": homeworksOrder++,
-            "couleurFond": homework.hexColor,
-            "couleurTexte": "#000000",
-            "donneLe": {
-                "_T": 7,
-                "V": homework.date
-            },
-            "pourLe": {
-                "_T": 7,
-                "V": homework.endDate
-            },
-            "listeDocumentJoint": {
-                "_T": 24,
-                "V": []
-            },
-            "matiere": {
-                "_T": 24,
-                "V": {
-                    "L": homework.subject,
-                    "N": "8200" + services[homework.subject]
-                }
-            },
-            "N": "1500" + homeworksOrder,
-            "TAFFait": homework.locked == 1 ? true : false,
-            "avecRendu": false,
-            "peuRendre": false,
-            "descriptif": {
-                "_T": 21,
-                "V": ("<div>" + homework.description + "</div>").replace("\n", "<br/>")
-            },
-            "duree": 0,
-            "niveauDifficulte": 0
-        };
-    });
 
     var response = { // To Sync With DB
         "nom": "PageAccueil",
@@ -137,49 +45,151 @@ async function bind(req, res, currentSession) {
         "donneesSec": {
             "nom": "PageAccueil",
             "donnees": {
-                "notes": {
-                    "avecDetailDevoir": true,
-                    "avecDetailService": true,
-                    "listeDevoirs": {
-                        "_T": 24,
-                        "V": transformedGrades
-                    },
-                    "page": {
-                        "periode": {
-                            "_T": 24,
-                            "V": {
-                                "L": currentPeriod.name,
-                                "N": "0001"
-                            }
-                        }
+                "conseilDeClasse": {
+                  "avecNotes": true,
+                  "avecCompetences": true,
+                  "avecAppr": true,
+                  "listeClasses": {
+                    "_T": 24,
+                    "V": [] // TODO : SYNC WITH DB
+                  },
+                  "periodeParDefaut": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "112A403FE09EADA"
                     }
+                  }
                 },
-                "competences": {
-                    "listeEvaluations": {
-                        "_T": 24,
-                        "V": []
-                    }
+                "ressources": {
+                  "listeMatieres": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Maths",
+                        "N": "82001",
+                        "nbrRessources": [] // TODO : TO UNDERSTAND
+                      }
+                    ]
+                  }
                 },
-                "vieScolaire": {
-                    "L": "Observations, Absences, Retards, Sanctions, Exclusions de cours, Autres punitions, Mesures conservatoires",
-                    "autorisations": {
-                        "saisieMotifAbsence": false,
-                        "absence": true,
-                        "retard": true,
-                        "saisieMotifRetard": false,
-                        "punition": true,
-                        "exclusion": true,
-                        "sanction": true,
-                        "mesureConservatoire": true,
-                        "absenceInternat": false,
-                        "observation": true,
-                        "incident": true,
-                        "totalHeuresManquees": true
-                    },
-                    "listeAbsences": {
-                        "_T": 24,
-                        "V": []
-                    }
+                "kiosque": {
+                  "listeRessources": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                "penseBete": {
+                  "libelle": user.postIt
+                },
+                "lienUtile": {
+                  "listeLiens": {
+                    "_T": 24,
+                    "V": [ // TODO : SYNC WITH DB
+                      {
+                        "L": "Protocole sanitaire",
+                        "commentaire": "",
+                        "url": "https://www.education.gouv.fr/annee-scolaire-2022-2023-protocole-sanitaire-342184"
+                      },
+                      {
+                        "L": "Les éco-délégués, c'est quoi ?",
+                        "commentaire": "",
+                        "url": "https://eduscol.education.fr/1121/les-eco-delegues"
+                      }
+                    ]
+                  }
+                },
+                "partenaireCDI": {},
+                "elections": {
+                  "listeElections": {
+                    "_T": 24,
+                    "V": [] // TODO : SYNC WITH DB
+                  }
+                },
+                "personnelsAbsents": {
+                  "listePersonnelsAbsents": {
+                    "_T": 24,
+                    "V": [] // TODO : SYNC WITH DB
+                  },
+                  "listePersonnels": {
+                    "_T": 24,
+                    "V": [] // TODO : SYNC WITH DB
+                  }
+                },
+                "avecCoursAnnule": true,
+                "ParametreExportiCal": "FC52F5734C704A62AA02BB8A5177D5709D309A77BF29EFDA6697F62DE28D4D070C21E6050E066B0574BBEE1DEECAF8C7", // TO UNDERSTAND
+                "avecExportICal": true,
+                "prefsGrille": {
+                  "genreRessource": 3
+                },
+                "ListeCours": [], // TODO : SYNC WITH DB | IMPORTANT
+                "debutDemiPensionHebdo": 108,
+                "finDemiPensionHebdo": 111,
+                "actualites": {}, // TODO : SYNC WITH DB
+                "agenda": {
+                  "listeEvenements": [] // TODO : SYNC WITH DB
+                },
+                "discussions": {
+                  "listeEtiquettes": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Archives",
+                        "N": "5474635CFC2D95",
+                        "G": 2
+                      },
+                      {
+                        "L": "Brouillons",
+                        "N": "54B8655CFC2D91",
+                        "G": 4
+                      },
+                      {
+                        "L": "Corbeille",
+                        "N": "543E645CFC2DEE",
+                        "G": 5
+                      },
+                      {
+                        "L": "Tchat",
+                        "N": "5473595DFC2D71",
+                        "G": 13
+                      },
+                      {
+                        "L": "Alerte",
+                        "N": "5469575DFC2D0C",
+                        "G": 11
+                      },
+                      {
+                        "L": "Contacter la vie scolaire",
+                        "N": "54A5565DFC2D0E",
+                        "G": 12
+                      },
+                      {
+                        "L": "Bleu",
+                        "N": "5496395CFC2D30",
+                        "G": 7,
+                        "abr": "B",
+                        "couleur": "#3498DB"
+                      },
+                      {
+                        "L": "Vert",
+                        "N": "546B385CFC2D0A",
+                        "G": 8,
+                        "abr": "V",
+                        "couleur": "#57C16E"
+                      },
+                      {
+                        "L": "Rouge",
+                        "N": "541F3B5CFC2DDF",
+                        "G": 9,
+                        "abr": "R",
+                        "couleur": "#E55039"
+                      }
+                    ]
+                  },
+                  "listeMessagerie": {
+                    "_T": 24,
+                    "V": [] // TODO : SYNC WITH DB
+                  }
                 },
                 "menuDeLaCantine": { // TODO : SYNC WITH DB
                     "listeRepas": {
@@ -351,144 +361,60 @@ async function bind(req, res, currentSession) {
                         ]
                     }
                 },
-                "actualites": {
-                    "listeModesAff": [{
-                        "G": 0,
-                        "listeActualites": {
-                            "_T": 24,
-                            "V": []
-                        }
-                    }]
-                },
-                "elections": {
-                    "listeElections": {
-                        "_T": 24,
-                        "V": []
-                    }
-                },
-                "agenda": {
-                    "listeEvenements": []
-                },
-                "prochaineDate": {
-                    "_T": 7,
-                    "V": getDateTomorrow()
-                },
-                "dateSelectionnee": {
-                    "_T": 7,
-                    "V": getDateToday()
-                },
-                "avecCoursAnnule": true,
-                "placeCourante": 100,
-                "prefsGrille": {
-                    "genreRessource": 4
-                },
-                "ListeCours": [],
-                "debutDemiPensionHebdo": 126,
-                "finDemiPensionHebdo": 132,
-                "absences": {
-                    "listeAbsences": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "listeRetards": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "listePunitions": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "listeInfirmeries": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "avecDemiPension": true,
-                    "joursCycle": {
-                        "_T": 24,
-                        "V": [{
-                            "jourCycle": 4,
-                            "DP": {}
-                        }]
-                    }
-                },
-                "recreations": {
+                "appelNonFait": {
+                  "listeAppelNonFait": {
                     "_T": 24,
-                    "V": [{
-                            "L": "Récréation du matin",
-                            "place": 4
-                        },
-                        {
-                            "L": "Récréation de l'après-midi",
-                            "place": 14
-                        }
+                    "V": [] // TODO | TO SYNC WITH A DB
+                  },
+                  "listeProfCoursNonAssures": {
+                    "_T": 24,
+                    "V": [] // TODO | TO SYNC WITH A DB
+                  }
+                },
+                "carnetDeCorrespondance": {
+                  "listeObservations": {
+                    "_T": 24,
+                    "V": [] // TODO | TO SYNC WITH A DB
+                  },
+                  "listeClassesGroupes": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "3A",
+                        "N": "23001",
+                        "G": 1
+                      },
+                      {
+                        "L": "4B",
+                        "N": "23002",
+                        "G": 1
+                      }
                     ]
+                  }
                 },
-                "travailAFaire": {
-                    "listeTAF": {
-                        "_T": 24,
-                        "V": transformedHomeworks
-                    }
+                "IntendanceExecute": {
+                  "listeLignes": {
+                    "_T": 24,
+                    "V": []
+                  }
                 },
-                "discussions": {
-                    "listeEtiquettes": {
-                        "_T": 24,
-                        "V": [{
-                                "L": "Brouillons",
-                                "N": "54370AF3877694",
-                                "G": 4
-                            },
-                            {
-                                "L": "Corbeille",
-                                "N": "54080BF38776D7",
-                                "G": 5
-                            }
-                        ]
-                    },
-                    "listeMessagerie": {
-                        "_T": 24,
-                        "V": []
-                    }
+                "maintenanceInfoExecute": {
+                  "listeLignes": {
+                    "_T": 24,
+                    "V": []
+                  }
                 },
-                "ressourcePedagogique": {
-                    "listeRessources": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "listeMatieres": {
-                        "_T": 24,
-                        "V": []
-                    }
-                },
-                "QCM": {
-                    "listeExecutionsQCM": [],
-                    "listeDevoirs": []
-                },
-                "devoirSurveille": {
-                    "listeDS": {
-                        "_T": 24,
-                        "V": []
-                    }
-                },
-                "enseignementADistance": {
-                    "jours": {
-                        "_T": 24,
-                        "V": []
-                    },
-                    "actif": false
-                },
-                "kiosque": {
-                    "listeRessources": {
-                        "_T": 24,
-                        "V": []
-                    }
-                },
-                "lienUtile": {
-                    "listeLiens": {
-                        "_T": 24,
-                        "V": []
-                    }
-                },
-                "partenaireCDI": {}
+                "TAFARendre": {
+                  "listeTAF": {
+                    "_T": 24,
+                    "V": [
+                      {} // TODO | TO SYNC WITH DB
+                    ]
+                  }
+                }
+              },
+            "_Signature_": {
+                "listeDonnees": {}
             }
         }
     }
