@@ -5,7 +5,7 @@ const session = require("./databases/session");
 const eleves = require("./databases/eleves");
 const teachers = require("./databases/teachers");
 const homeworks = require("./databases/homeworks");
-// const grades = require("./databases/grades");
+const classes = require("./databases/classes");
 
 app.use(express.json())
 

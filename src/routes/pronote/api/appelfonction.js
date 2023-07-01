@@ -24,6 +24,7 @@ const funcStudentHomeworks = require('./fonctions/eleve/homeworks');
 const funcTeacherSettings = require('./fonctions/prof/settings');
 const funcTeacherHomepage = require('./fonctions/prof/homepage');
 const funcTeacherPostIt = require('./fonctions/prof/postit');
+const funcTeacherListClassesGroupes = require('./fonctions/prof/listclassesgroupes');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
@@ -99,6 +100,10 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "SaisiePenseBete") {
             if(espace_id === "1") {
                 await funcTeacherPostIt.bind(req, res, currentSession);
+            }
+        } else if (nom === "listeClassesGroupes") {
+            if(espace_id === "1") {
+                await funcTeacherListClassesGroupes.bind(req, res, currentSession);
             }
         }
     } catch (error) {
