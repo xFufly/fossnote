@@ -1,6 +1,6 @@
 # Fossnote
 
-Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatible avec le client Pronote. (Free Open Source Selfhostable PRONOTE).
+Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatible avec le client web Pronote. (Free Open Source Selfhostable PRONOTE).
 
 ## Installation
 
