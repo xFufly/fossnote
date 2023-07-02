@@ -6,19 +6,25 @@
     "DC_publisher": "FOSSNOTE",
     "Periodes": {
         "p1": {
+            "id": 1,
             "name": "Trimestre 1",
             "from": "01/09/2022",
-            "to": "26/11/2022"
+            "to": "26/11/2022",
+            "periodeScolaire": true
         },
         "p2": {
+            "id": 2,
             "name": "Trimestre 2",
             "from": "27/11/2022",
-            "to": "04/03/2023"
+            "to": "04/03/2023",
+            "periodeScolaire": true
         },
         "p3": {
+            "id": 3,
             "name": "Trimestre 3",
             "from": "05/03/2023",
-            "to": "08/07/2023"
+            "to": "08/07/2023",
+            "periodeScolaire": true
         }
     }
 }

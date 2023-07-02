@@ -39,16 +39,27 @@ db.serialize(() => {
         }
     });
 
-    const exampleUser = `INSERT INTO teachers (nom, prenom, genre, usertype, username, password, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville, postIt)
+    const exampleTeacherPgothier = `INSERT INTO teachers (nom, prenom, genre, usertype, username, password, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville, postIt)
   SELECT 'GOTHIER', 'Paula', 'F', 1, 'pgothier', 'Password123!', '', '', '', '', '', 'pgothier@fossnote.com', '33', '987654321CD', 'France', 'Rhône-Alpes', '0676767676', 'Villeurbanne', ''
   WHERE NOT EXISTS (SELECT 1 FROM teachers WHERE username = 'pgothier')`;
-    db.run(exampleUser, (err) => {
+    db.run(exampleTeacherPgothier, (err) => {
         if (err) {
             console.error(err.message);
         } else {
-            console.log('Example teacher initialized.');
+            console.log('Example teacher "pgothier" initialized.');
         }
     });
+
+    const exampleTeacherLgousse = `INSERT INTO teachers (nom, prenom, genre, usertype, username, password, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville, postIt)
+    SELECT 'GOUSSE', 'Léo', 'M', 1, 'lgousse', 'Password123!', '', '', '', '', '', 'lgousse@fossnote.com', '33', '345678910EF', 'France', 'Rhône-Alpes', '0766666000', 'Sainte-Foy-lès-Lyon', ''
+    WHERE NOT EXISTS (SELECT 1 FROM teachers WHERE username = 'lgousse')`;
+      db.run(exampleTeacherLgousse, (err) => {
+          if (err) {
+              console.error(err.message);
+          } else {
+              console.log('Example teacher "lgousse" initialized.');
+          }
+      });
 });
 
 // Fonction pour récupérer un enseignant existant par son nom d'utilisateur
