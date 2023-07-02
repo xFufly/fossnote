@@ -53,6 +53,12 @@ Ensuite allez sur `localhost:3000/pronote/`.
 
 - SaisiePenseBete (pour espace professeurs seulement) : `appelFonction("SaisiePenseBete")` (voir protocoles)
 
+- listeClassesGroupes (pour espace professeurs seulement) : `appelFonction("listeClassesGroupes")` (voir protocoles)
+
+- ListePeriodes (pour espace professeurs seulement) : `appelFonction("ListePeriodes")` (voir protocoles)
+
+- ListeServices (pour espace professeurs seulement) : `appelFonction("ListeServices")` (voir protocoles)
+
 - Ce qui va venir ensuite : Capacité pour un prof à mettre des notes à un élève.
 
 ## Identifiants exemples (création automatique au démarrage du serveur):
