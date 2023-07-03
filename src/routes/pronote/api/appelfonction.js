@@ -27,6 +27,7 @@ const funcTeacherPostIt = require('./fonctions/prof/postit');
 const funcTeacherListClassesGroupes = require('./fonctions/prof/listclassesgroupes');
 const funcTeacherListePeriodes = require('./fonctions/prof/listeperiodes');
 const funcTeacherListeServices = require('./fonctions/prof/listservices');
+const funcTeacherPageNotes = require('./fonctions/prof/listservices');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
@@ -114,6 +115,10 @@ router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {
         } else if (nom === "ListeServices") {
             if(espace_id === "1") {
                 await funcTeacherListeServices.bind(req, res, currentSession);
+            }
+        } else if (nom === "PageNotes") {
+            if(espace_id === "1") {
+                await funcTeacherPageNotes.bind(req, res, currentSession);
             }
         }
     } catch (error) {
