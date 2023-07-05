@@ -33,7 +33,8 @@ async function bind(req, res, currentSession) {
     const subjectsList = [];
     let ordre = 6;
 
-    const transformedServices = await Promise.all(services.map(async (service) => {
+    const transformedServices = [];
+    for (const service of services) {
         if (!teachersList.hasOwnProperty(service.teacherTeachingThisSubjectInTheClass)) {
             const teacher = await teachers.getTeacher(service.teacherTeachingThisSubjectInTheClass);
             var fullName = teacher.nom + " " + teacher.prenom;
@@ -49,12 +50,14 @@ async function bind(req, res, currentSession) {
             };
             ordre++;
         }
-
-        if (!teachersList.hasOwnProperty(service.subject)) {
-            subjectsList[service.subject] = await subjects.getSubjectByName(service.subject).id;
+    
+        if (!subjectsList.hasOwnProperty(service.subject)) {
+            const subject = await subjects.getSubjectByName(service.subject);
+            const subjectId = subject.id;
+            subjectsList[service.subject] = subjectId;
         }
-
-        return {
+    
+        transformedServices.push({
             "L": service.subject,
             "N": "1300" + subjectsList[service.subject],
             "classe": {
@@ -82,8 +85,8 @@ async function bind(req, res, currentSession) {
                     "N": "8200" + subjectsList[service.subject],
                 },
             },
-        };
-    }));
+        });
+    }    
 
     const response = {
         "nom": "ListeServices",

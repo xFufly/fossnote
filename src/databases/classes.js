@@ -76,6 +76,32 @@ function getClassesByTeacher(teacher) {
     });
 }
 
+function getClassById(id) {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM classes WHERE id = ?`;
+
+        db.get(query, [id], (err, row) => {
+            if (err) {
+                console.error(err.message);
+                reject(err);
+            } else if (row) {
+                const classData = {
+                    id: row.id,
+                    name: row.name,
+                    headTeacher: row.headTeacher,
+                    teachers: row.teachers,
+                    classRepresentatives: row.classRepresentatives,
+                    teacherSubjects: row.teacherSubjects
+                };
+                resolve(classData);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+}
+
+
 function getTeachersSubjectsByClassName(className) {
     return new Promise((resolve, reject) => {
       const query = `SELECT teacherSubjects FROM classes WHERE name = ?`;
@@ -118,5 +144,6 @@ function getTeachersSubjectsByClassName(className) {
 module.exports = {
     createClass,
     getClassesByTeacher,
-    getTeachersSubjectsByClassName
+    getTeachersSubjectsByClassName,
+    getClassById
 };

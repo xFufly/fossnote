@@ -41,7 +41,7 @@ db.serialize(() => {
     });
 
     const exampleUser = `INSERT INTO students (nom, prenom, usertype, classe, groupes, username, password, notes, adresse1, adresse2, adresse3, adresse4, codePostal, eMail, indicatifTel, numeroINE, pays, province, telephonePortable, ville)
-  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023"}]',
+  SELECT 'KATY', 'Alex', 3, '3A', 'groupe1,groupe2', 'akaty', 'Password123!', '[{"id": 0, "subject": "Maths", "grade": "17", "outof": "20", "date": "27/06/2023", "commentary": "Trigo n°2", "coef": "1"}, {"id": 1, "subject": "Anglais", "grade": "20", "outof": "20", "date": "21/06/2023", "commentary": "Verbes irréguliers", "coef": "1"}]',
   '', '', '', '', '', 'akaty@fossnote.com', '33', '123456789AB', 'France', 'Rhône-Alpes', '0712345678', 'Lyon'
   WHERE NOT EXISTS (SELECT 1 FROM students WHERE username = 'akaty')`;
     db.run(exampleUser, (err) => {
@@ -177,6 +177,35 @@ async function addNotesToUser(id, notes) {
     });
 }
 
+// Fonction pour ajouter des notes au format JSON à des utilisateurs existants dans une classe spécifique
+async function addNotesToUsersInClass(classe, notes) {
+    const select = `SELECT notes FROM students WHERE classe = ?`;
+    const values = [classe];
+    return new Promise((resolve, reject) => {
+        db.get(select, values, (err, row) => {
+            if (err) {
+                reject(err);
+            } else if (row) {
+                const existingNotes = JSON.parse(row.notes);
+                const updatedNotes = existingNotes.concat(notes);
+                const update = `UPDATE students SET notes = ? WHERE classe = ?`;
+                const updateValues = [JSON.stringify(updatedNotes), classe];
+                db.run(update, updateValues, function(err) {
+                    if (err) {
+                        reject(err);
+                    } else if (this.changes === 1) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                });
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
+
 // Fonction pour obtenir les 5 dernières notes d'un utilisateur en fonction de son nom d'utilisateur
 async function getLastFiveNotesByUsername(username) {
     const select = `SELECT notes FROM students WHERE username = ?`;
@@ -220,5 +249,6 @@ module.exports = {
     setPassword,
     addNotesToUser,
     getLastFiveNotesByUsername,
-    getNotesByUsername
+    getNotesByUsername,
+    addNotesToUsersInClass
 };

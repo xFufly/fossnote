@@ -27,7 +27,7 @@ const funcTeacherPostIt = require('./fonctions/prof/postit');
 const funcTeacherListClassesGroupes = require('./fonctions/prof/listclassesgroupes');
 const funcTeacherListePeriodes = require('./fonctions/prof/listeperiodes');
 const funcTeacherListeServices = require('./fonctions/prof/listservices');
-const funcTeacherPageNotes = require('./fonctions/prof/listservices');
+const funcTeacherPageNotes = require('./fonctions/prof/pagenotes');
 
 // Création d'une nouvelle route pour la deuxième étape du protocole
 router.post('/:espace_id/:session_id/:numero_ordre', async (req, res) => {

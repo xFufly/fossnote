@@ -74,6 +74,8 @@ async function bind(req, res, currentSession) {
     const transformedGrades = notes.map(grade => ({
         "N": "3400" + gradeOrder.toString(),
         "G": 60,
+        "coefficient": parseInt(grade.coef ? grade.coef : "1"),
+        "commentaire": grade.commentary ? grade.commentary : "",
         "note": {
             "_T": 10,
             "V": grade.grade
@@ -84,7 +86,7 @@ async function bind(req, res, currentSession) {
         },
         "baremeParDefaut": {
             "_T": 10,
-            "V": 20
+            "V": "20"
         },
         "date": {
             "_T": 7,
