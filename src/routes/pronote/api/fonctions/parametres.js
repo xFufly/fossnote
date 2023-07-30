@@ -308,10 +308,7 @@ async function bind(req, res, currentSession) {
                                         _T: 26
                                     }
                                 ],
-                                DerniereDate: {
-                                    V: "08/07/" + getLastSchoolYear(), // Temporaire
-                                    _T: 7
-                                },
+                                DerniereDate: listePeriodes[listePeriodes.length - 1].dateFin,
                                 DomainesFrequences: [{
                                         V: "[1..8,11..16,19..23,26..32,35..45]",
                                         _T: 8

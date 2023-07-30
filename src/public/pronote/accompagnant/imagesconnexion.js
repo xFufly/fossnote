@@ -367,48 +367,48 @@ avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,
 avecLienSuite: false
 }, {
 
-srcImage: 'ressources/ete2022.png',
-urlImageFond: 'ressources/ete2022-background.png',
+srcImage: 'ressources/summer.gif',
+urlImageFond: 'ressources/summer-background.png',
 couleurConnexion: '#ffffff',
 classImageFond: 'Repeat',
 avecLien: false,

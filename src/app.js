@@ -9,6 +9,10 @@ const classes = require("./databases/classes");
 const subjects = require("./databases/subjects");
 const evaluations = require("./databases/evaluations");
 
+if (require('./config/discord.json').token) {
+    const bot = require("./discord/deploy-commands");
+}
+
 app.use(express.json())
 
 // Définit le dossier public
@@ -47,5 +51,5 @@ app.use('/pronote/appeldeconnexion', appelDeConnexionRoute);
 app.use('/pronote/appelfonction', appelFonctionRoute);
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+    console.log('Server is running on port 3000');
 });
