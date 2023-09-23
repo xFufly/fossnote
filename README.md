@@ -9,21 +9,21 @@ Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatib
     $ npm install
     $ npm start
 
-Ensuite allez sur `localhost:3000/pronote/`.
+Ensuite allez sur `localhost:3000/fossnote/`.
 
 ## Fonctionnalités actuelles (front-end):
 
-- Page index implémentée : `/pronote/` (entièrement implémentée)
+- Page index implémentée : `/fossnote/` (entièrement implémentée)
 
 - Pages espaces (seulement affichage des panels de connexion):
-    - vie scolaire : `/pronote/viescolaire.html`
-    - parents : `/pronote/parent.html`
-    - accompagnants : `/pronote/accompagnant.html`
-    - direction : `/pronote/direction.html`
+    - vie scolaire : `/fossnote/viescolaire.html`
+    - parents : `/fossnote/parent.html`
+    - accompagnants : `/fossnote/accompagnant.html`
+    - direction : `/fossnote/direction.html`
     
 - Pages espaces :
-    - professeurs : `/pronote/professeur.html` (page d'acceuil)
-    - élèves : `/pronote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
+    - professeurs : `/fossnote/professeur.html` (page d'acceuil)
+    - élèves : `/fossnote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
 
 ## Fonctionnalités actuelles (back-end):
 - La création de session (entièrement implémentée) :
