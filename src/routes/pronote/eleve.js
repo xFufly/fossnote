@@ -24,18 +24,18 @@ router.get('/', async (req, res) => {
     poll: false,
     a: 3,
     d: false,
-    MR: rsaData.publicKeyModulus,
-    ER: rsaData.publicKeyExponent
+    // MR: rsaData.publicKeyModulus, // Old pronote versions
+    // ER: rsaData.publicKeyExponent // Old pronote versions
   };
 
   var key = new forge.util.ByteBuffer();
   key = forge.md.md5.create().update(key.bytes()).digest().toHex();
 
-  await session.createSession(session_id, 0, session_params, rsaData.privateKeyPem, {key: key, iv: null}, {});
+  await session.createSession(session_id, 0, session_params, /*rsaData.privateKeyPem*/ null, {key: key, iv: null}, {});
 
   const file_path = path.join(__dirname, '../../views/pronote/eleve.html');
   const html_content = fs.readFileSync(file_path, { encoding: 'utf-8' });
-  var updated_html = html_content.replace("Start ()", "Start ({h:'" + session_params.h + "',d:" + session_params.d + ",sCrA:" + session_params.sCrA + ",sCoA:" + session_params.sCoA + ",poll:" + session_params.poll + ",a:" + session_params.a + ",MR:'" + session_params.MR + "',ER:'" + session_params.ER + "'})");
+  var updated_html = html_content.replace("Start ()", "Start ({h:'" + session_params.h + "',d:" + session_params.d + ",sCrA:" + session_params.sCrA + ",sCoA:" + session_params.sCoA + ",poll:" + session_params.poll + ",a:" + session_params.a + /*",MR:'" + session_params.MR + "',ER:'" + session_params.ER +*/ "})");
   updated_html = updated_html.replace("${metadata.title}", metadata.title);
   updated_html = updated_html.replace("${metadata.DC_title}", metadata.title);
   updated_html = updated_html.replace("${metadata.description}", metadata.description);

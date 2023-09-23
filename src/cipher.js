@@ -11,8 +11,8 @@ function generateRSAInfos() {
 
     // Extraire le modulus et l'exponent de la clé publique
     const publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
-    const modulus = publicKey.n.toString(16);
-    const exponent = publicKey.e.toString(16);
+    const modulus = publicKey.n.toString(16).toUpperCase();
+    const exponent = publicKey.e.toString(16).toUpperCase();
 
     rsaData = {
         "publicKeyModulus": modulus,
@@ -23,9 +23,18 @@ function generateRSAInfos() {
 }
 
 function decryptRSA(data, privateKeyPem) {
-    const privateKey = forge.pki.privateKeyFromPem(privateKeyPem);
-    const decryptedData = privateKey.decrypt(forge.util.decode64(data), 'RSAES-PKCS1-V1_5');
-    return decryptedData;
+    try {
+        if(privateKeyPem === null) {
+            privateKeyPem = require("./config/rsa.json").privateKeyPem;
+        }
+    
+        const privateKey = forge.pki.privateKeyFromPem(privateKeyPem);
+        const decryptedData = privateKey.decrypt(forge.util.decode64(data), 'RSAES-PKCS1-V1_5');
+        return decryptedData;
+    } catch (error) {
+        const decryptedData = forge.util.decode64(data);
+        return decryptedData;
+    }
 }
 
 async function encryptAES(data, key, iv) {

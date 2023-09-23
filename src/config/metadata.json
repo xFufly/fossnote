@@ -8,22 +8,22 @@
         "p1": {
             "id": 1,
             "name": "Trimestre 1",
-            "from": "09/07/2023",
-            "to": "31/07/2023",
+            "from": "01/09/2023",
+            "to": "23/11/2023",
             "periodeScolaire": true
         },
         "p2": {
             "id": 2,
             "name": "Trimestre 2",
-            "from": "01/08/2023",
-            "to": "15/08/2023",
+            "from": "24/11/2023",
+            "to": "29/02/2024",
             "periodeScolaire": true
         },
         "p3": {
             "id": 3,
             "name": "Trimestre 3",
-            "from": "16/08/2023",
-            "to": "31/08/2023",
+            "from": "01/03/2024",
+            "to": "18/01/2024",
             "periodeScolaire": true
         }
     }

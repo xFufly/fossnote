@@ -28,7 +28,6 @@ Ensuite allez sur `localhost:3000/pronote/`.
 ## Fonctionnalités actuelles (back-end):
 - La création de session (entièrement implémentée) :
     - Génération d'un identifiant de session en fonction du temps
-    - Génération aléatoire de paramètres RSA (Modulus, Exponent et Private Key Pem)
     - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
     - `appelfonction("FonctionParametres")` (voir protocoles)
 

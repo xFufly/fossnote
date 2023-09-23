@@ -2120,7 +2120,8 @@ var IE = {
                         namespace: h.join(".")
                     }, o),
                     (p = u[d]) || ((p = u[d] = []).delegateCount = 0,
-                    f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c),
+                    f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)),
+                    f.add && (f.add.call(t, c),
                     c.handler.guid || (c.handler.guid = n.guid)),
                     i ? p.splice(p.delegateCount++, 0, c) : p.push(c),
                     S.event.global[d] = !0)
