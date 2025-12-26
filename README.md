@@ -1,182 +1,354 @@
-# 🎓 AFERTES - Portail de Formation
+# Fossnote
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![PWA Ready](https://img.shields.io/badge/PWA-Ready-brightgreen.svg)](https://web.dev/progressive-web-apps/)
+<div align="center">
 
-Portail web pour le centre de formation **AFERTES** (Association pour la Formation, l'Expérimentation et la Recherche en Travail Éducatif et Social).
+![Fossnote Logo](https://via.placeholder.com/200x200?text=Fossnote)
 
-🌐 Site officiel : [afertes.org](https://afertes.org)
+**Un serveur PRONOTE auto-hébergé, open source et gratuit**
 
-![AFERTES Logo](https://afertes.org/wp-content/uploads/2024/12/cropped-Afertes-logo-175x56.png)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/chblitz62/fossnote)](https://github.com/chblitz62/fossnote/issues)
+[![GitHub stars](https://img.shields.io/github/stars/chblitz62/fossnote)](https://github.com/chblitz62/fossnote/stargazers)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org)
+[![RGPD Compliant](https://img.shields.io/badge/RGPD-Compliant-green)](docs/GUIDE_INSTALLATION_RGPD.md)
+
+[Démo](#) · [Documentation](#documentation) · [Signaler un bug](https://github.com/chblitz62/fossnote/issues) · [Demander une fonctionnalité](https://github.com/chblitz62/fossnote/issues)
+
+</div>
+
+---
+
+## 📋 Table des matières
+
+- [À propos](#-à-propos)
+- [Fonctionnalités](#-fonctionnalités)
+- [Installation](#-installation)
+- [Utilisation](#-utilisation)
+- [Conformité RGPD](#-conformité-rgpd)
+- [Documentation](#-documentation)
+- [Contribuer](#-contribuer)
+- [Sécurité](#-sécurité)
+- [Roadmap](#-roadmap)
+- [License](#-license)
+- [Crédits](#-crédits)
+
+---
+
+## 🎯 À propos
+
+Fossnote est une alternative **libre, open source et auto-hébergée** à PRONOTE. Compatible avec le client web PRONOTE existant, Fossnote permet aux établissements scolaires de reprendre le contrôle de leurs données tout en bénéficiant d'une solution performante et conforme au RGPD.
+
+### Pourquoi Fossnote ?
+
+- 🆓 **100% Gratuit** - Aucun coût de licence
+- 🔓 **Open Source** - Code source ouvert et auditable
+- 🏠 **Auto-hébergé** - Vos données restent chez vous
+- 🔒 **Conforme RGPD** - Respect total de la vie privée
+- 🌍 **Compatible** - Fonctionne avec le client PRONOTE existant
+- 🚀 **Moderne** - Technologies web actuelles et performantes
 
 ---
 
 ## ✨ Fonctionnalités
 
-### 👥 Gestion des utilisateurs
-- **Inscription** avec validation email
-- **Connexion sécurisée** (mot de passe hashé)
-- **Récupération de mot de passe**
-- **Profils personnalisables** avec photo
+### ✅ Actuellement implémentées
 
-### 🎓 Espace Étudiants
-- Fiche personnelle complète
-- Consultation des notes
-- Emploi du temps
-- Messagerie avec les formateurs
+#### Interface utilisateur
+- 📱 Page d'accueil responsive et moderne
+- 👥 Espaces dédiés pour chaque type d'utilisateur :
+  - 👨‍🎓 Élèves
+  - 👨‍🏫 Professeurs
+  - 👨‍👩‍👧‍👦 Parents
+  - 🏫 Vie scolaire
+  - 🎯 Direction
+  - 🤝 Accompagnants
 
-### 👨‍🏫 Espace Formateurs
-- Publication d'actualités (avec images)
-- Attribution des notes
-- Gestion des emplois du temps
-- Liste des étudiants avec moyennes
-- Choix des sites d'intervention
+#### Espace Élèves
+- 📊 Consultation des notes
+- 📚 Cahier de texte et devoirs
+- 👤 Données personnelles
+- 📈 Tableau de bord personnalisé
 
-### 📚 Formations disponibles
-| Code | Formation |
-|------|-----------|
-| ES | Éducateur Spécialisé |
-| ME | Moniteur Éducateur |
-| AES | Accompagnant Éducatif et Social |
-| CAFERUIS | Certificat d'Aptitude aux Fonctions d'Encadrement |
-| CAFDES | Certificat d'Aptitude aux Fonctions de Direction |
+#### Espace Professeurs
+- 📝 Saisie de notes (en cours)
+- 📋 Gestion des classes et groupes
+- 📅 Périodes scolaires
+- 📖 Liste des services
+- 💭 Pense-bête
 
-### 📍 Sites de formation
-- **Saint-Laurent-Blangy** (Arras)
-- **Avion**
+#### Backend
+- 🔐 Système d'authentification sécurisé
+- 💾 Base de données SQLite
+- 🔄 Gestion des sessions
+- 🌐 API RESTful
+- 📡 Protocoles PRONOTE compatibles
+
+#### Conformité & Sécurité
+- 🍪 Banner de consentement aux cookies (CNIL)
+- 🔒 Politique de confidentialité complète
+- 📜 Mentions légales
+- ⚖️ API droits RGPD (accès, rectification, effacement, portabilité)
+- 🛡️ Headers de sécurité (Helmet)
+- 🚦 Rate limiting
+- 📝 Traçabilité des accès aux données
+
+### 🚧 En développement
+
+- 📊 Saisie complète des notes par les professeurs
+- 📧 Système de messagerie interne
+- 📅 Emploi du temps dynamique
+- 📈 Bulletins et relevés de notes
+- 📤 Export PDF des documents
+- 🔔 Notifications en temps réel
+- 📱 Application mobile (PWA)
 
 ---
 
 ## 🚀 Installation
 
-### Option 1 : Fichier unique (recommandé pour tester)
-1. Téléchargez `index.html`
-2. Ouvrez-le dans votre navigateur
-3. C'est prêt !
+### Prérequis
 
-### Option 2 : Serveur local
+- **Node.js** v14.0.0 ou supérieur
+- **npm** v6.0.0 ou supérieur
+- **SQLite3** (inclus avec Node.js)
+
+### Installation rapide
+
 ```bash
-# Avec Python
-python -m http.server 8000
+# 1. Cloner le dépôt
+git clone https://github.com/chblitz62/fossnote.git
+cd fossnote
 
-# Avec Node.js
-npx serve .
+# 2. Installer les dépendances
+npm install
 
-# Avec PHP
-php -S localhost:8000
+# 3. Copier et configurer l'environnement
+cp .env.example .env
+# Éditez .env avec vos paramètres
+
+# 4. Initialiser la base de données
+npm run db:setup
+
+# 5. Démarrer le serveur
+npm start
 ```
 
-### Option 3 : Hébergement en ligne (gratuit)
-- [Netlify](https://netlify.com) - Glissez-déposez le dossier
-- [Vercel](https://vercel.com) - Connectez votre GitHub
-- [GitHub Pages](https://pages.github.com) - Activez dans les paramètres du repo
+Le serveur démarre sur **http://localhost:3000/fossnote/**
 
----
+### Installation avec Docker (bientôt disponible)
 
-## 📱 Progressive Web App (PWA)
-
-L'application peut être **installée** sur :
-- 📱 **Android** : Chrome → Menu → "Ajouter à l'écran d'accueil"
-- 📱 **iPhone** : Safari → Partager → "Sur l'écran d'accueil"
-- 💻 **Windows/Mac** : Chrome → Barre d'adresse → Icône d'installation
-
----
-
-## 🔐 Comptes de test
-
-| Type | Email | Mot de passe |
-|------|-------|--------------|
-| Admin | `admin@afertes.org` | `Admin123!` |
-
-Ou créez votre propre compte via l'inscription !
-
----
-
-## 🛠️ Technologies
-
-- **HTML5** / **CSS3** / **JavaScript** (Vanilla)
-- **LocalStorage** pour la persistance des données
-- **PWA** avec manifest et service worker
-- **Responsive Design** (mobile-first)
-- **Charte graphique AFERTES** officielle
-
----
-
-## 📁 Structure du projet
-
-```
-afertes-portail/
-├── index.html          # Application principale
-├── manifest.json       # Configuration PWA
-├── sw.js              # Service Worker (offline)
-├── README.md          # Documentation
-└── assets/
-    └── icons/         # Icônes PWA (optionnel)
+```bash
+docker-compose up -d
 ```
 
 ---
 
-## 🔧 Configuration
+## 💻 Utilisation
 
-### Personnaliser les formations
-Dans `index.html`, modifiez l'objet `CONFIG` :
+### Comptes de démonstration
+
+Pour tester Fossnote, utilisez ces identifiants :
+
+**Compte Élève :**
+- Identifiant : `akaty`
+- Mot de passe : `Password123!`
+
+**Compte Professeur :**
+- Identifiant : `pgothier`
+- Mot de passe : `Password123!`
+
+⚠️ **Important** : Changez ces mots de passe en production !
+
+### Accès aux différents espaces
+
+- **Accueil** : http://localhost:3000/fossnote/
+- **Espace Élèves** : http://localhost:3000/fossnote/eleve.html
+- **Espace Professeurs** : http://localhost:3000/fossnote/professeur.html
+- **Espace Parents** : http://localhost:3000/fossnote/parent.html
+- **Vie Scolaire** : http://localhost:3000/fossnote/viescolaire.html
+
+### Scripts disponibles
+
+```bash
+npm start          # Démarrer le serveur
+npm run dev        # Mode développement avec auto-reload
+npm test           # Lancer les tests
+npm run lint       # Vérifier le code
+npm run db:setup   # Initialiser la base de données
+npm run db:seed    # Ajouter des données de test
+```
+
+---
+
+## 🔒 Conformité RGPD
+
+Fossnote intègre une **conformité RGPD complète** dès sa conception :
+
+### Fonctionnalités RGPD
+
+- ✅ **Consentement aux cookies** - Banner conforme CNIL
+- ✅ **Droits des utilisateurs** :
+  - Droit d'accès (téléchargement des données)
+  - Droit de rectification
+  - Droit à l'effacement (droit à l'oubli)
+  - Droit à la portabilité
+  - Droit d'opposition
+- ✅ **Traçabilité** - Logs d'audit des accès
+- ✅ **Transparence** - Politique de confidentialité détaillée
+- ✅ **Sécurité** - Chiffrement et protection des données
+- ✅ **Nettoyage automatique** - Suppression des données périmées
+
+### Pages légales
+
+- **Politique de confidentialité** : `/fossnote/politique-confidentialite`
+- **Mentions légales** : `/fossnote/mentions-legales`
+- **Gestion des cookies** : Banner avec options personnalisables
+
+### API RGPD
 
 ```javascript
-const CONFIG = {
-    promos: ['ES', 'ME', 'AES', 'CAFERUIS', 'CAFDES'],
-    sites: ['SLB', 'Avion'],
-    siteNames: { 'SLB': 'Saint-Laurent-Blangy', 'Avion': 'Avion' }
-};
+// Télécharger toutes ses données
+GET /fossnote/api/gdpr/mes-donnees
+
+// Demander la suppression de son compte
+POST /fossnote/api/gdpr/demande-suppression
+
+// Rectifier ses données
+POST /fossnote/api/gdpr/rectifier-donnees
+
+// Consulter ses consentements
+GET /fossnote/api/gdpr/mes-consentements
 ```
 
-### Connecter à un backend
-Pour une utilisation en production avec base de données :
-1. Remplacez les fonctions `getData()` / `setData()` par des appels API
-2. Implémentez l'authentification côté serveur
-3. Ajoutez l'envoi d'emails pour la récupération de mot de passe
+📖 [Guide complet d'installation RGPD](docs/GUIDE_INSTALLATION_RGPD.md)
 
 ---
 
-## 🚧 Roadmap
+## 📚 Documentation
 
-- [ ] Backend Node.js / Express
-- [ ] Base de données PostgreSQL
-- [ ] Envoi d'emails (SendGrid)
-- [ ] Upload de fichiers (emplois du temps PDF)
+- **[Guide d'installation](docs/INSTALLATION.md)** - Installation détaillée
+- **[Guide RGPD](docs/GUIDE_INSTALLATION_RGPD.md)** - Conformité RGPD
+- **[API Documentation](docs/API.md)** - Documentation de l'API
+- **[Guide de contribution](CONTRIBUTING.md)** - Comment contribuer
+- **[Protocoles PRONOTE](docs/PROTOCOLES.md)** - Protocoles client/serveur (à venir)
+
+---
+
+## 🤝 Contribuer
+
+Les contributions sont les bienvenues ! Consultez notre [guide de contribution](CONTRIBUTING.md) pour démarrer.
+
+### Comment contribuer ?
+
+1. 🍴 **Forkez** le projet
+2. 🔧 **Créez** une branche (`git checkout -b feature/AmazingFeature`)
+3. ✍️ **Committez** vos changements (`git commit -m 'feat: Add AmazingFeature'`)
+4. 📤 **Poussez** vers la branche (`git push origin feature/AmazingFeature`)
+5. 🔃 **Ouvrez** une Pull Request
+
+### Domaines de contribution
+
+- 💻 Développement de fonctionnalités
+- 🐛 Correction de bugs
+- 📖 Amélioration de la documentation
+- 🌍 Traductions
+- 🎨 Design et UX
+- 🧪 Tests et qualité
+
+---
+
+## 🛡️ Sécurité
+
+La sécurité est notre priorité. Si vous découvrez une vulnérabilité :
+
+- **NE créez PAS d'issue publique**
+- Consultez notre [politique de sécurité](SECURITY.md)
+- Contactez-nous à : [INSÉRER EMAIL SÉCURITÉ]
+
+---
+
+## 🗺️ Roadmap
+
+### Version 0.3 (Q1 2025)
+- [ ] Saisie complète des notes par les professeurs
+- [ ] Système de messagerie interne
+- [ ] Emploi du temps dynamique
+- [ ] Export PDF des bulletins
+
+### Version 0.4 (Q2 2025)
+- [ ] Application mobile (PWA)
 - [ ] Notifications push
-- [ ] Export PDF des notes
-- [ ] Calendrier interactif
+- [ ] API publique documentée
+- [ ] Système de plugins
+
+### Version 1.0 (Q3 2025)
+- [ ] Toutes les fonctionnalités PRONOTE essentielles
+- [ ] Tests complets
+- [ ] Documentation exhaustive
+- [ ] Support multi-établissements
+
+📋 [Voir la roadmap complète](https://github.com/chblitz62/fossnote/projects)
 
 ---
 
-## 📄 Licence
+## 📊 Statistiques
 
-Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
-
----
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues !
-
-1. Forkez le projet
-2. Créez votre branche (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. Committez vos changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
-4. Pushez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. Ouvrez une Pull Request
+![GitHub repo size](https://img.shields.io/github/repo-size/chblitz62/fossnote)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/chblitz62/fossnote)
+![GitHub last commit](https://img.shields.io/github/last-commit/chblitz62/fossnote)
 
 ---
 
-## 📞 Contact
+## 📄 License
 
-**AFERTES**
-- 🌐 Site : [afertes.org](https://afertes.org)
-- 📍 Saint-Laurent-Blangy : 1 rue Pierre et Marie Curie, 62223
-- 📍 Avion : Rue des Montagnards, 62210
-- 📞 Téléphone : 03 21 60 40 00
+Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
-<p align="center">
-  Fait avec ❤️ pour l'AFERTES
-</p>
+## 🙏 Crédits
+
+### Créateurs
+
+- **Fufly / CaraPloof** - *Créateur original* - [GitHub](https://github.com/xFufly)
+- **chblitz62** - *Mainteneur* - [GitHub](https://github.com/chblitz62)
+
+### Contributeurs
+
+Merci à tous les [contributeurs](https://github.com/chblitz62/fossnote/graphs/contributors) qui ont participé à ce projet !
+
+### Technologies utilisées
+
+- [Node.js](https://nodejs.org/) - Runtime JavaScript
+- [Express](https://expressjs.com/) - Framework web
+- [SQLite](https://www.sqlite.org/) - Base de données
+- [Helmet](https://helmetjs.github.io/) - Sécurité HTTP
+
+---
+
+## 📞 Contact & Support
+
+- **Issues GitHub** : [Créer une issue](https://github.com/chblitz62/fossnote/issues)
+- **Discussions** : [GitHub Discussions](https://github.com/chblitz62/fossnote/discussions)
+- **Email** : [INSÉRER EMAIL]
+
+---
+
+## 💖 Soutenir le projet
+
+Si Fossnote vous aide, vous pouvez soutenir le projet :
+
+- ⭐ **Star** le dépôt sur GitHub
+- 🐛 Signaler des bugs
+- 💡 Proposer des améliorations
+- 📣 Parler de Fossnote autour de vous
+- 💻 Contribuer au code
+
+---
+
+<div align="center">
+
+**Fait avec ❤️ par la communauté open source**
+
+[⬆ Retour en haut](#fossnote)
+
+</div>

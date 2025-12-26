@@ -1,5 +1,107 @@
-/node_modules
-/session.db
-eleves.db
+# Dépendances
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Base de données
 database.db
-/src/config/discord.json
+database.db-journal
+*.sqlite
+*.sqlite3
+*.db
+
+# Environnement
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Système d'exploitation
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE et éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Tests
+coverage/
+.nyc_output/
+test-results/
+*.lcov
+
+# Build
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+
+# Fichiers temporaires
+tmp/
+temp/
+*.tmp
+
+# Sauvegardes
+backups/
+*.bak
+*.backup
+
+# Uploads utilisateurs (si applicable)
+uploads/
+user-data/
+
+# Certificats SSL (ne jamais commiter)
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+
+# Documentation générée
+docs/api/
+
+# Fichiers sensibles
+secrets.json
+credentials.json
+service-account.json
+
+# Cache
+.eslintcache
+.stylelintcache
+*.cache
+
+# Divers
+.vagrant/
+*.pid
+*.seed
+*.pid.lock
