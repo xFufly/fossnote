@@ -2,12 +2,13 @@ import crypto from "node:crypto";
 import { HomeView, type Metadata, type SessionParams } from "../../views/HomeView";
 import { db } from "../db";
 import { sessions } from "../db/schema";
+import metadata from "../../config/metadata.json";
 
 const DEFAULT_METADATA: Metadata = {
-	title: "FOSSNOTE",
-	description: "FOSSNOTE - Serveur PRONOTE Libre et Auto-hébergé",
-	creator: "Tim Didelot",
-	publisher: "FOSSNOTE",
+	title: metadata.title,
+	description: metadata.description,
+	creator: metadata.DC_creator,
+	publisher: metadata.DC_publisher,
 };
 
 export async function handleHomeView(req: Request): Promise<Response> {

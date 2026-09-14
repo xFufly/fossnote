@@ -9,6 +9,7 @@
     "jsxImportSource": "hono/jsx",
     "allowJs": true,
     "types": ["bun"],
+    "resolveJsonModule": true,
 
     // Bundler mode
     "moduleResolution": "bundler",

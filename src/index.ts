@@ -1,12 +1,16 @@
 import { resolve } from "node:path";
 import { handleHomeView } from "./routes/home";
+import { handleAppelFonction } from "./routes/appelfonction";
 
 const PUBLIC_DIR = resolve("./public");
 
 const server = Bun.serve({
     port: 3000,
     routes: {
-        "/fossnote/": handleHomeView
+        "/fossnote/": handleHomeView,
+        "/fossnote/appelfonction/:espace_id/:session_id/:numero_ordre" : {
+            POST: handleAppelFonction
+        }
     },
     async fetch(req) {
         const url = new URL(req.url);

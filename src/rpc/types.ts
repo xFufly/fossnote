@@ -1,11 +1,13 @@
-import type { Session } from "../db";
+import type { Session } from "../db/schema";
 
 export interface RpcContext {
-    session: Session;
-    numeroOrdre: number;
+	espaceId: number;
+	sessionId: string;
+	session: Session;
+	decryptedOrder: number;
 }
 
-export type RpcHandler<TInput = any, TOutput = any> = (
-    donnees: TInput,
-    ctx: RpcContext
-) => Promise<TOutput> | TOutput;
+export type RpcHandler = (
+	body: any,
+	ctx: RpcContext
+) => Promise<any> | any;

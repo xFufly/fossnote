@@ -1,0 +1,70 @@
+import type { RpcHandler, RpcContext } from "./types";
+
+// Shared handlers (available to all users)
+import { handleParametres } from "./fonctions/parametres";
+/*import { handleIdentification } from "./fonctions/identification";
+import { handleAuthentification } from "./fonctions/authentification";
+
+// Student-specific handlers (space 3)
+import { handleStudentSettings } from "./fonctions/eleve/settings";
+import { handleStudentHomepage } from "./fonctions/eleve/homepage";
+import { handleStudentGrades } from "./fonctions/eleve/grades";
+import { handleStudentInfos } from "./fonctions/eleve/infos";
+import { handleStudentHomeworks } from "./fonctions/eleve/homeworks";
+
+// Teacher-specific handlers (space 1)
+import { handleTeacherSettings } from "./fonctions/prof/settings";
+import { handleTeacherHomepage } from "./fonctions/prof/homepage";
+import { handleTeacherPostIt } from "./fonctions/prof/postit";
+import { handleTeacherClasses } from "./fonctions/prof/classes";
+import { handleTeacherPeriodes } from "./fonctions/prof/periodes";
+import { handleTeacherServices } from "./fonctions/prof/services";
+import { handleTeacherPageNotes } from "./fonctions/prof/notes";*/
+
+const sharedHandlers: Record<string, RpcHandler> = {
+	FonctionParametres: handleParametres,
+	/*Identification: handleIdentification,
+	Authentification: handleAuthentification,*/
+};
+
+const studentHandlers: Record<string, RpcHandler> = {
+	/*ParametresUtilisateur: handleStudentSettings,
+	PageAccueil: handleStudentHomepage,
+	DernieresNotes: handleStudentGrades,
+	PageInfosPerso: handleStudentInfos,
+	PageCahierDeTexte: handleStudentHomeworks,*/
+};
+
+const teacherHandlers: Record<string, RpcHandler> = {
+	/*ParametresUtilisateur: handleTeacherSettings,
+	PageAccueil: handleTeacherHomepage,
+	SaisiePenseBete: handleTeacherPostIt,
+	listeClassesGroupes: handleTeacherClasses,
+	ListePeriodes: handleTeacherPeriodes,
+	ListeServices: handleTeacherServices,
+	PageNotes: handleTeacherPageNotes,*/
+};
+
+export async function dispatchRpc(nom: string, body: any, ctx: RpcContext) {
+	// 1. Shared handlers (available to all users)
+	if (sharedHandlers[nom]) {
+		return await sharedHandlers[nom](body, ctx);
+	}
+
+	// 2. Student-specific handlers (space 3)
+	if (ctx.espaceId === 3 && studentHandlers[nom]) {
+		return await studentHandlers[nom](body, ctx);
+	}
+
+	// 3. Teacher-specific handlers (space 1)
+	if (ctx.espaceId === 1 && teacherHandlers[nom]) {
+		return await teacherHandlers[nom](body, ctx);
+	}
+
+	// 4. Handle special cases for Navigation and Presence
+	if (nom === "Navigation" || nom === "Presence") {
+		return {};
+	}
+
+	throw new Error(`Action not found for space ${ctx.espaceId} : ${nom}`);
+}

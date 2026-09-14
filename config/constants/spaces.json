@@ -1,0 +1,32 @@
+[
+    {
+        "G": 16,
+        "L": "Direction",
+        "url": "direction.html"
+    },
+    {
+        "G": 1,
+        "L": "Professeurs",
+        "url": "professeur.html"
+    },
+    {
+        "G": 13,
+        "L": "Vie scolaire",
+        "url": "viescolaire.html"
+    },
+    {
+        "G": 2,
+        "L": "Parents",
+        "url": "parent.html"
+    },
+    {
+        "G": 25,
+        "L": "Accompagnants",
+        "url": "accompagnant.html"
+    },
+    {
+        "G": 3,
+        "L": "Élèves",
+        "url": "eleve.html"
+    }
+]

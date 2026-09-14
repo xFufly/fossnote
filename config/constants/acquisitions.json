@@ -1,0 +1,254 @@
+[
+    {
+        "L": "Aucune évaluation",
+        "N": "0",
+        "G": 0,
+        "P": 0,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Aucun", "abbreviation": "" },
+                { "G": 2, "L": "Aucun", "abbreviation": "" }
+            ]
+        },
+        "positionJauge": 5,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "",
+        "raccourci": "0",
+        "raccourciPositionnement": "0"
+    },
+    {
+        "L": "Très bonne maîtrise",
+        "N": "97F24A8180F4B8",
+        "G": 1,
+        "P": 1,
+        "positionJauge": 11,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "A+",
+        "raccourci": "4",
+        "raccourciPositionnement": "4",
+        "couleur": "#008000",
+        "ponderation": { "_T": 10, "V": "50" },
+        "nombrePointsBrevet": { "_T": 10, "V": "50" },
+        "estAcqui": true,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Très bonne maîtrise", "abbreviation": "4", "abbreviationAvecPrefixe": "Pos.4" },
+                { "G": 2, "L": "Objectifs dépassés", "abbreviation": "4", "abbreviationAvecPrefixe": "Pos.4" }
+            ]
+        }
+    },
+    {
+        "L": "Maîtrise satisfaisante",
+        "N": "971C498180F424",
+        "G": 2,
+        "P": 2,
+        "positionJauge": 10,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "A",
+        "raccourci": "3",
+        "raccourciPositionnement": "3",
+        "couleur": "#45B851",
+        "ponderation": { "_T": 10, "V": "40" },
+        "nombrePointsBrevet": { "_T": 10, "V": "40" },
+        "estAcqui": true,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Maîtrise satisfaisante", "abbreviation": "3", "abbreviationAvecPrefixe": "Pos.3" },
+                { "G": 2, "L": "Objectifs atteints", "abbreviation": "3", "abbreviationAvecPrefixe": "Pos.3" }
+            ]
+        }
+    },
+    {
+        "L": "Presque maîtrisé",
+        "N": "97FA488180F40D",
+        "G": 3,
+        "P": 3,
+        "positionJauge": 9,
+        "actifPour": { "_T": 26, "V": "[]" },
+        "abbreviation": "B",
+        "couleur": "#ADDE1F",
+        "ponderation": { "_T": 10, "V": "33" },
+        "nombrePointsBrevet": { "_T": 10, "V": "" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Presque maîtrisé", "abbreviation": "", "abbreviationAvecPrefixe": "" },
+                { "G": 2, "L": "Presque maîtrisé", "abbreviation": "", "abbreviationAvecPrefixe": "" }
+            ]
+        }
+    },
+    {
+        "L": "Maîtrise fragile",
+        "N": "97194F8180F4AA",
+        "G": 4,
+        "P": 4,
+        "positionJauge": 8,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "C",
+        "raccourci": "2",
+        "raccourciPositionnement": "2",
+        "couleur": "#FFDA01",
+        "ponderation": { "_T": 10, "V": "25" },
+        "nombrePointsBrevet": { "_T": 10, "V": "25" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Maîtrise fragile", "abbreviation": "2", "abbreviationAvecPrefixe": "Pos.2" },
+                { "G": 2, "L": "Objectifs partiellement atteints", "abbreviation": "2", "abbreviationAvecPrefixe": "Pos.2" }
+            ]
+        }
+    },
+    {
+        "L": "Début de maîtrise",
+        "N": "97EE4E8180F42B",
+        "G": 5,
+        "P": 5,
+        "positionJauge": 7,
+        "actifPour": { "_T": 26, "V": "[]" },
+        "abbreviation": "D",
+        "couleur": "#FF880F",
+        "ponderation": { "_T": 10, "V": "18" },
+        "nombrePointsBrevet": { "_T": 10, "V": "" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Début de maîtrise", "abbreviation": "", "abbreviationAvecPrefixe": "" },
+                { "G": 2, "L": "Début de maîtrise", "abbreviation": "", "abbreviationAvecPrefixe": "" }
+            ]
+        }
+    },
+    {
+        "L": "Maîtrise insuffisante",
+        "N": "976F4D8180F4C9",
+        "G": 6,
+        "P": 6,
+        "positionJauge": 6,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "E",
+        "raccourci": "1",
+        "raccourciPositionnement": "1",
+        "couleur": "#F80A0A",
+        "ponderation": { "_T": 10, "V": "10" },
+        "nombrePointsBrevet": { "_T": 10, "V": "10" },
+        "estAcqui": false,
+        "estNonAcqui": true,
+        "estNotantPourTxReussite": true,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Maîtrise insuffisante", "abbreviation": "1", "abbreviationAvecPrefixe": "Pos.1" },
+                { "G": 2, "L": "Objectifs non atteints", "abbreviation": "1", "abbreviationAvecPrefixe": "Pos.1" }
+            ]
+        }
+    },
+    {
+        "L": "Absent",
+        "N": "97E04C8180F46E",
+        "G": 7,
+        "P": 7,
+        "positionJauge": 4,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "Abs",
+        "raccourci": "a",
+        "raccourciPositionnement": "a",
+        "couleur": "#FFFFFF",
+        "ponderation": { "_T": 10, "V": "|1" },
+        "nombrePointsBrevet": { "_T": 10, "V": "|1" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": false,
+        "listePositionnements": {
+        "_T": 24,
+            "V": [
+                { "G": 1, "L": "Absent", "abbreviation": "Abs", "abbreviationAvecPrefixe": "Abs" },
+                { "G": 2, "L": "Absent", "abbreviation": "Abs", "abbreviationAvecPrefixe": "Abs" }
+            ]
+        }
+    },
+    {
+        "L": "Non évalué",
+        "N": "97CD438180F4CE",
+        "G": 8,
+        "P": 8,
+        "positionJauge": 3,
+        "actifPour": { "_T": 26, "V": "[1]" },
+        "abbreviation": "Ne",
+        "raccourci": "n",
+        "raccourciPositionnement": "n",
+        "couleur": "#FFFFFF",
+        "ponderation": { "_T": 10, "V": "|3" },
+        "nombrePointsBrevet": { "_T": 10, "V": "" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": false,
+        "listePositionnements": {
+            "_T": 24,
+            "V": [
+                { "G": 1, "L": "Non évalué", "abbreviation": "Ne", "abbreviationAvecPrefixe": "Ne" },
+                { "G": 2, "L": "Non évalué", "abbreviation": "Ne", "abbreviationAvecPrefixe": "Ne" }
+            ]
+        }
+    },
+    {
+        "L": "Dispensé",
+        "N": "97F5428180F414",
+        "G": 9,
+        "P": 9,
+        "positionJauge": 2,
+        "actifPour": { "_T": 26, "V": "[0,1]" },
+        "abbreviation": "Dsp",
+        "raccourci": "d",
+        "raccourciPositionnement": "d",
+        "couleur": "#FFFFFF",
+        "ponderation": { "_T": 10, "V": "|2" },
+        "nombrePointsBrevet": { "_T": 10, "V": "|2" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": false,
+        "listePositionnements": {
+            "_T": 24,
+            "V": [
+                { "G": 1, "L": "Dispensé", "abbreviation": "Dsp", "abbreviationAvecPrefixe": "Dsp" },
+                { "G": 2, "L": "Dispensé", "abbreviation": "Dsp", "abbreviationAvecPrefixe": "Dsp" }
+            ]
+        }
+    },
+    {
+        "L": "Non rendu",
+        "N": "97AA418180F42D",
+        "G": 10,
+        "P": 10,
+        "positionJauge": 1,
+        "actifPour": { "_T": 26, "V": "[]" },
+        "abbreviation": "Nr",
+        "couleur": "#FFFFFF",
+        "ponderation": { "_T": 10, "V": "|5" },
+        "nombrePointsBrevet": { "_T": 10, "V": "|5" },
+        "estAcqui": false,
+        "estNonAcqui": false,
+        "estNotantPourTxReussite": false,
+        "listePositionnements": {
+            "_T": 24,
+            "V": [
+                { "G": 1, "L": "Non rendu", "abbreviation": "Nr", "abbreviationAvecPrefixe": "Nr" },
+                { "G": 2, "L": "Non rendu", "abbreviation": "Nr", "abbreviationAvecPrefixe": "Nr" }
+            ]
+        }
+    }
+]
