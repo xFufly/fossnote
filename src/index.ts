@@ -1,0 +1,26 @@
+import { resolve } from "node:path";
+import { handleHomeView } from "./routes/home";
+
+const PUBLIC_DIR = resolve("./public");
+
+const server = Bun.serve({
+    port: 3000,
+    routes: {
+        "/fossnote/": handleHomeView
+    },
+    async fetch(req) {
+        const url = new URL(req.url);
+
+        const cleanPath = url.pathname;
+        const filePath = `${PUBLIC_DIR}${cleanPath}`;
+        const file = Bun.file(filePath);
+
+        if (await file.exists()) {
+            return new Response(file);
+        }
+
+        return new Response("Not Found", { status: 404 });
+    }
+});
+
+console.log(`Server running at ${server.url}`);

@@ -1,3 +1,4 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { sqliteTable, text, integer, primaryKey, real, unique } from "drizzle-orm/sqlite-core";
 
 export const subjects = sqliteTable("subjects", {
@@ -162,3 +163,42 @@ export const sessions = sqliteTable("sessions", {
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
     updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
+
+export type Subject = InferSelectModel<typeof subjects>;
+export type NewSubject = InferInsertModel<typeof subjects>;
+
+export type Teacher = InferSelectModel<typeof teachers>;
+export type NewTeacher = InferInsertModel<typeof teachers>;
+
+export type Class = InferSelectModel<typeof classes>;
+export type NewClass = InferInsertModel<typeof classes>;
+
+export type Student = InferSelectModel<typeof students>;
+export type NewStudent = InferInsertModel<typeof students>;
+
+export type ClassRepresentative = InferSelectModel<typeof classRepresentatives>;
+export type NewClassRepresentative = InferInsertModel<typeof classRepresentatives>;
+
+export type Group = InferSelectModel<typeof groups>;
+export type NewGroup = InferInsertModel<typeof groups>;
+
+export type GroupStudent = InferSelectModel<typeof groupStudents>;
+export type NewGroupStudent = InferInsertModel<typeof groupStudents>;
+
+export type GroupTeachersSubject = InferSelectModel<typeof groupTeachersSubjects>;
+export type NewGroupTeachersSubject = InferInsertModel<typeof groupTeachersSubjects>;
+
+export type ClassTeachersSubject = InferSelectModel<typeof classTeachersSubjects>;
+export type NewClassTeachersSubject = InferInsertModel<typeof classTeachersSubjects>;
+
+export type Evaluation = InferSelectModel<typeof evaluations>;
+export type NewEvaluation = InferInsertModel<typeof evaluations>;
+
+export type Grade = InferSelectModel<typeof grades>;
+export type NewGrade = InferInsertModel<typeof grades>;
+
+export type Homework = InferSelectModel<typeof homeworks>;
+export type NewHomework = InferInsertModel<typeof homeworks>;
+
+export type Session = InferSelectModel<typeof sessions>;
+export type NewSession = InferInsertModel<typeof sessions>;

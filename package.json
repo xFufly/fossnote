@@ -19,6 +19,7 @@
   "dependencies": {
     "@types/better-sqlite3": "^9.6.0",
     "better-sqlite3": "^13.0.3",
-    "drizzle-orm": "^0.45.2"
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.13.7"
   }
 }

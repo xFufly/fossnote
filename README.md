@@ -29,7 +29,7 @@ Ensuite allez sur `localhost:3000/fossnote/`.
 
 - La création de session (entièrement implémentée)
   - Génération d'un identifiant de session en fonction du temps
-  - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
+  - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3)
   - `appelfonction("FonctionParametres")` (voir protocoles)
 
 - Connexion (pour espace élèves et professeurs seulement)
