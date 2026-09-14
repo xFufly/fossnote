@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { handleHomeView } from "./routes/home";
 import { handleAppelFonction } from "./routes/appelfonction";
+import { handleStudentView } from "./routes/student";
 
 const PUBLIC_DIR = resolve("./public");
 
@@ -8,6 +9,7 @@ const server = Bun.serve({
     port: 3000,
     routes: {
         "/fossnote/": handleHomeView,
+        "/fossnote/eleve.html": handleStudentView,
         "/fossnote/appelfonction/:espace_id/:session_id/:numero_ordre" : {
             POST: handleAppelFonction
         }
