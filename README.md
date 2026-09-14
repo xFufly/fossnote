@@ -4,40 +4,40 @@ Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatib
 
 ## Installation
 
-    $ git clone https://github.com/CaraPloof/fossnote
-    $ cd fossnote
-    $ npm install
-    $ npm start
+```shell
+    git clone https://github.com/CaraPloof/fossnote
+    cd fossnote
+    bun install
+    bun run start
+```
 
 Ensuite allez sur `localhost:3000/fossnote/`.
 
-## Fonctionnalités actuelles (front-end):
+## Fonctionnalités actuelles (front-end)
 
 - Page index implémentée : `/fossnote/` (entièrement implémentée)
-
-- Pages espaces (seulement affichage des panels de connexion):
-    - vie scolaire : `/fossnote/viescolaire.html`
-    - parents : `/fossnote/parent.html`
-    - accompagnants : `/fossnote/accompagnant.html`
-    - direction : `/fossnote/direction.html`
-    
+- Pages espaces (seulement affichage des panels de connexion)
+  - vie scolaire : `/fossnote/viescolaire.html`
+  - parents : `/fossnote/parent.html`
+  - accompagnants : `/fossnote/accompagnant.html`
+  - direction : `/fossnote/direction.html`
 - Pages espaces :
-    - professeurs : `/fossnote/professeur.html` (page d'acceuil)
-    - élèves : `/fossnote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
+- professeurs : `/fossnote/professeur.html` (page d'acceuil)
+- élèves : `/fossnote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
 
-## Fonctionnalités actuelles (back-end):
-- La création de session (entièrement implémentée) :
-    - Génération d'un identifiant de session en fonction du temps
-    - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
-    - `appelfonction("FonctionParametres")` (voir protocoles)
+## Fonctionnalités actuelles (back-end)
 
-- Connexion (pour espace élèves et professeurs seulement) :
-    - Génération "alea" et "challenge" (voir protocoles)
-    - Stockage de la solution du challenge pour l'Authentification
-    - `appelFonction("Identification")` (voir protocoles)
-    - `appelFonction("Authentification")` (voir protocoles)
-    - `appelFonction("ParametresUtilisateur")` (voir protocoles)
-    
+- La création de session (entièrement implémentée)
+  - Génération d'un identifiant de session en fonction du temps
+  - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
+  - `appelfonction("FonctionParametres")` (voir protocoles)
+
+- Connexion (pour espace élèves et professeurs seulement)
+  - Génération "alea" et "challenge" (voir protocoles)
+  - Stockage de la solution du challenge pour l'Authentification
+  - `appelFonction("Identification")` (voir protocoles)
+  - `appelFonction("Authentification")` (voir protocoles)
+  - `appelFonction("ParametresUtilisateur")` (voir protocoles)
 - Navigation : `appelFonction("Navigation")` (voir protocoles)
 
 - Presence : `appelFonction("Presence")` (voir protocoles)
@@ -60,16 +60,19 @@ Ensuite allez sur `localhost:3000/fossnote/`.
 
 - Ce qui va venir ensuite : Capacité pour un prof à mettre des notes à un élève.
 
-## Identifiants exemples (création automatique au démarrage du serveur):
+## Identifiants exemples (création automatique au démarrage du serveur)
+
 - Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
 - Espace professeurs : Identifiant: `pgothier` Mot de passe : `Password123!`
 
-## Protocole Client : 
+## Protocole Client
+
 A venir...
 
-## Protocole Server : 
+## Protocole Server
+
 A venir...
 
+## Crédits
 
-## Crédits :
-Projet initié par Fufly / CaraPloof.
+Projet initié par [DIDELOT Tim](https://timdidelot.fr)
