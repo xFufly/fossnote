@@ -35,3 +35,34 @@ export function getFirstWeekdayOfSeptember(year: number): string {
 	const mm = String(d.getMonth() + 1).padStart(2, "0");
 	return `${dd}/${mm}/${year}`;
 }
+
+export function toPronoteDateFormat(dateStr: string | null | undefined): string {
+    if (!dateStr) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+        const [year, month, day] = dateStr.split("-");
+        return `${day}/${month}/${year}`;
+    }
+    return dateStr;
+}
+
+function parsePronoteDate(dateStr: string): Date {
+    const [day, month, year] = dateStr.split("/").map(Number);
+    return new Date(year, month - 1, day);
+}
+
+export function getCurrentPeriodKey(periodes: Record<string, { from: string; to: string }>, targetDate = new Date()): string {
+    const targetTime = targetDate.getTime();
+
+    for (const [key, periode] of Object.entries(periodes)) {
+        const from = parsePronoteDate(periode.from).getTime();
+        const toDate = parsePronoteDate(periode.to);
+        toDate.setHours(23, 59, 59, 999);
+        const to = toDate.getTime();
+
+        if (targetTime >= from && targetTime <= to) {
+            return key;
+        }
+    }
+	
+	return Object.keys(periodes)[0] ?? "p1";
+}

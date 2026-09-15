@@ -97,13 +97,6 @@ export async function handleAppelFonction(req: BunRequest): Promise<Response> {
             .set({ orderNumber: responseOrder })
             .where(eq(sessions.id, numSessionId));
 
-		console.log({
-            responseOrder,
-            key,
-            outgoingIv,
-            incomingIv
-        });
-
         const nextOrderEncrypted = PronoteCrypto.encryptAES(
             responseOrder.toString(),
             key,

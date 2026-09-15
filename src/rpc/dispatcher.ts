@@ -2,37 +2,37 @@ import type { RpcHandler, RpcContext } from "./types";
 
 // Shared handlers (available to all users)
 import { handleParametres } from "./fonctions/parametres";
-/*import { handleIdentification } from "./fonctions/identification";
+import { handleIdentification } from "./fonctions/identification";
 import { handleAuthentification } from "./fonctions/authentification";
 
 // Student-specific handlers (space 3)
-import { handleStudentSettings } from "./fonctions/eleve/settings";
-import { handleStudentHomepage } from "./fonctions/eleve/homepage";
-import { handleStudentGrades } from "./fonctions/eleve/grades";
-import { handleStudentInfos } from "./fonctions/eleve/infos";
-import { handleStudentHomeworks } from "./fonctions/eleve/homeworks";
+import { handleStudentSettings } from "./fonctions/student/settings";
+import { handleStudentHomepage } from "./fonctions/student/homepage";
+/*import { handleStudentGrades } from "./fonctions/student/grades";
+import { handleStudentInfos } from "./fonctions/student/infos";
+import { handleStudentHomeworks } from "./fonctions/student/homeworks";
 
 // Teacher-specific handlers (space 1)
-import { handleTeacherSettings } from "./fonctions/prof/settings";
-import { handleTeacherHomepage } from "./fonctions/prof/homepage";
-import { handleTeacherPostIt } from "./fonctions/prof/postit";
-import { handleTeacherClasses } from "./fonctions/prof/classes";
-import { handleTeacherPeriodes } from "./fonctions/prof/periodes";
-import { handleTeacherServices } from "./fonctions/prof/services";
-import { handleTeacherPageNotes } from "./fonctions/prof/notes";*/
+import { handleTeacherSettings } from "./fonctions/teacher/settings";
+import { handleTeacherHomepage } from "./fonctions/teacher/homepage";
+import { handleTeacherPostIt } from "./fonctions/teacher/postit";
+import { handleTeacherClasses } from "./fonctions/teacher/classes";
+import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
+import { handleTeacherServices } from "./fonctions/teacher/services";
+import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
 
 const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
-	/*Identification: handleIdentification,
-	Authentification: handleAuthentification,*/
+	Identification: handleIdentification,
+	Authentification: handleAuthentification
 };
 
 const studentHandlers: Record<string, RpcHandler> = {
-	/*ParametresUtilisateur: handleStudentSettings,
+	ParametresUtilisateur: handleStudentSettings,
 	PageAccueil: handleStudentHomepage,
-	DernieresNotes: handleStudentGrades,
+	/*DernieresNotes: handleStudentGrades,
 	PageInfosPerso: handleStudentInfos,
-	PageCahierDeTexte: handleStudentHomeworks,*/
+	PageCahierDeTexte: handleStudentHomeworks*/
 };
 
 const teacherHandlers: Record<string, RpcHandler> = {
@@ -42,7 +42,7 @@ const teacherHandlers: Record<string, RpcHandler> = {
 	listeClassesGroupes: handleTeacherClasses,
 	ListePeriodes: handleTeacherPeriodes,
 	ListeServices: handleTeacherServices,
-	PageNotes: handleTeacherPageNotes,*/
+	PageNotes: handleTeacherPageNotes*/
 };
 
 export async function dispatchRpc(nom: string, body: any, ctx: RpcContext) {

@@ -16392,7 +16392,7 @@ IE.fModule({
             if (aSurPolling) {
                 lEstErreurNumeroOrdre = lNumOrdreServeur !== this.polling.numeroOrdre - 1;
             } else {
-                lEstErreurNumeroOrdre = lNumOrdreServeur !== this.NumeroOrdreCommunication + 1; // ERROR : Why is lNumOrdreServeur NaN ?
+                lEstErreurNumeroOrdre = lNumOrdreServeur !== this.NumeroOrdreCommunication + 1;
             }
             if (lEstErreurNumeroOrdre) {
                 if (!aJSON.Erreur) {
