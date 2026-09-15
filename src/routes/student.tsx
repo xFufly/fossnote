@@ -9,10 +9,11 @@ const DEFAULT_METADATA: Metadata = {
 	description: metadata.description,
 	creator: metadata.DC_creator,
 	publisher: metadata.DC_publisher,
+	city: metadata.city,
 };
 
 export async function handleStudentView(req: Request): Promise<Response> {
-	const sessionId = crypto.randomUUID();
+	const sessionId = crypto.randomInt(1_000_000, 10_000_000);
 	const initialKey = crypto.createHash("md5").update("").digest("hex");
 
 	const sessionParams: SessionParams = {
@@ -45,6 +46,7 @@ export async function handleStudentView(req: Request): Promise<Response> {
 		headers: {
 			"Content-Type": "text/html; charset=utf-8",
 			"Cache-Control": "no-store, no-cache, must-revalidate",
+			"Permissions-Policy": "unload=(self)"
 		},
 	});
 }

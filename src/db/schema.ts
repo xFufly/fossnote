@@ -151,7 +151,7 @@ export const homeworks = sqliteTable("homeworks", {
 });
 
 export const sessions = sqliteTable("sessions", {
-    id: text("id").primaryKey(), // UUID
+    id: integer("id").primaryKey(),
     userId: integer("user_id"),
     userType: integer("user_type"), // 0 for teacher, 3 for student...
     orderNumber: integer("order_number").notNull().default(1),

@@ -1,6 +1,7 @@
 {
     "name": "SITE DE DEMONSTRATION",
     "title": "SITE DE DEMONSTRATION - FOSSNOTE",
+    "city": "Lyon",
     "description": "FOSSNOTE Espace Direction - SITE DE DEMONSTRATION - Lyon - gestion des notes, absences, punitions, cahier de textes pour les établissements scolaires.",
     "DC_creator": "Tim Didelot",
     "DC_publisher": "FOSSNOTE",
@@ -8,14 +9,14 @@
         "p1": {
             "id": 1,
             "name": "Trimestre 1",
-            "from": "02/09/2027",
-            "to": "29/11/2027",
+            "from": "02/09/2026",
+            "to": "29/11/2026",
             "periodeScolaire": true
         },
         "p2": {
             "id": 2,
             "name": "Trimestre 2",
-            "from": "02/12/2027",
+            "from": "02/12/2026",
             "to": "14/03/2027",
             "periodeScolaire": true
         },

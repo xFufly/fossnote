@@ -6,7 +6,7 @@ export interface Metadata {
 }
 
 export interface SessionParams {
-	h: string;
+	h: string | number;
 	d: boolean;
 	sCrA: boolean;
 	sCoA: boolean;
@@ -73,11 +73,8 @@ export function HomeView({ metadata, sessionParams }: HomeProps) {
 				/>
 			</head>
 
-			<body
-				id="id_body"
-				class="EspaceIndex"
-				onload={`try { Start(${startArgs}) } catch (e) { messageErreur(e) }`}
-			>
+			<script dangerouslySetInnerHTML={{ __html: `window.__SESSION__ = ${JSON.stringify(sessionParams)};` }} />
+			<body id="id_body" class="EspaceIndex" onload="try { Start(window.__SESSION__) } catch (e) { messageErreur(e) }">
 				<noscript style="position: absolute; top: 100px" class="Texte12 Gras Espace">
 					Java script non activé. Veuillez le réactiver.
 				</noscript>

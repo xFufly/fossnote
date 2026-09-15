@@ -1,99 +1,109 @@
 export interface Metadata {
-	title: string;
-	description: string;
-	creator: string;
-	publisher: string;
+    title: string;
+    description: string;
+    creator?: string;
+    publisher?: string;
+    city: string;
 }
 
 export interface SessionParams {
-	h: string;
-	d: boolean;
-	sCrA: boolean;
-	sCoA: boolean;
-	poll: boolean;
-	a: number;
+    h: string | number;
+    d: boolean;
+    sCrA?: boolean;
+    sCoA?: boolean;
+    poll?: boolean;
+    a: number;
 }
 
 interface StudentProps {
-	metadata: Metadata;
-	sessionParams: SessionParams;
+    metadata: Metadata;
+    sessionParams: SessionParams;
+    nonce?: string;
 }
 
-export function StudentView({ metadata, sessionParams }: StudentProps) {
-	const startArgs = JSON.stringify(sessionParams);
+export function StudentView({ metadata, sessionParams, nonce }: StudentProps) {
+    const serializedParams = JSON.stringify(sessionParams);
 
-	return (
-		<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
-			<head>
-				<base target="_blank" />
-				<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-				<title>{metadata.title}</title>
-				<meta name="DC.title" content={metadata.title} />
-				<meta name="description" content={metadata.description} />
-				<meta name="DC.description" content={metadata.description} />
-				<meta name="DC.creator" content={metadata.creator} />
-				<meta name="DC.publisher" content={metadata.publisher} />
-				<meta name="robots" content="index" />
+    return (
+        <html lang="fr">
+            <head>
+                <base target="_blank" />
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
+                <meta name="geo.placename" content={metadata.city} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-				<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png" />
-				<link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32" />
-				<link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16" />
-				<link rel="manifest" href="./images/manifest.json" />
-				<link rel="mask-icon" href="./images/favicon.svg" color="#22874b" />
-				<meta name="apple-mobile-web-app-title" content="FOSSNOTE" />
-				<meta name="msapplication-config" content="./images/browserconfig.xml" />
-				<meta name="application-name" content="FOSSNOTE" />
-				<meta name="msapplication-TileColor" content="#22874b" />
-				<meta name="msapplication-TileImage" content="./images/mstile-144x144.png" />
-				<meta name="theme-color" content="#22874b" />
+                <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32" />
+                <link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16" />
+                <link rel="manifest" href="./images/manifest.json" />
+                <link rel="mask-icon" href="./images/favicon.svg" color="#22874b" />
+                <meta name="apple-mobile-web-app-title" content="FOSSNOTE" />
+                <meta name="application-name" content="FOSSNOTE" />
+                <meta name="theme-color" content="#22874b" />
 
                 <link rel="stylesheet" type="text/css" href="./eleve/css/eleve.css" />
-                <script type="text/javascript" src="./eleve/eleve_ext.js"></script>
-                <script type="text/javascript" src="./eleve/traductions.js"></script>
-                <script type="text/javascript" src="./eleve/imagesconnexion.js"></script>
-                <script type="text/javascript" src="./eleve/eleve.js"></script>
-				<script
-					type="text/javascript"
-					dangerouslySetInnerHTML={{
-						__html: `
-                            require('deferLoadingScript.js').add('jspdf', ['./eleve/eleve_jspdf.js']);
-                            require('deferLoadingScript.js').add('pep_poly', ['./eleve/eleve_pep_poly.js']);
-                            require('deferLoadingScript.js').add('tiny', ['./eleve/eleve_tiny.js']);
-                            require('deferLoadingScript.js').add('videojs', ['./eleve/eleve_videojs.js']);
-                            require('deferLoadingScript.js').add('defer', ['./eleve/eleve_defer.js']);
-						`,
-					}}
-				/>
-				<script
-					type="text/javascript"
-					dangerouslySetInnerHTML={{
-						__html: `
-							function messageErreur(e) {
-								$.get("erreur/" + e).fail(function() {});
-								alert("Erreur sur le chargement de la page. Veuillez vider le cache de votre navigateur.");
-							}
-						`,
-					}}
-				/>
-			</head>
+                <script src="./eleve/eleve_ext.js"></script>
+                <script src="./eleve/traductions.js"></script>
+                <script src="./eleve/imagesconnexion.js"></script>
+                <script src="./eleve/eleve.js"></script>
 
-			<body
-				id="id_body"
-				class="EspaceIndex"
-				onload={`try { Start(${startArgs}) } catch (e) { messageErreur(e) }`}
-			>
-				<noscript style="position: absolute; top: 100px" class="Texte12 Gras Espace">
-					Java script non activé. Veuillez le réactiver.
-				</noscript>
-				<div id="div" data-role="page" class="NePasImprimer" style="height:100%"></div>
-				<a
-					href="https://www.index-education.com/redirect.php?distrib=FR"
-					target="_blank"
-					style="display:none"
-				>
-					FOSSNOTE - Gestion de vie scolaire
-				</a>
-			</body>
-		</html>
-	);
+                <script
+                    nonce={nonce}
+                    dangerouslySetInnerHTML={{
+                        __html: 
+						`
+						(function(){
+							const deferLoadingScript = require('deferLoadingScript.js');
+
+							deferLoadingScript.add('pep_poly', ['./eleve/eleve_pep_poly.js']);
+							deferLoadingScript.add('jspdf', ['./eleve/eleve_jspdf.js']);
+							deferLoadingScript.add('tiny', ['./eleve/eleve_tiny.js']);
+							deferLoadingScript.add('fenetrerecupmdp', ['./eleve/eleve_fenetrerecupmdp.js']);
+							deferLoadingScript.add('defer', ['./eleve/eleve_defer.js']);
+						}());
+						`,
+                    }}
+                />
+
+                <script
+                    nonce={nonce}
+                    dangerouslySetInnerHTML={{
+                        __html: 
+						`(function(){
+							IE.identLogClientleger = "LogClientLeger";
+							IE.msgTitreErreurPage = "Erreur sur le chargement de la page";
+							IE.msgMessageErreurPage = "Ce navigateur n'est plus supporté";
+							window.addEventListener("load", () => {
+								try {
+									Start(${serializedParams});
+								} catch (e) {
+									if (typeof IE.sendLogFailStart === "function") {
+										IE.sendLogFailStart(${JSON.stringify(sessionParams.h)}, e);
+									} else {
+										console.error("Erreur Start:", e);
+									}
+								}
+							});
+						}());`,
+                    }}
+                />
+            </head>
+
+            <body id="id_body" class="EspaceIndex">
+                <noscript>
+                    Java script non activé.{"\n"}
+                    Veuillez le réactiver.
+                </noscript>
+                <div id="div" data-role="page"></div>
+                <a
+                    href="https://swie.index-education.com/redirect.php?distrib=FR"
+                    target="_blank"
+                    style={{ display: "none" }}
+                >
+                    FOSSNOTE gestion de vie scolaire, notes, compétences, absences/retards/dispenses, incidents/punitions/sanctions, stages...
+                </a>
+            </body>
+        </html>
+    );
 }

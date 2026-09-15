@@ -16392,7 +16392,7 @@ IE.fModule({
             if (aSurPolling) {
                 lEstErreurNumeroOrdre = lNumOrdreServeur !== this.polling.numeroOrdre - 1;
             } else {
-                lEstErreurNumeroOrdre = lNumOrdreServeur !== this.NumeroOrdreCommunication + 1;
+                lEstErreurNumeroOrdre = lNumOrdreServeur !== this.NumeroOrdreCommunication + 1; // ERROR : Why is lNumOrdreServeur NaN ?
             }
             if (lEstErreurNumeroOrdre) {
                 if (!aJSON.Erreur) {
@@ -16725,6 +16725,7 @@ IE.fModule({
             if (navigator && navigator.sendBeacon && !this.estArrete && this.NumeroOrdreCommunication > 0 && !this._requeteDeconnexionEnvoyee) {
                 this._requeteDeconnexionEnvoyee = true;
                 const lNumeroOrdre = this.getChaineChiffreeAES(this.NumeroOrdreCommunication);
+                console.log('sendBeacon deconnexion : ' + lNumeroOrdre);
                 if (lNumeroOrdre) {
                     try {
                         navigator.sendBeacon('appeldeconnexion/' + lNumeroOrdre + '/' + new Date().getTime(), ObjetJSON.toJSON({
