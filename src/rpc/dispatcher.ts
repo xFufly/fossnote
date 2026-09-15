@@ -8,8 +8,8 @@ import { handleAuthentification } from "./fonctions/authentification";
 // Student-specific handlers (space 3)
 import { handleStudentSettings } from "./fonctions/student/settings";
 import { handleStudentHomepage } from "./fonctions/student/homepage";
-/*import { handleStudentGrades } from "./fonctions/student/grades";
-import { handleStudentInfos } from "./fonctions/student/infos";
+import { handleStudentGrades } from "./fonctions/student/grades";
+/*import { handleStudentInfos } from "./fonctions/student/infos";
 import { handleStudentHomeworks } from "./fonctions/student/homeworks";
 
 // Teacher-specific handlers (space 1)
@@ -21,6 +21,11 @@ import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
 import { handleTeacherServices } from "./fonctions/teacher/services";
 import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
 
+/**
+ * TODO
+ * - SaisieDeconnexion
+ */
+
 const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
 	Identification: handleIdentification,
@@ -30,8 +35,8 @@ const sharedHandlers: Record<string, RpcHandler> = {
 const studentHandlers: Record<string, RpcHandler> = {
 	ParametresUtilisateur: handleStudentSettings,
 	PageAccueil: handleStudentHomepage,
-	/*DernieresNotes: handleStudentGrades,
-	PageInfosPerso: handleStudentInfos,
+	DernieresNotes: handleStudentGrades,
+	/*PageInfosPerso: handleStudentInfos,
 	PageCahierDeTexte: handleStudentHomeworks*/
 };
 
