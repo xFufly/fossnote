@@ -13,6 +13,7 @@ import {
 
 export const handleParametresHome = async (body: any, ctx: any) => {    
     return {
+        nomProduit: "FOSSNOTE",
         NomEtablissement: metadata.title,
         NomEtablissementConnexion: metadata.name,
         PageEtablissement: "pageetablissement.html",
@@ -60,7 +61,7 @@ export const handleParametresHome = async (body: any, ctx: any) => {
             "_T": 23,
             "V": "https://www.index-education.com/redirect.php?produit=pn&page=InfosHeb&version=2022.0.3.0&distrib=FR&lg=fr&flag=Espace_Commun"
         },
-        version: "FOSSNOTE 2022 - 0.3.0 gestion de vie scolaire, notes, compétences, absences/retards/dispenses, incidents/punitions/sanctions, stages... INDEX ÉDUCATION",
-        versionPN: "2022.0.3.0"
+        version: "FOSSNOTE 2026.2.6 gestion de vie scolaire, notes, compétences, absences/retards/dispenses, incidents/punitions/sanctions, stages...",
+        versionPN: "2026.2.6"
     }
 };

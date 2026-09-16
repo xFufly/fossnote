@@ -54,7 +54,7 @@ export function TeacherView({ metadata, sessionParams, nonce }: TeacherProps) {
                         __html: 
 						`
 						(function(){
-                            const {deferLoadingScript} = require('deferLoadingScript.js')
+                            const {deferLoadingScript} = require('deferLoadingScript.js');
 
                             deferLoadingScript.add('jspdf', ['./professeur/professeur_jspdf.js']);
 							deferLoadingScript.add('pep_poly', ['./professeur/professeur_pep_poly.js']);

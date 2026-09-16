@@ -55,8 +55,10 @@ export function HomeView({ metadata, sessionParams }: HomeProps) {
 					type="text/javascript"
 					dangerouslySetInnerHTML={{
 						__html: `
-							require('deferLoadingScript.js').add('jspdf', ['./home/commun_jspdf.js']);
-							require('deferLoadingScript.js').add('pep_poly', ['./home/commun_pep_poly.js']);
+							const {deferLoadingScript} = require('deferLoadingScript.js');
+
+							deferLoadingScript.add('jspdf', ['./home/commun_jspdf.js']);
+							deferLoadingScript.add('pep_poly', ['./home/commun_pep_poly.js']);
 						`,
 					}}
 				/>

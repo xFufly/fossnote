@@ -1,717 +1,768 @@
-IE.fModule({f:function(exports,require,module,global){"use strict";module.exports = function (lObjetImageConnexion) {
-var TypeArrierePlanAuthentification = require('TypeArrierePlanAuthentification.js').TypeArrierePlanAuthentification
-var ObjetImageConnexion = require('ObjetImageConnexion.js');
-if (!ObjetImageConnexion) ObjetImageConnexion = lObjetImageConnexion;
+IE.fModule({f:function(exports,require,module,global){'use strict';try {window.IMAGES_FOND_CONNEXION = [{//Semaine 1
 
-var imagesExtra = {
-'10-10':{    
-srcImage: 'ressources/harcelement2023.png',
-urlImageFond: 'ressources/background-harcelement2023.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false
-},
+        srcImage: 'ressources/ad-29-12-anecdote.svg',
+        urlImageSuite: 'ressources/ad-29-12-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-15',
+            
+}, {//Semaine 2
 
-'10-26':{    
-srcImage: 'ressources/motsenor.gif',
-urlImageFond: 'ressources/motsenor-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: true,
-lien: 'https://www.lesmotsenor.org/enseignant/?utm_source=fossnote&amp;amp;utm_medium=referral_partner&amp;amp;utm_campaign=relances_lmeo_2022&amp;amp;utm_content=bannieresite_relanceinscriptionslmeo_fossnote',
-texteLien: 'i',
-suiviLogo1: 'https://www.index-education.com/swie/tl.php?ln=motsenor1122',
-couleurLien: '#ebae1c',
-bottomLien: '5%',
-leftLien: '22%',
-tailleLien: '100%'
-},
+        srcImage: 'ressources/ad-01-05-sport.svg',
+        urlImageSuite: 'ressources/ad-01-05-sport-suite.svg',
+        urlImageFond: 'ressources/ad-sport-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-16',
+            
+}, {//Semaine 3
 
-'10-27':{    
-srcImage: 'ressources/motsenor.gif',
-urlImageFond: 'ressources/motsenor-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: true,
-lien: 'https://www.lesmotsenor.org/enseignant/?utm_source=fossnote&amp;amp;utm_medium=referral_partner&amp;amp;utm_campaign=relances_lmeo_2022&amp;amp;utm_content=bannieresite_relanceinscriptionslmeo_fossnote',
-texteLien: 'i',
-suiviLogo1: 'https://www.index-education.com/swie/tl.php?ln=motsenor1122',
-couleurLien: '#ebae1c',
-bottomLien: '5%',
-leftLien: '22%',
-tailleLien: '100%'
-},
+        srcImage: 'ressources/ad-01-12-anecdote.svg',
+        urlImageSuite: 'ressources/ad-01-12-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-17',
+            
+}, {//Semaine 4
 
-'10-28':{    
-srcImage: 'ressources/motsenor.gif',
-urlImageFond: 'ressources/motsenor-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: true,
-lien: 'https://www.lesmotsenor.org/enseignant/?utm_source=fossnote&amp;utm_medium=referral_partner&amp;utm_campaign=relances_lmeo_2022&amp;utm_content=bannieresite_relanceinscriptionslmeo_fossnote',
-texteLien: 'i',
-suiviLogo1: 'https://www.index-education.com/swie/tl.php?ln=motsenor1122',
-couleurLien: '#ebae1c',
-bottomLien: '5%',
-leftLien: '22%',
-tailleLien: '100%'
-},
+        srcImage: 'ressources/ad-01-19-sciences.svg',
+        urlImageSuite: 'ressources/ad-01-19-sciences-suite.svg',
+        urlImageFond: 'ressources/ad-sciences-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-18',
+            
+}, {//Semaine 5
 
-'10-29':{    
-srcImage: 'ressources/motsenor.gif',
-urlImageFond: 'ressources/motsenor-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: true,
-lien: 'https://www.lesmotsenor.org/enseignant/?utm_source=fossnote&amp;amp;utm_medium=referral_partner&amp;amp;utm_campaign=relances_lmeo_2022&amp;amp;utm_content=bannieresite_relanceinscriptionslmeo_fossnote',
-texteLien: 'i',
-suiviLogo1: 'https://www.index-education.com/swie/tl.php?ln=motsenor1122',
-couleurLien: '#ebae1c',
-bottomLien: '5%',
-leftLien: '22%',
-tailleLien: '100%'
-}
+        srcImage: 'ressources/ad-01-26-anecdote.svg',
+        urlImageSuite: 'ressources/ad-01-26-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-19',
+            
+}, {//Semaine 6
 
-};
-ObjetImageConnexion.setDefinitionImagesExtra(imagesExtra);
+        srcImage: 'ressources/ad-02-02-env.svg',
+        urlImageSuite: 'ressources/ad-02-02-env-suite.svg',
+        urlImageFond: 'ressources/ad-env-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-20',
+            
+}, {//Semaine 7
 
-var lImages = [];
+        srcImage: 'ressources/ad-02-09-anecdote.svg',
+        urlImageSuite: 'ressources/ad-02-09-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-21',
+            
+}, {//Semaine 8
 
-lImages[TypeArrierePlanAuthentification.Louvre] =[{
+        srcImage: 'ressources/ad-02-16-env_1.svg',
+        urlImageSuite: 'ressources/ad-02-16-env-suite_1.svg',
+        urlImageFond: 'ressources/ad-env-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-22',
+            
+}, {//Semaine 9
 
-srcImage: 'ressources/porte.gif',
-urlImageSuite: 'ressources/porte-suite.jpg',
-urlImageFond: 'ressources/porte-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100932719',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_8_porte',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-02-23-anecdote.svg',
+        urlImageSuite: 'ressources/ad-02-23-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-23',
+            
+}, {//Semaine 10
 
-srcImage: 'ressources/porte.gif',
-urlImageSuite: 'ressources/porte-suite.jpg',
-urlImageFond: 'ressources/porte-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100932719',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_8_porte',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-03-02-sport_1.svg',
+        urlImageSuite: 'ressources/ad-03-02-sport-suite_1.svg',
+        urlImageFond: 'ressources/ad-sport-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-24',
+            
+}, {//Semaine 11
 
-srcImage: 'ressources/chienchinois.gif',
-urlImageSuite: 'ressources/chienchinois-suite.jpg',
-urlImageFond: 'ressources/chienchinois-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100932719',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_8_porte',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-03-09-anecdote.svg',
+        urlImageSuite: 'ressources/ad-03-09-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-25',
+            
+}, {//Semaine 12
 
-srcImage: 'ressources/chienchinois.gif',
-urlImageSuite: 'ressources/chienchinois-suite.jpg',
-urlImageFond: 'ressources/chienchinois-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100932719',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_8_porte',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-03-16-sciences_1.svg',
+        urlImageSuite: 'ressources/ad-03-16-sciences-suite_2.svg',
+        urlImageFond: 'ressources/ad-sciences-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-26',
+            
+}, {//Semaine 13
 
-srcImage: 'ressources/caricature.gif',
-urlImageSuite: 'ressources/caricature-suite.jpg',
-urlImageFond: 'ressources/caricature-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Voir le jeu',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00JEU00101jeuerrhiver01',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_10_caricature',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-03-23-anecdote.svg',
+        urlImageSuite: 'ressources/ad-03-23-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-27',
+            
+}, {//Semaine 14
 
-srcImage: 'ressources/caricature.gif',
-urlImageSuite: 'ressources/caricature-suite.jpg',
-urlImageFond: 'ressources/caricature-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Voir le jeu',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00JEU00101jeuerrhiver01',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_10_caricature',
-dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-03-30-env_1.svg',
+        urlImageSuite: 'ressources/ad-03-30-env-suite_1.svg',
+        urlImageFond: 'ressources/ad-env-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-28',
+            
+}, {//Semaine 15
 
-    srcImage: 'ressources/holtum.gif',
-    urlImageSuite: 'ressources/holtum-suite.jpg',
-    urlImageFond: 'ressources/holtum-background.png',
-    widthImageSuite: 1442,
-    heightImageSuite: 600,
-    couleurConnexion: '#ffffff',
-    classImageFond: 'Repeat',
-    lienLogo: 'https://numelyo.bm-lyon.fr/',
-    styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-    suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-    avecLienSuite: true,
-    texteLienSuite: '> Accéder à ce document',
-    lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF01000AffM0039',
-    suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_11_holtum',
-    dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-04-06-anecdote.svg',
+        urlImageSuite: 'ressources/ad-04-06-anecdote-suite_1.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-29',
+            
+}, {//Semaine 16
 
-    srcImage: 'ressources/holtum.gif',
-    urlImageSuite: 'ressources/holtum-suite.jpg',
-    urlImageFond: 'ressources/holtum-background.png',
-    widthImageSuite: 1442,
-    heightImageSuite: 600,
-    couleurConnexion: '#ffffff',
-    classImageFond: 'Repeat',
-    lienLogo: 'https://numelyo.bm-lyon.fr/',
-    styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-    suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-    avecLienSuite: true,
-    texteLienSuite: '> Accéder à ce document',
-    lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF01000AffM0039',
-    suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_11_holtum',
-    dateMaxLien: new Date(1705147042000)
-}, {
+        srcImage: 'ressources/ad-04-13-region.svg',
+        urlImageSuite: 'ressources/ad-04-13-region-suite.svg',
+        urlImageFond: 'ressources/ad-region-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-30',
+            
+}, {//Semaine 17
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/ad-04-20-anecdote.svg',
+        urlImageSuite: 'ressources/ad-04-20-anecdote-suite_1.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-31',
+            
+}, {//Semaine 18
+
+        srcImage: 'ressources/ad-04-27-env.svg',
+        urlImageSuite: 'ressources/ad-04-27-env-suite.svg',
+        urlImageFond: 'ressources/ad-env-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-32',
+            
+}, {//Semaine 19
+
+        srcImage: 'ressources/ad-05-04-sport.svg',
+        urlImageSuite: 'ressources/ad-05-04-sport-suite.svg',
+        urlImageFond: 'ressources/ad-sport-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-33',
+            
+}, {//Semaine 20
+
+        srcImage: 'ressources/ad-05-11-region.svg',
+        urlImageSuite: 'ressources/ad-05-11-region-suite.svg',
+        urlImageFond: 'ressources/ad-region-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-34',
+            
+}, {//Semaine 21
+
+        srcImage: 'ressources/ad-05-18-anecdote.svg',
+        urlImageSuite: 'ressources/ad-05-18-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-35',
+            
+}, {//Semaine 22
+
+        srcImage: 'ressources/ad-05-25-sport.svg',
+        urlImageSuite: 'ressources/ad-05-25-sport-suite.svg',
+        urlImageFond: 'ressources/ad-sport-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-36',
+            
+}, {//Semaine 23
+
+        srcImage: 'ressources/ad-06-01-anecdote_2.svg',
+        urlImageSuite: 'ressources/ad-06-01-anecdote-suite_2.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-37',
+            
+}, {//Semaine 24
+
+        srcImage: 'ressources/ad-06-08-sciences.svg',
+        urlImageSuite: 'ressources/ad-06-08-sciences-suite.svg',
+        urlImageFond: 'ressources/ad-sciences-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-38',
+            
+}, {//Semaine 25
+
+        srcImage: 'ressources/ad-06-16-anecdote.svg',
+        urlImageSuite: 'ressources/ad-06-16-anecdote-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-39',
+            
+}, {//Semaine 26
+
+        srcImage: 'ressources/ad-06-22-arts.svg',
+        urlImageSuite: 'ressources/ad-06-22-arts-suite-1.svg',
+        urlImageFond: 'ressources/ad-art-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=volt_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#fff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile25-40',
+            
+}, {//Semaine 27
+
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 28
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 29
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 30
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 31
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 32
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 33
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 34
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 35
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 36
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/rentree.png',
+        urlImageFond: 'ressources/bkg-gris.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 37
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/rentree.png',
+        urlImageFond: 'ressources/bkg-gris.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 38
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/ad-art-1.svg',
+        urlImageSuite: 'ressources/ad-art-1-suite.svg',
+        urlImageFond: 'ressources/ad-art-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#fff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-1',
+            
+}, {//Semaine 39
+
+        srcImage: 'ressources/anecdode-1.svg',
+        urlImageSuite: 'ressources/anecdote-1-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-2',
+            
+}, {//Semaine 40
+
+        srcImage: 'ressources/ad-sciences-1.svg',
+        urlImageSuite: 'ressources/ad-sciences-1-suite.svg',
+        urlImageFond: 'ressources/ad-sciences-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-3',
+            
+}, {//Semaine 41
+
+        srcImage: 'ressources/ad-anecdote-2.svg',
+        urlImageSuite: 'ressources/ad-anecdote-2-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-4',
+            
+}, {//Semaine 42
+
+        srcImage: 'ressources/ad-sport-1.svg',
+        urlImageSuite: 'ressources/ad-sport-1-suite.svg',
+        urlImageFond: 'ressources/ad-sport-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-5',
+            
+}, {//Semaine 43
+
+        srcImage: 'ressources/ad-anecdote-3.svg',
+        urlImageSuite: 'ressources/ad-anecdote-3-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-4',
+            
+}, {//Semaine 44
+
+        srcImage: 'ressources/ad-env-1.svg',
+        urlImageSuite: 'ressources/ad-env-1-suite.svg',
+        urlImageFond: 'ressources/ad-env-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#ffffff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-6',
+            
+}, {//Semaine 45
+
+        srcImage: 'ressources/ad-anecdote-4.svg',
+        urlImageSuite: 'ressources/ad-anecdote-3-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-4-suite.svg',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-7',
+            
+}, {//Semaine 46
+
+        srcImage: 'ressources/ad-art-2.svg',
+        urlImageSuite: 'ressources/ad-art-2-suite.svg',
+        urlImageFond: 'ressources/ad-art-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#fff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-8',
+            
+}, {//Semaine 47
+
+        srcImage: 'ressources/ad-anecdote-5.svg',
+        urlImageSuite: 'ressources/ad-anecdote-5-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-4-suite.svg',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-9',
+            
+}, {//Semaine 48
+
+        srcImage: 'ressources/ad-art-3.svg',
+        urlImageSuite: 'ressources/ad-art-3-suite.svg',
+        urlImageFond: 'ressources/ad-art-bkg.png',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-blanc.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#fff">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-10',
+            
+}, {//Semaine 49
+
+        srcImage: 'ressources/ad-anecdote-6-suite.svg',
+        urlImageSuite: 'ressources/ad-anecdote-6-suite.svg',
+        urlImageFond: 'ressources/ad-anecdote-4-suite.svg',
+        widthImageSuite: 1442,
+        heightImageSuite: 600,
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
+lienLogo: 'https://www.decouvrirletimbre.com/',
+            styleLogo: 'background-image: url(ressources/adphile-logo-bleu.svg); width:160px; height:153px; margin-top:-80px;',
+            suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=adphile_logo',
+            avecLienSuite: true,
+            texteLienSuite: '<span style="color:#00006c">Venez découvrir les timbres qui parlent de votre région sur la carte du timbre !</span>',
+            lienSuite: 'https://carte-du-timbre.adphile.net/',
+            suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=adphile26-11',
+            
+}, {//Semaine 50
+
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 51
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 52
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
+            avecLienSuite: false
+}, {//Semaine 53
 
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
+        srcImage: 'ressources/neutre.png',
+        urlImageFond: 'ressources/neutre-bkg.png',
+        couleurConnexion: '#ffffff',
+        classImageFond: 'Repeat',
 avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/neutre.png',
-urlImageFond: 'ressources/neutre-bkg.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/summer.gif',
-urlImageFond: 'ressources/summer-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/rentree2022.jpg',
-urlImageFond: 'ressources/rentree2022-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/rentree2022.jpg',
-urlImageFond: 'ressources/rentree2022-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/rentree2022.jpg',
-urlImageFond: 'ressources/rentree2022-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/rentree2022.jpg',
-urlImageFond: 'ressources/rentree2022-background.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}, {
-
-srcImage: 'ressources/modernart.gif',
-urlImageSuite: 'ressources/modernart-suite.jpg',
-urlImageFond: 'ressources/modernart-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF01000AffP0091',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_1_modernart',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/modernart.gif',
-urlImageSuite: 'ressources/modernart-suite.jpg',
-urlImageFond: 'ressources/modernart-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF01000AffP0091',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_1_modernart',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/tondeur.gif',
-urlImageSuite: 'ressources/tondeur-suite.jpg',
-urlImageFond: 'ressources/tondeur-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100621577/IMG00000105',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_2_tondeur',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/tondeur.gif',
-urlImageSuite: 'ressources/tondeur-suite.jpg',
-urlImageFond: 'ressources/tondeur-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100621577/IMG00000105',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_2_tondeur',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/chapeau.gif',
-urlImageSuite: 'ressources/chapeau-suite.jpg',
-urlImageFond: 'ressources/chapeau-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF010010AffG0181',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_3_chapeau',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/chapeau.gif',
-urlImageSuite: 'ressources/chapeau-suite.jpg',
-urlImageFond: 'ressources/chapeau-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_02AFF010010AffG0181',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_3_chapeau',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/kitha.gif',
-urlImageSuite: 'ressources/kitha-suite.jpg',
-urlImageFond: 'ressources/kitha-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001104503334&amp;amp;amp;amp;#039;',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_4_kitha',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/kitha.gif',
-urlImageSuite: 'ressources/kitha-suite.jpg',
-urlImageFond: 'ressources/kitha-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001104503334&amp;amp;amp;amp;amp;#039;',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_4_kitha',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/lettres.gif',
-urlImageSuite: 'ressources/lettres-suite.jpg',
-urlImageFond: 'ressources/lettres-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100965982/IMG00000058',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_5_lettres',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/lettres.gif',
-urlImageSuite: 'ressources/lettres-suite.jpg',
-urlImageFond: 'ressources/lettres-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100965982/IMG00000058',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_5_lettres',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/naturalis.gif',
-urlImageSuite: 'ressources/naturalis-suite.jpg',
-urlImageFond: 'ressources/naturalis-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001102510737',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_6_naturalis',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/naturalis.gif',
-urlImageSuite: 'ressources/naturalis-suite.jpg',
-urlImageFond: 'ressources/naturalis-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001102510737',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_6_naturalis',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/chamonix.gif',
-urlImageSuite: 'ressources/chamonix-suite.jpg',
-urlImageFond: 'ressources/chamonix-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00JEU00101jeumemvacancesdhiver',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_7_chamonix',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/chamonix.gif',
-urlImageSuite: 'ressources/chamonix-suite.jpg',
-urlImageFond: 'ressources/chamonix-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00JEU00101jeumemvacancesdhiver',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_7_chamonix',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/porte.gif',
-urlImageSuite: 'ressources/porte-suite.jpg',
-urlImageFond: 'ressources/porte-background.png',
-widthImageSuite: 1442,
-heightImageSuite: 600,
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-lienLogo: 'https://numelyo.bm-lyon.fr/',
-styleLogo: 'background-image: url(ressources/logo-numelyo.png);width: 166px;height: 47px;',
-suiviLogo: 'https://www.index-education.com/swie/tl.php?ln=lyon_logo',
-avecLienSuite: true,
-texteLienSuite: '> Accéder à ce document',
-lienSuite: 'https://numelyo.bm-lyon.fr/f_view/BML:BML_00GOO0100137001100932719',
-suiviLienSuite: 'https://www.index-education.com/swie/tl.php?ln=lyon22_8_porte',
-dateMaxLien: new Date(1705147042000)
-}, {
-
-srcImage: 'ressources/sql-join-infographie.png',
-urlImageFond: 'ressources/sql-join-infographie.png',
-couleurConnexion: '#ffffff',
-classImageFond: 'Repeat',
-avecLien: false,
-avecLienSuite: false
-}];
-
-
-
-ObjetImageConnexion.setDefinitionImages(lImages);
-}
-},fn:"imagesconnexion.js"});
+            avecLienSuite: false
+}]; }catch(e){}
+},fn:'imagesconnexion.js'});
