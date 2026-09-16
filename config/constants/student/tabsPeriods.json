@@ -1,16 +1,58 @@
 [
-    { "G": 12 },
-    { "G": 198 },
-    { "G": 13 },
-    { "G": 19, "avecAnnee": true },
-    { "G": 230 },
-    { "G": 100 },
-    { "G": 219 },
-    { "G": 216 },
-    { "G": 41 },
-    { "G": 111, "sansHorsPeriode": true, "avecDatesPublication": true },
-    { "G": 99, "sansHorsPeriode": true },
-    { "G": 201 },
-    { "G": 277 },
-    { "G": 278 }
+    {
+        "G": 12
+    },
+    {
+        "G": 198
+    },
+    {
+        "G": 13
+    },
+    {
+        "G": 19,
+        "avecAnnee": true
+    },
+    {
+        "G": 230
+    },
+    {
+        "G": 100
+    },
+    {
+        "G": 219
+    },
+    {
+        "G": 216
+    },
+    {
+        "G": 41
+    },
+    {
+        "G": 111,
+        "sansHorsPeriode": true,
+        "avecDatesPublication": true
+    },
+    {
+        "G": 99,
+        "sansHorsPeriode": true
+    },
+    {
+        "G": 201
+    },
+    {
+        "G": 277
+    },
+    {
+        "G": 278
+    },
+    {
+        "G": 1,
+        "avecAnnee": true,
+        "sansHorsPeriode": true
+    },
+    {
+        "G": 14,
+        "avecAnnee": true,
+        "sansHorsPeriode": true
+    }
 ]

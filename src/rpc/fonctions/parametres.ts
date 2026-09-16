@@ -169,6 +169,7 @@ export const handleParametres = async (body: any, ctx: any) => {
             ],
             ListeHeures: {
                 V: timeSlotsData.debut,
+                _T: 24,
             },
             ListeHeuresFin: {
                 V: timeSlotsData.fin,

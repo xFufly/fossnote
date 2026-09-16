@@ -4,16 +4,7 @@ import { eq, desc } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 
 import metadata from "../../../../config/metadata.json";
-import { getCurrentPeriodKey } from "../../../helpers/date";
-
-function toPronoteDateFormat(dateStr: string | null | undefined): string {
-    if (!dateStr) return "";
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
-        const [year, month, day] = dateStr.split("-");
-        return `${day}/${month}/${year}`;
-    }
-    return dateStr;
-}
+import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
 
 export const handleStudentGrades = async (_body: any, ctx: RpcContext) => {
     const studentId = ctx.session.userId;

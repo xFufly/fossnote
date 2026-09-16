@@ -1,8 +1,5 @@
 import metadata from "../../../config/metadata.json";
-import acquisitionsData from "../../../config/constants/acquisitions.json";
 import fontsData from "../../../config/constants/fonts.json";
-import holidaysData from "../../../config/constants/holidays.json";
-import timeSlotsData from "../../../config/constants/timeSlots.json";
 import spaces from "../../../config/constants/spaces.json";
 import languages from "../../../config/constants/languages.json";
 

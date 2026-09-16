@@ -9,11 +9,11 @@ import { handleAuthentification } from "./fonctions/authentification";
 import { handleStudentSettings } from "./fonctions/student/settings";
 import { handleStudentHomepage } from "./fonctions/student/homepage";
 import { handleStudentGrades } from "./fonctions/student/grades";
-/*import { handleStudentInfos } from "./fonctions/student/infos";
+import { handleStudentPrivateInfo } from "./fonctions/student/privateInfo";
 import { handleStudentHomeworks } from "./fonctions/student/homeworks";
 
 // Teacher-specific handlers (space 1)
-import { handleTeacherSettings } from "./fonctions/teacher/settings";
+/*import { handleTeacherSettings } from "./fonctions/teacher/settings";
 import { handleTeacherHomepage } from "./fonctions/teacher/homepage";
 import { handleTeacherPostIt } from "./fonctions/teacher/postit";
 import { handleTeacherClasses } from "./fonctions/teacher/classes";
@@ -23,7 +23,13 @@ import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
 
 /**
  * TODO
- * - SaisieDeconnexion
+ * - Shared
+ * 	- SaisieDeconnexion
+ * Student
+ * 	- DocumentsATelecharger
+ *  - PageActualites
+ *  - PageReleve
+ *  - 
  */
 
 const sharedHandlers: Record<string, RpcHandler> = {
@@ -36,8 +42,8 @@ const studentHandlers: Record<string, RpcHandler> = {
 	ParametresUtilisateur: handleStudentSettings,
 	PageAccueil: handleStudentHomepage,
 	DernieresNotes: handleStudentGrades,
-	/*PageInfosPerso: handleStudentInfos,
-	PageCahierDeTexte: handleStudentHomeworks*/
+	PageInfosPerso: handleStudentPrivateInfo,
+	PageCahierDeTexte: handleStudentHomeworks
 };
 
 const teacherHandlers: Record<string, RpcHandler> = {

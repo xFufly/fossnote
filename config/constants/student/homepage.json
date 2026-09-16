@@ -47,12 +47,20 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         },
                                         {
                                             "L": "Salade de printemps",
                                             "N": "728F09561E100A",
                                             "listeLabelsAlimentaires": {
+                                                "_T": 24,
+                                                "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
                                                 "_T": 24,
                                                 "V": []
                                             }
@@ -71,6 +79,10 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         }
                                     ]
@@ -87,12 +99,20 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         },
                                         {
                                             "L": "Poêlée nantaise",
                                             "N": "72CDD9501E10F0",
                                             "listeLabelsAlimentaires": {
+                                                "_T": 24,
+                                                "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
                                                 "_T": 24,
                                                 "V": []
                                             }
@@ -111,12 +131,20 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         },
                                         {
                                             "L": "Fruits de saison",
                                             "N": "7255BC561E10E3",
                                             "listeLabelsAlimentaires": {
+                                                "_T": 24,
+                                                "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
                                                 "_T": 24,
                                                 "V": []
                                             }
@@ -144,6 +172,10 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         }
                                     ]
@@ -158,6 +190,10 @@
                                             "L": "Paupiette de dinde",
                                             "N": "724239571E10AF",
                                             "listeLabelsAlimentaires": {
+                                                "_T": 24,
+                                                "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
                                                 "_T": 24,
                                                 "V": []
                                             }
@@ -176,6 +212,10 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         }
                                     ]
@@ -192,12 +232,20 @@
                                             "listeLabelsAlimentaires": {
                                                 "_T": 24,
                                                 "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
+                                                "_T": 24,
+                                                "V": []
                                             }
                                         },
                                         {
                                             "L": "Produits laitiers ",
                                             "N": "727383571E1062",
                                             "listeLabelsAlimentaires": {
+                                                "_T": 24,
+                                                "V": []
+                                            },
+                                            "listeAllergenesAlimentaire": {
                                                 "_T": 24,
                                                 "V": []
                                             }
@@ -215,6 +263,27 @@
         "listeModesAff": [
             {
                 "G": 0,
+                "listeActualites": {
+                    "_T": 24,
+                    "V": []
+                }
+            },
+            {
+                "G": 1,
+                "listeActualites": {
+                    "_T": 24,
+                    "V": []
+                }
+            },
+            {
+                "G": 2,
+                "listeActualites": {
+                    "_T": 24,
+                    "V": []
+                }
+            },
+            {
+                "G": 3,
                 "listeActualites": {
                     "_T": 24,
                     "V": []
