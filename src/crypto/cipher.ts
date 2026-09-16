@@ -132,31 +132,21 @@ export class PronoteCrypto {
     /**
      * Decrypts the challenge sent by the server, filters out every second character, and re-encrypts the result to produce the solved challenge.
      */
-    static decryptChallenge(challengeHex: string, alea: string, username: string, password: string, iv: Buffer): string {
-        const key = PronoteCrypto.getCle(alea, username, password);
+    static decryptChallenge(challengeHex: string, alea: string, username: string, passwordHash: string, iv: Buffer): string {
+        const key = PronoteCrypto.getCle(alea, username, passwordHash);
         const algorithm = key.length === 32 ? "aes-256-cbc" : "aes-128-cbc";
-
-        // 1. Decrypt the challenge
-        const decipher = crypto.createDecipheriv(algorithm, key, iv);
-        const decrypted = Buffer.concat([
-            decipher.update(Buffer.from(challengeHex, "hex")),
-            decipher.final(),
-        ]).toString("binary");
-
-        // 2. Filter out every second character from the decrypted string
-        let filtered = "";
-        for (let i = 0; i < decrypted.length; i += 2) {
-            filtered += decrypted[i];
-        }
-
-        // 3. Re-encrypt the filtered string to produce the solved challenge
+        
         const cipher = crypto.createCipheriv(algorithm, key, iv);
+        
+        // The new PRONOTE protocol no longer decrypts and strips characters.
+        // It simply takes the challenge hex string, treats it as utf-8, and encrypts it with AES.
+        const challengePayload = Buffer.from(challengeHex, "utf-8");
         const solved = Buffer.concat([
-            cipher.update(Buffer.from(filtered, "utf-8")),
+            cipher.update(challengePayload),
             cipher.final(),
-        ]);
+        ]).toString("hex");
 
-        return solved.toString("hex");
+        return solved;
     }
 
     /**

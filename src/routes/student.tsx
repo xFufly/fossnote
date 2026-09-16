@@ -18,9 +18,6 @@ export async function handleStudentView(req: Request): Promise<Response> {
 
 	const sessionParams: SessionParams = {
 		h: sessionId,
-		sCrA: true,
-		sCoA: true,
-		poll: false,
 		d: false,
 		a: 3
 	};

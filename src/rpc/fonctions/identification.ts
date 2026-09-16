@@ -5,8 +5,8 @@ import { PronoteCrypto } from "../../crypto/cipher";
 import type { RpcContext } from "../types";
 
 export const handleIdentification = async (body: any, ctx: RpcContext) => {
-    const identifiant: string = body.donneesSec?.donnees?.identifiant ?? "";
-    const genreEspace: number = body.donneesSec?.donnees?.genreEspace ?? ctx.espaceId;
+    const identifiant: string = (body.donneesSec?.donnees || body.dataSec?.data)?.identifiant ?? "";
+    const genreEspace: number = (body.donneesSec?.donnees || body.dataSec?.data)?.genreEspace ?? ctx.espaceId;
     const cleanUsername = identifiant.trim().toLowerCase();
     const sessionIdNum = parseInt(ctx.sessionId, 10);
 

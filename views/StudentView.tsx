@@ -9,9 +9,6 @@ export interface Metadata {
 export interface SessionParams {
     h: string | number;
     d: boolean;
-    sCrA?: boolean;
-    sCoA?: boolean;
-    poll?: boolean;
     a: number;
 }
 
@@ -54,7 +51,7 @@ export function StudentView({ metadata, sessionParams, nonce }: StudentProps) {
                         __html: 
 						`
 						(function(){
-							const deferLoadingScript = require('deferLoadingScript.js');
+							const { deferLoadingScript } = require('deferLoadingScript.js');
 
 							deferLoadingScript.add('pep_poly', ['./eleve/eleve_pep_poly.js']);
 							deferLoadingScript.add('jspdf', ['./eleve/eleve_jspdf.js']);

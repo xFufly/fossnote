@@ -11,7 +11,7 @@ function getPronoteDateString(d = new Date()): string {
 
 export const handleAuthentification = async (body: any, ctx: RpcContext) => {
     const sessionIdNum = parseInt(ctx.sessionId, 10);
-    const requestedChallenge: string = body.donneesSec?.donnees?.challenge ?? "";
+    const requestedChallenge: string = (body.donneesSec?.donnees || body.dataSec?.data)?.challenge ?? "";
 
     if (!ctx.session.challenge) {
         return { Acces: 1 };

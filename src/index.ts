@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import { handleHomeView } from "./routes/home";
 import { handleAppelFonction } from "./routes/appelfonction";
 import { handleAppelDeconnexion } from "./routes/appeldeconnnexion";
+import { handleAppelPolling } from "./routes/appelpolling";
 
 import { handleStudentView } from "./routes/student";
 import { handleTeacherView } from "./routes/teacher";
@@ -16,6 +17,9 @@ const server = Bun.serve({
         "/fossnote/professeur.html": handleTeacherView,
         "/fossnote/appelfonction/:espace_id/:session_id/:numero_ordre" : {
             POST: handleAppelFonction
+        },
+        "/fossnote/appelpolling/:espace_id/:session_id/:numero_ordre": {
+            POST: handleAppelPolling
         },
         "/fossnote/appeldeconnexion/:no/:ns" : {
             POST: handleAppelDeconnexion

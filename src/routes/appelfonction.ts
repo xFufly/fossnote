@@ -103,13 +103,6 @@ export async function handleAppelFonction(req: BunRequest): Promise<Response> {
             outgoingIv
         );
 
-        console.log({
-            order: responseOrder.toString(),
-            key,
-            outgoingIv,
-            incomingIv,
-        });
-
         const keyNom = body.nom ? 'nom' : 'id';
         const keyNumeroOrdre = body.nom ? 'numeroOrdre' : 'no';
         const keyDonneesSec = body.nom ? 'donneesSec' : 'dataSec';

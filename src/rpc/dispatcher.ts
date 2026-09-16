@@ -23,7 +23,7 @@ import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
 
 /**
  * TODO
- * - Shared
+ * Shared
  * 	- SaisieDeconnexion
  * Student
  * 	- DocumentsATelecharger
@@ -39,6 +39,7 @@ const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
 	Identification: handleIdentification,
 	Authentification: handleAuthentification
+	// SaisiePenseBete: handleTeacherPostIt,
 };
 
 const studentHandlers: Record<string, RpcHandler> = {
@@ -52,7 +53,7 @@ const studentHandlers: Record<string, RpcHandler> = {
 const teacherHandlers: Record<string, RpcHandler> = {
 	/*ParametresUtilisateur: handleTeacherSettings,
 	PageAccueil: handleTeacherHomepage,
-	SaisiePenseBete: handleTeacherPostIt,
+	
 	listeClassesGroupes: handleTeacherClasses,
 	ListePeriodes: handleTeacherPeriodes,
 	ListeServices: handleTeacherServices,
