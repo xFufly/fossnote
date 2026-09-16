@@ -298,7 +298,10 @@
         }
     },
     "agenda": {
-        "listeEvenements": []
+        "listeEvenements": {
+            "_T": 24,
+            "V": []
+        }
     },
     "avecCoursAnnule": true,
     "placeCourante": 100,

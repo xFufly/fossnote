@@ -1,71 +1,12 @@
-export function getDateToday(): string {
-	const now = new Date();
-	const day = String(now.getDate()).padStart(2, "0");
-	const month = String(now.getMonth() + 1).padStart(2, "0");
-	return `${day}/${month}/${now.getFullYear()} 00:00:00`;
+import metadata from "../../config/metadata.json";
+
+function formatPronoteDate(d: Date): { _T: number; V: string } {
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return { _T: 7, V: `${day}/${month}/${year}` };
 }
 
-export function getCurrentSchoolYear(): string {
-	const now = new Date();
-	const year = now.getFullYear();
-	return now.getMonth() >= 7 ? `${year}-${year + 1}` : `${year - 1}-${year}`;
-}
-
-export function getFirstSchoolYear(): number {
-	const now = new Date();
-	return now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1;
-}
-
-export function getLastMondayOfAugust(year: number): string {
-	const d = new Date(year, 7, 31);
-	const day = d.getDay();
-	const diff = (day === 0 ? 6 : day - 1);
-	d.setDate(d.getDate() - diff);
-	const dd = String(d.getDate()).padStart(2, "0");
-	const mm = String(d.getMonth() + 1).padStart(2, "0");
-	return `${dd}/${mm}/${year}`;
-}
-
-export function getFirstWeekdayOfSeptember(year: number): string {
-	const d = new Date(year, 8, 1);
-	while (d.getDay() === 0 || d.getDay() === 6) {
-		d.setDate(d.getDate() + 1);
-	}
-	const dd = String(d.getDate()).padStart(2, "0");
-	const mm = String(d.getMonth() + 1).padStart(2, "0");
-	return `${dd}/${mm}/${year}`;
-}
-
-export function toPronoteDateFormat(dateStr: string | null | undefined): string {
-    if (!dateStr) return "";
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
-        const [year, month, day] = dateStr.split("-");
-        return `${day}/${month}/${year}`;
-    }
-    return dateStr;
-}
-
-function parsePronoteDate(dateStr: string): Date {
-    const [day, month, year] = dateStr.split("/").map(Number);
-    return new Date(year, month - 1, day);
-}
-
-export function getCurrentPeriodKey(periodes: Record<string, { from: string; to: string }>, targetDate = new Date()): string {
-    const targetTime = targetDate.getTime();
-
-    for (const [key, periode] of Object.entries(periodes)) {
-        const from = parsePronoteDate(periode.from).getTime();
-        const toDate = parsePronoteDate(periode.to);
-        toDate.setHours(23, 59, 59, 999);
-        const to = toDate.getTime();
-
-        if (targetTime >= from && targetTime <= to) {
-            return key;
-        }
-    }
-	
-	return Object.keys(periodes)[0] ?? "p1";
-}
 function getStartOfISOWeek(d: Date): Date {
     const date = new Date(d);
     const day = date.getDay();
@@ -80,18 +21,16 @@ function getEndOfISOWeek(d: Date): Date {
     return end;
 }
 
-export function generateListeComboPeriodes(metadata: any) {
+function parsePronoteDate(dateStr: string): Date {
+    const [day, month, year] = dateStr.split("/");
+    return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
+export function generateListeComboPeriodes() {
     const today = new Date();
     const periodes = [];
 
-    function formatPronoteDate(d: Date): { _T: number; V: string } {
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = d.getFullYear();
-        return { _T: 7, V: `${day}/${month}/${year}` };
-    }
-
-    // G: 0 - Today
+    // G: 0 - Aujourd'hui
     periodes.push({
         G: 0,
         L: "Aujourd'hui",
@@ -99,7 +38,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 1 - Previous week
+    // G: 1 - Semaine précédente
     const lastWeekDate = new Date(today);
     lastWeekDate.setDate(today.getDate() - 7);
     const lastWeekStart = getStartOfISOWeek(lastWeekDate);
@@ -111,7 +50,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(lastWeekEnd.getTime() > today.getTime() ? today : lastWeekEnd),
     });
 
-    // G: 2 - Current week
+    // G: 2 - Semaine en cours
     const thisWeekStart = getStartOfISOWeek(today);
     periodes.push({
         G: 2,
@@ -120,7 +59,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 3 - Current month
+    // G: 3 - Mois en cours
     const thisMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
     periodes.push({
         G: 3,
@@ -129,7 +68,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 4 - Full year
+    // G: 4 - Année complète
     const startYear = today.getMonth() >= 7 ? today.getFullYear() : today.getFullYear() - 1;
     const schoolYearStart = new Date(startYear, 6, 1); // 01/07
     periodes.push({
@@ -139,7 +78,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 5 - Trimesters
+    // G: 5 - Trimestres
     const nIds = [
         "105#NjcMl8MZqR-b_aY1rKMsiZQ_Pd6LvaiT7Oeg80dYzmE",
         "105#WsiAnIZWi9b9q-Xi9KEp6-4WvqrgP2kWWeA3BCu3SXM",
@@ -163,7 +102,8 @@ export function generateListeComboPeriodes(metadata: any) {
         idx++;
     }
 
-    // G: 6 - Semesters
+    // Semestres can be skipped if not explicitly in metadata (or we can just hardcode semester 1 & 2 logic if needed, but PRONOTE uses trimesters for this demo)
+    // Wait, the user example has Semestres! So let's generate them based on the year.
     const s1Start = new Date(startYear, 6, 1);
     const s1End = new Date(startYear, 10, 17);
     periodes.push({
@@ -190,7 +130,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(s2End.getTime() > today.getTime() ? today : s2End),
     });
 
-    // G: 7 - Continuous year
+    // G: 7 - Année continue
     periodes.push({
         G: 7,
         L: "Année continue",
@@ -202,7 +142,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 8 - Custom period
+    // G: 8 - Période au choix
     periodes.push({
         G: 8,
         L: "Période au choix",
@@ -210,7 +150,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 9 - Continuous assessment & Outside period
+    // G: 9 - Contrôle en cours de formation & Hors période
     periodes.push({
         G: 9,
         L: "Contrôle en cours de formation",
@@ -233,7 +173,7 @@ export function generateListeComboPeriodes(metadata: any) {
         dateFin: formatPronoteDate(today),
     });
 
-    // G: 10 - Months
+    // G: 10 - Mois
     const months = [
         "juillet", "août", "septembre", "octobre", "novembre", "décembre",
         "janvier", "février", "mars", "avril", "mai", "juin"

@@ -4,6 +4,7 @@ import { handleAppelFonction } from "./routes/appelfonction";
 import { handleAppelDeconnexion } from "./routes/appeldeconnnexion";
 
 import { handleStudentView } from "./routes/student";
+import { handleTeacherView } from "./routes/teacher";
 
 const PUBLIC_DIR = resolve("./public");
 
@@ -12,6 +13,7 @@ const server = Bun.serve({
     routes: {
         "/fossnote/": handleHomeView,
         "/fossnote/eleve.html": handleStudentView,
+        "/fossnote/professeur.html": handleTeacherView,
         "/fossnote/appelfonction/:espace_id/:session_id/:numero_ordre" : {
             POST: handleAppelFonction
         },

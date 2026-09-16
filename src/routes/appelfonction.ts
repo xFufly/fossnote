@@ -60,7 +60,7 @@ export async function handleAppelFonction(req: BunRequest): Promise<Response> {
         }
 
         const privateKeyPem = currentSession.privateKeyPem ?? rsaConfig.privateKeyPem;
-        const incomingUuid = body.donneesSec?.donnees?.Uuid;
+        const incomingUuid = body.donneesSec?.donnees?.Uuid || body.dataSec?.data?.Uuid;
         
         let outgoingIvHex: string | null = currentIvHex;
 
@@ -80,7 +80,7 @@ export async function handleAppelFonction(req: BunRequest): Promise<Response> {
 
         const outgoingIv = outgoingIvHex ? Buffer.from(outgoingIvHex, "hex") : incomingIv;
 
-        const nom = body.nom;
+        const nom = body.nom || body.id;
         const ctx = {
             espaceId: parseInt(espace_id, 10),
             sessionId: numSessionId.toString(),
@@ -103,14 +103,30 @@ export async function handleAppelFonction(req: BunRequest): Promise<Response> {
             outgoingIv
         );
 
+        console.log({
+            order: responseOrder.toString(),
+            key,
+            outgoingIv,
+            incomingIv,
+        });
+
+        const keyNom = body.nom ? 'nom' : 'id';
+        const keyNumeroOrdre = body.nom ? 'numeroOrdre' : 'no';
+        const keyDonneesSec = body.nom ? 'donneesSec' : 'dataSec';
+        const keyData = body.nom ? 'donnees' : 'data';
+
         const responseEnvelope = {
             session: numSessionId,
-            numeroOrdre: nextOrderEncrypted,
-            donneesSec: {
-                nom,
-                donnees: resultData,
+            [keyNumeroOrdre]: nextOrderEncrypted,
+            [keyDonneesSec]: {
+                [keyNom]: nom,
+                [keyData]: resultData,
+                Signature: {
+                    ModeExclusif: false
+                },
             },
-			nom,
+
+			[keyNom]: nom,
         };
 
         return Response.json(responseEnvelope);

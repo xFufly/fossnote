@@ -29,7 +29,10 @@ import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
  * 	- DocumentsATelecharger
  *  - PageActualites
  *  - PageReleve
- *  - 
+ *  - ForumPedagogique
+ *  - PageBulletins
+ *  - DernieresEvaluations
+ *  - ListeMessagerie
  */
 
 const sharedHandlers: Record<string, RpcHandler> = {

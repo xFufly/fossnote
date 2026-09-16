@@ -1,20 +1,4 @@
 {
-    "parametresUtilisateur": {
-        "version": 1,
-        "EDT": {
-            "afficherCoursAnnules": true,
-            "axeInverseEDT": false,
-            "axeInversePlanningHebdo": true,
-            "axeInversePlanningJour": false,
-            "axeInversePlanningJour2": false,
-            "nbJours": 0,
-            "nbRessources": 0,
-            "nbJoursEDT": 0,
-            "nbSequences": 0
-        },
-        "theme": { "theme": 8 },
-        "Communication": { "DiscussionNonLues": false }
-    },
     "autorisationsSession": {
         "fonctionnalites": {
             "gestionTwitter": true,
@@ -30,20 +14,31 @@
         "intendance": {},
         "services": {},
         "cours": {
-            "domaineConsultationEDT": { "_T": 8, "V": "[1..62]" },
-            "domaineModificationCours": { "_T": 8, "V": "[]" },
+            "domaineConsultationEDT": {
+                "_T": 8,
+                "V": "[1..62]"
+            },
+            "domaineModificationCours": {
+                "_T": 8,
+                "V": "[]"
+            },
             "masquerPartiesDeClasse": true
         },
         "tailleMaxDocJointEtablissement": 2048000,
         "tailleMaxRenduTafEleve": 4194304,
         "consulterDonneesAdministrativesAutresEleves": true,
-        "compte": { "avecInformationsPersonnelles": true },
+        "compte": {
+            "avecInformationsPersonnelles": true
+        },
         "autoriserImpression": true
     },
     "reglesSaisieMDP": {
         "min": 8,
         "max": 32,
-        "regles": { "_T": 26, "V": "[4]" }
+        "regles": {
+            "_T": 26,
+            "V": "[4]"
+        }
     },
     "listeCloud": {
         "_T": 24,
@@ -59,9 +54,42 @@
     },
     "listeCloudDepotServeur": {
         "_T": 24,
-        "V": [{ "G": 1, "L": "Dropbox" }]
+        "V": [
+            {
+                "G": 1,
+                "L": "Dropbox"
+            }
+        ]
     },
     "autorisationKiosque": true,
     "autorisationCloud": true,
-    "tabEtablissementsModeleGrille": []
+    "tabEtablissementsModeleGrille": [],
+    "parametres": {
+        "version": 1,
+        "EDT": {
+            "afficherCoursAnnules": true,
+            "axeInverseEDT": false,
+            "axeInversePlanningHebdo": true,
+            "axeInversePlanningJour": false,
+            "axeInversePlanningJour2": false,
+            "nbJours": 0,
+            "nbRessources": 0,
+            "nbJoursEDT": 0,
+            "nbSequences": 0
+        },
+        "theme": {
+            "theme": 8
+        },
+        "Communication": {
+            "DiscussionNonLues": false
+        },
+        "CDT": {
+            "preferencesCahierDeTextes": {
+                "_T": 24,
+                "V": {
+                    "genreAffichage": 1
+                }
+            }
+        }
+    }
 }

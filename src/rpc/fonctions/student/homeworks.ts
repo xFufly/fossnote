@@ -10,7 +10,7 @@ export const handleStudentHomeworks = async (_body: any, ctx: RpcContext) => {
         throw new Error("Unauthorized: Student session lacks userId");
     }
 
-    // 1. Récupération de l'élève et du nom de sa classe
+    // 1. Retrieve student and class name
     const student = await db.query.students.findFirst({
         where: eq(students.id, studentId),
     });
@@ -29,7 +29,7 @@ export const handleStudentHomeworks = async (_body: any, ctx: RpcContext) => {
         }
     }
 
-    // 2. Récupération des devoirs de la classe
+    // 2. Retrieve class homeworks
     let transformedHomeworks: any[] = [];
 
     if (student.classId) {
@@ -74,7 +74,7 @@ export const handleStudentHomeworks = async (_body: any, ctx: RpcContext) => {
             };
 
             return {
-                // Champs Pronote uppercase — désérialisés par le moteur Pronote
+                // Pronote uppercase fields - deserialized by the Pronote engine
                 CouleurFond: hw.hexColor,
                 DonneLe: { _T: 7, V: toPronoteDateFormat(hw.givenDate) },
                 PourLe:  { _T: 7, V: toPronoteDateFormat(hw.dueDate) },
@@ -94,7 +94,7 @@ export const handleStudentHomeworks = async (_body: any, ctx: RpcContext) => {
         });
     }
 
-    // 3. Payload retourné dans donneesSec.donnees
+    // 3. Payload returned in donneesSec.donnees
     return {
         ListeTravauxAFaire: {
             _T: 24,
