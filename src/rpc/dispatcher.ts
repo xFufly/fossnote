@@ -13,9 +13,9 @@ import { handleStudentPrivateInfo } from "./fonctions/student/privateInfo";
 import { handleStudentHomeworks } from "./fonctions/student/homeworks";
 
 // Teacher-specific handlers (space 1)
-/*import { handleTeacherSettings } from "./fonctions/teacher/settings";
+import { handleTeacherSettings } from "./fonctions/teacher/settings";
 import { handleTeacherHomepage } from "./fonctions/teacher/homepage";
-import { handleTeacherPostIt } from "./fonctions/teacher/postit";
+/*import { handleTeacherPostIt } from "./fonctions/teacher/postit";
 import { handleTeacherClasses } from "./fonctions/teacher/classes";
 import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
 import { handleTeacherServices } from "./fonctions/teacher/services";
@@ -51,10 +51,10 @@ const studentHandlers: Record<string, RpcHandler> = {
 };
 
 const teacherHandlers: Record<string, RpcHandler> = {
-	/*ParametresUtilisateur: handleTeacherSettings,
+	ParametresUtilisateur: handleTeacherSettings,
 	PageAccueil: handleTeacherHomepage,
 	
-	listeClassesGroupes: handleTeacherClasses,
+	/*listeClassesGroupes: handleTeacherClasses,
 	ListePeriodes: handleTeacherPeriodes,
 	ListeServices: handleTeacherServices,
 	PageNotes: handleTeacherPageNotes*/

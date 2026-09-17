@@ -1,0 +1,161 @@
+{
+  "ressources": {
+    "listeMatieres": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "kiosque": {
+    "listeRessources": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "penseBete": {
+    "libelle": ""
+  },
+  "lienUtile": {
+    "titre": "Liens et numéros utiles",
+    "listeLiens": {
+      "_T": 24,
+      "V": [
+        {
+          "L": "Allô Enfance en danger",
+          "commentaire": "Numéro d'aide à l'enfance",
+          "url": "https://swie.index-education.com/redirect.php?produit=pn&page=contact-aideenfance",
+          "numeroTelFormate": "119",
+          "numeroTelBrut": "119"
+        }
+      ]
+    }
+  },
+  "partenaireCDI": {},
+  "elections": {
+    "listeElections": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "voteElecMembreBureau": {
+    "listeOperationsEP": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "exclusions": {
+    "listeExclusions": {
+      "_T": 24,
+      "V": []
+    },
+    "messageAucuneDonnee": "Aucune exclusion (temporaire ou définitive), aucune mesure conservatoire"
+  },
+  "personnelsAbsents": {
+    "listePersonnelsAbsents": {
+      "_T": 24,
+      "V": []
+    },
+    "listePersonnels": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "avecCoursAnnule": true,
+  "ParametreExportiCal": "",
+  "avecExportICal": false,
+  "prefsGrille": {
+    "genreRessource": 3
+  },
+  "premierePlaceHebdoDuJour": 80,
+  "debutDemiPensionHebdo": 88,
+  "finDemiPensionHebdo": 91,
+  "listeAbsRessources": [],
+  "actualites": {
+    "listeModesAff": [
+      {
+        "G": 0,
+        "listeActualites": {
+          "_T": 24,
+          "V": []
+        }
+      }
+    ]
+  },
+  "agenda": {
+    "listeEvenements": []
+  },
+  "discussions": {
+    "listeEtiquettes": {
+      "_T": 24,
+      "V": []
+    },
+    "listeMessagerie": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "menuDeLaCantine": {
+    "listeRepas": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "appelNonFait": {
+    "listeAppelNonFait": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "CDTNonSaisi": {
+    "listeCours": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "casier": {
+    "listeDocuments": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "documentsASigner": {
+    "nombreDocumentsDocumentsSignatures": 0
+  },
+  "coursNonAssures": {
+    "listeCoursNonAssures": {
+      "_T": 24,
+      "V": []
+    },
+    "listeProfCoursNonAssures": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "carnetDeCorrespondance": {
+    "listeObservations": {
+      "_T": 24,
+      "V": []
+    },
+    "listeClassesGroupes": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "remplacementsenseignants": {
+    "listeRemplacements": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "IntendanceExecute": {
+    "listeLignes": {
+      "_T": 24,
+      "V": []
+    }
+  },
+  "maintenanceInfoExecute": {
+    "listeLignes": {
+      "_T": 24,
+      "V": []
+    }
+  }
+}

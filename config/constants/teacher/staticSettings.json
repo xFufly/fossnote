@@ -1,0 +1,335 @@
+{
+  "UrlInstallClient": {
+    "_T": 23,
+    "V": "https://swie.index-education.com/redirect.php?produit=pn&page=TelechClient&version=2026.2.6.0&distrib=FR&lg=fr&flag=espace"
+  },
+  "UrlParamClient": {
+    "_T": 23,
+    "V": "ParamClient.pcprn"
+  },
+  "designationClient": {
+    "_T": 23,
+    "V": "DEMO"
+  },
+  "listeNiveaux": {
+    "_T": 24,
+    "V": [
+      { "L": "6EME", "N": "0001", "estEnseigne": true },
+      { "L": "5EME", "N": "0002", "estEnseigne": true },
+      { "L": "4EME", "N": "0003", "estEnseigne": true },
+      { "L": "3EME", "N": "0004", "estEnseigne": true },
+      { "L": "2NDE", "N": "0005", "estEnseigne": false },
+      { "L": "1ERE", "N": "0006", "estEnseigne": false },
+      { "L": "TERMINALE", "N": "0007", "estEnseigne": false }
+    ]
+  },
+  "domaineVerrou": {
+    "_T": 8,
+    "V": "[]"
+  },
+  "parametresUtilisateurBase": {
+    "_T": 24,
+    "V": {
+      "optionPublicationCDT": 1,
+      "partagePJAutorisee": true
+    }
+  },
+  "parametresUtilisateur": {
+    "version": 1,
+    "EDT": {
+      "afficherCoursAnnules": true,
+      "afficherListeEleves": true,
+      "couleurClasse": true,
+      "axeInverseEDT": false,
+      "axeInversePlanningHebdo": true,
+      "axeInversePlanningJour": false,
+      "axeInversePlanningJour2": false,
+      "nbJours": 0,
+      "nbRessources": 0,
+      "nbJoursEDT": 0,
+      "nbSequences": 0,
+      "Prefs": {
+        "0": {
+          "1": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "2": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "3": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "4": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "17": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "34": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "79": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } }
+        },
+        "1": {
+          "1": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "2": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "3": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "4": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "17": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "34": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } },
+          "79": { "modele": -1, "placeDebut": 0, "placeFin": 19, "nbPas": 1, "joursOuvres": { "_T": 26, "V": "[0..4]" } }
+        }
+      }
+    },
+    "CDT": {
+      "Navigation": {
+        "MatiereIdentique": true,
+        "TypeCours": 0
+      },
+      "TAF": {
+        "ActiverMiseEnForme": false,
+        "Duree": 0,
+        "NiveauDifficulte": 0,
+        "AffecterParDefautElevesDetaches": false
+      },
+      "ElementProgramme": {
+        "AutorisationFonctionnelleElementProgramme": true,
+        "ActiverSaisie": false,
+        "TypeAffichage": 0,
+        "AfficherEltDuProfesseur": false,
+        "AfficherBO": true,
+        "AfficherPartage": true,
+        "AfficherCompetences": false,
+        "FiltreEltsTravailles": false,
+        "NbFiltreEltsTravailles": 5,
+        "ComptabiliserPourBulletin": true
+      },
+      "Planning": {
+        "UniqTitre": false
+      },
+      "ParcoursEducatifs": {
+        "ActiverSaisie": false,
+        "AutorisationFonctionnelleParcoursEducatifs": true
+      },
+      "Commentaire": {
+        "ActiverSaisie": false
+      }
+    },
+    "Incidents": {
+      "Cols": [
+        { "id": "0" },
+        { "id": "1" },
+        { "id": "2" },
+        { "id": "3" },
+        { "id": "4" },
+        { "id": "5", "visible": false },
+        { "id": "6", "visible": false },
+        { "id": "7", "visible": false },
+        { "id": "10", "visible": false }
+      ]
+    },
+    "CalculPositionnementEleveParService": {
+      "ModeCalcul": 0,
+      "NDernieresEvaluations": { "utiliserNb": true, "nb": 5, "pourcent": 10 },
+      "NMeilleuresEvaluations": { "utiliserNb": true, "nb": 5, "pourcent": 10 }
+    },
+    "CalculPositionnementEleveParClasse": {
+      "ModeCalcul": 0,
+      "NDernieresEvaluations": { "utiliserNb": true, "nb": 5, "pourcent": 10 },
+      "NMeilleuresEvaluations": { "utiliserNb": true, "nb": 5, "pourcent": 10 }
+    },
+    "widgets": [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    "demarrerSurPageAccueil": true,
+    "masquerDonneesAutresProfesseurs": true,
+    "avecGestionDesThemes": true,
+    "onglet": 99,
+    "Communication": {
+      "DiscussionNonLues": false
+    },
+    "avecTransformateurFlux": true
+  },
+  "autorisationsSession": {
+    "fonctionnalites": {
+      "appelSaisirMotifJustifDAbsence": true,
+      "gestionTwitter": true,
+      "attestationEtendue": false,
+      "gestionARBulletins": true,
+      "avecTransformationFluxFichier": true
+    }
+  },
+  "autorisations": {
+    "AssistantSaisieAppreciations": true,
+    "VoirTousLesEleves": true,
+    "ConsulterIdentiteEleve": true,
+    "ConsulterFichesResponsables": true,
+    "ConsulterPhotosEleves": true,
+    "AvecAffectationElevesGroupesNonGAEV": true,
+    "AvecAffectationElevesGroupesGAEV": true,
+    "AvecSaisieProjetIndividuel": true,
+    "AvecSaisieAttestations": true,
+    "AvecDiscussion": true,
+    "AvecDiscussionPersonnels": true,
+    "AvecDiscussionProfesseurs": true,
+    "AvecDiscussionParents": true,
+    "AvecDiscussionEleves": true,
+    "avecMessageInstantane": true,
+    "estDestinataireChat": true,
+    "AvecContactVS": true,
+    "lancerAlertesPPMS": true,
+    "AvecDiscussionAvancee": true,
+    "avecSaisieParcoursPedagogique": true,
+    "DomaineRecapitulatifAbsences": {
+      "_T": 8,
+      "V": "[1..53]"
+    },
+    "AvecSaisieAppelEtVS": true,
+    "AvecSaisieCours": true,
+    "AvecSaisieHorsCours": true,
+    "AvecSaisieSurGrille": true,
+    "AvecSaisieAbsence": true,
+    "AvecSaisieRetard": true,
+    "AvecSaisieMotifRetard": true,
+    "AvecSaisiePassageInfirmerie": true,
+    "avecAnciennesFeuilleDAppel": true,
+    "AvecSaisieExclusion": true,
+    "AvecSaisiePunition": true,
+    "AvecSaisieObservation": true,
+    "AvecConsultationDefautCarnet": true,
+    "AvecSaisieDefautCarnet": true,
+    "AvecSaisieObservationsParents": true,
+    "AvecSaisieEncouragements": true,
+    "AvecAccesAuxEvenementsAutresCours": true,
+    "DateSaisieAbsence": [],
+    "AvecSaisieEvaluations": true,
+    "AvecSaisieItems": true,
+    "AvecValidationCompetences": true,
+    "AutoriserCommunicationsToutesClasses": true,
+    "AvecSaisieAgenda": true,
+    "AvecSaisieDevoirs": true,
+    "AvecSaisieActualite": true,
+    "AvecCategorieActualite": true,
+    "avecPublicationListeDiffusion": true,
+    "avecPublicationPageEtablissement": true,
+    "CreerDossiersVS": true,
+    "ModifierDossiersVS": true,
+    "SaisieMotifsDossiersVS": true,
+    "PublierDossiersVS": true,
+    "accesDecrochage": true,
+    "suiviDecrochage": true,
+    "ConsulterMemosEleve": true,
+    "SaisirMemos": true,
+    "avecSaisieDispense": true,
+    "incidents": {
+      "acces": true,
+      "saisie": true,
+      "publier": true
+    },
+    "AvecPublicationPunitions": true,
+    "avecAccesPunitions": true,
+    "avecSaisiePunitions": true,
+    "avecCreerMotifIncidentPunitionSanction": true,
+    "avecRecapPunitions": true,
+    "avecRecapSanctions": true,
+    "avecCommissions": true,
+    "avecSaisieAppreciationsGenerales": true,
+    "intendance": {
+      "avecDemandeTravauxIntendance": true,
+      "avecExecutionTravauxIntendance": true,
+      "avecDemandeTachesSecretariat": true,
+      "uniquementMesTachesSecretariat": true,
+      "avecExecutionTachesSecretariat": true,
+      "avecDemandeTachesInformatique": true,
+      "avecExecutionTachesInformatique": true,
+      "avecGestionTachesInformatique": true
+    },
+    "services": {
+      "avecCreationSousServices": true,
+      "avecModificationCoefGeneral": true
+    },
+    "autoriseAConsulterPhotosDeTousLesEleves": true,
+    "avecDroitDeconnexionMessagerie": true,
+    "avecCreationSujetForum": true,
+    "avecModificationForumAPosteriori": true,
+    "avecAccesRemplacementsProfs": true,
+    "voirAbsencesEtRemplacementsProfs": true,
+    "sePorterVolontaireRemplacement": true,
+    "cours": {
+      "domaineConsultationEDT": {
+        "_T": 8,
+        "V": "[1..53]"
+      },
+      "avecReservationCreneauxLibres": true,
+      "modifierElevesDetachesSurCoursDeplaceCreneauLibre": true,
+      "modifierMatieres": true,
+      "modifierSalles": true,
+      "modifierMateriels": true,
+      "creerCoursPermanenceFeuilleAppel": true,
+      "deplacerCours": true,
+      "modificationNonLimiteAuxSemaine": true,
+      "avecMateriel": true,
+      "avecFicheCoursConseil": true,
+      "afficherElevesDetachesDansCours": true
+    },
+    "saisieStage": true,
+    "avecSaisieCahierDeTexte": true,
+    "creerCategoriesDeCahierDeTexte": true,
+    "avecSaisiePieceJointeCahierDeTexte": true,
+    "tailleMaxPieceJointeCahierDeTexte": 5120000.0,
+    "avecSaisieDocumentsCasiersResponsable": true,
+    "avecSaisieDocumentsCasiersIntervenant": true,
+    "avecRemplacementDocumentsCasiersIntervenant": true,
+    "avecAccesALaListeDesDocumentEleve": true,
+    "gererLaCollecteDeDocuments": true,
+    "collecterDocsAupresDesEleves": true,
+    "collecterDocsAupresDesResponsables": true,
+    "tailleMaxDocJointEtablissement": 5242880.0,
+    "tailleMaxRenduTafEleve": 5242880.0,
+    "tailleTravailAFaire": 1000,
+    "tailleCirconstance": 10000,
+    "tailleCommentaire": 1000,
+    "consulterDonneesAdministrativesAutresEleves": true,
+    "compte": {
+      "avecInformationsPersonnelles": true,
+      "avecSaisieInfosPersoCoordonnees": true,
+      "avecSaisieInfosPersoAutorisations": true
+    },
+    "autoriserImpressionBulletinReleveBrevet": true
+  },
+  "avecRessourcesGranulaire": false,
+  "avecRessourcesRenduTAF": false,
+  "avecRessourcesEnvoiNote": false,
+  "activerKiosqueRenduTAF": true,
+  "activerKiosqueEnvoiNote": true,
+  "listeRessourcesRecherche": {},
+  "cloudIndexActif": false,
+  "avecCloudIndex": false,
+  "infosDroitDeconnexion": {
+    "notes": {
+      "heurePublicationNote": 7,
+      "nombreJoursDecalagePublicationNote": 1
+    },
+    "taf": {
+      "heureDebutDesactivationPublication": 20,
+      "heureFinDesactivationPublication": 7
+    },
+    "messagerie": {
+      "listeJoursOuvresDeconnexion": [
+        "lundi",
+        "mardi",
+        "mercredi",
+        "jeudi",
+        "vendredi"
+      ],
+      "listeJoursNonOuvresDeconnexion": [
+        "samedi",
+        "dimanche"
+      ],
+      "avecJourFerieDeconnexion": true,
+      "heureAvantDeconnexion": 7,
+      "heureApresDeconnexion": 20
+    }
+  },
+  "messagerieActualiteSignature": {
+    "signature": {
+      "_T": 21,
+      "V": ""
+    }
+  },
+  "autorisationKiosque": true,
+  "tabEtablissementsModeleGrille": []
+}
