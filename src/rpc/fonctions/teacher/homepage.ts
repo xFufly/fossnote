@@ -32,7 +32,7 @@ export const handleTeacherHomepage = async (_body: any, ctx: RpcContext) => {
     const currentPeriodKey = getCurrentPeriodKey(metadata.Periodes);
     const currentPeriod = metadata.Periodes[currentPeriodKey as keyof typeof metadata.Periodes];
 
-    // 1. Récupération des matières et classes assignées au professeur
+    // 1. Fetch all class and group assignments for the teacher
     const assignments = await db
         .select({
             classId: classTeachersSubjects.classId,
@@ -45,12 +45,12 @@ export const handleTeacherHomepage = async (_body: any, ctx: RpcContext) => {
         .innerJoin(subjects, eq(classTeachersSubjects.subjectId, subjects.id))
         .where(eq(classTeachersSubjects.teacherId, teacherId));
 
-    // 2. Construction de la section "conseilDeClasse"
+    // 2. Construct the list of classes for the teacher's homepage
     const classesConseil: any[] = [];
     const periodName = currentPeriod?.name ?? "Trimestre 1";
 
     for (const assign of assignments) {
-        // Compte des devoirs / évaluations posés par ce professeur dans cette classe
+        // Count the number of evaluations for this class and subject in the current period
         const evalRows = await db
             .select({ count: sql<number>`count(*)` })
             .from(evaluations)
@@ -107,7 +107,7 @@ export const handleTeacherHomepage = async (_body: any, ctx: RpcContext) => {
         });
     }
 
-    // 3. Construction des devoirs du professeur ("TAFARendre")
+    // 3. Fetch the latest homeworks assigned by the teacher
     const teacherHomeworks = await db
         .select({
             id: homeworks.id,
