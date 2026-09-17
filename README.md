@@ -97,12 +97,27 @@ La documentation détaillée des protocoles réseau échangés entre le client o
 
 ---
 
+## Avertissement Légal (Disclaimer)
+
+**Fossnote est un projet indépendant.**
+Ce projet n'est **ni affilié, ni associé, ni soutenu, ni sponsorisé par Index Education** (l'éditeur du logiciel PRONOTE). 
+Le terme "PRONOTE" et les éléments s'y rapportant sont des marques déposées appartenant à leurs propriétaires respectifs. Fossnote est développé dans un but éducatif et d'interopérabilité.
+
+---
+
 ## Licence et Droits d'auteur
 
 **Copyright (c) 2023-2026 Tim DIDELOT • LittleGlory (SIRET 109 055 707 00011)**
 
 Ce projet est sous licence **GNU AGPLv3**.
 L'AGPLv3 (Affero General Public License) garantit que toute personne ou organisation qui modifie ce code source et l'héberge en tant que service réseau doit également rendre publiques ses modifications (open-source) sous la même licence.
+
+---
+
+## Contribution et Code de Conduite
+
+Les contributions (issues, pull requests) sont les bienvenues ! 
+Afin de garantir un environnement sain et bienveillant pour tous les contributeurs, nous vous prions de bien vouloir lire et respecter notre **[Code de Conduite](CODE_OF_CONDUCT.md)** avant de participer au projet.
 
 ---
 
