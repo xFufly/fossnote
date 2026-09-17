@@ -42,7 +42,7 @@ Fossnote utilise **[Bun](https://bun.sh/)** comme environnement d'exécution, of
 
 1. **Cloner le dépôt :**
    ```bash
-   git clone https://github.com/CaraPloof/fossnote
+   git clone https://github.com/xFufly/fossnote.git
    cd fossnote
    ```
 
