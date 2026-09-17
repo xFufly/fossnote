@@ -17,8 +17,9 @@ import { handleTeacherSettings } from "./fonctions/teacher/settings";
 import { handleTeacherHomepage } from "./fonctions/teacher/homepage";
 //import { handleTeacherPostIt } from "./fonctions/teacher/postit";
 import { handleTeacherClasses } from "./fonctions/teacher/classes";
-/*import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
-import { handleTeacherServices } from "./fonctions/teacher/services";
+import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
+import { handleTeacherResources } from "./fonctions/teacher/resources";
+/*import { handleTeacherServices } from "./fonctions/teacher/services";
 import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
 
 /**
@@ -33,6 +34,8 @@ import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
  *  - PageBulletins
  *  - DernieresEvaluations
  *  - ListeMessagerie
+ * Teacher
+ *  - ListeTravauxRendus
  */
 
 const sharedHandlers: Record<string, RpcHandler> = {
@@ -55,8 +58,9 @@ const teacherHandlers: Record<string, RpcHandler> = {
 	PageAccueil: handleTeacherHomepage,
 	
 	listeClassesGroupes: handleTeacherClasses,
-	/*ListePeriodes: handleTeacherPeriodes,
-	ListeServices: handleTeacherServices,
+	ListePeriodes: handleTeacherPeriodes,
+	ListeRessources: handleTeacherResources,
+	/*ListeServices: handleTeacherServices,
 	PageNotes: handleTeacherPageNotes*/
 };
 

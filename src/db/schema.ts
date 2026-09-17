@@ -202,3 +202,10 @@ export type NewHomework = InferInsertModel<typeof homeworks>;
 
 export type Session = InferSelectModel<typeof sessions>;
 export type NewSession = InferInsertModel<typeof sessions>;
+
+/**
+ * TODO : 
+ * - One teacher or student can have one postit
+ * - Optionnal courses (up to 3 per student)
+ * - Birth date, birth city, birth country per student and teacher
+ */
