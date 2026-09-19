@@ -21,6 +21,7 @@ import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
 import { handleTeacherResources } from "./fonctions/teacher/resources";
 /*import { handleTeacherServices } from "./fonctions/teacher/services";
 import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
+import { handleTeacherPrivateInfo } from "./fonctions/teacher/privateInfo";
 
 /**
  * TODO
@@ -36,6 +37,7 @@ import { handleTeacherPageNotes } from "./fonctions/teacher/notes";*/
  *  - ListeMessagerie
  * Teacher
  *  - ListeTravauxRendus
+ *  - PreferenceMessagerie
  */
 
 const sharedHandlers: Record<string, RpcHandler> = {
@@ -62,6 +64,7 @@ const teacherHandlers: Record<string, RpcHandler> = {
 	ListeRessources: handleTeacherResources,
 	/*ListeServices: handleTeacherServices,
 	PageNotes: handleTeacherPageNotes*/
+	PageInfosPerso: handleTeacherPrivateInfo
 };
 
 export async function dispatchRpc(nom: string, body: any, ctx: RpcContext) {
