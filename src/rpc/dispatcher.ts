@@ -27,6 +27,7 @@ import { handleTeacherPrivateInfo } from "./fonctions/teacher/privateInfo";
  * TODO
  * Shared
  * 	- SaisieDeconnexion
+ *  - ListeMessagerie
  * Student
  * 	- DocumentsATelecharger
  *  - PageActualites
@@ -34,7 +35,6 @@ import { handleTeacherPrivateInfo } from "./fonctions/teacher/privateInfo";
  *  - ForumPedagogique
  *  - PageBulletins
  *  - DernieresEvaluations
- *  - ListeMessagerie
  * Teacher
  *  - ListeTravauxRendus
  *  - PreferenceMessagerie
@@ -44,7 +44,7 @@ const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
 	Identification: handleIdentification,
 	Authentification: handleAuthentification
-	// SaisiePenseBete: handleTeacherPostIt,
+	// SaisiePenseBete: handlePostIt,
 };
 
 const studentHandlers: Record<string, RpcHandler> = {
