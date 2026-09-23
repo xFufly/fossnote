@@ -164,6 +164,17 @@ export const sessions = sqliteTable("sessions", {
     updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
 
+export const postits = sqliteTable("postits", {
+    userId: integer("user_id").notNull(),
+    userType: integer("user_type").notNull(), // 0 for teacher, 3 for student...
+    content: text("content").notNull(),
+    hexColor: text("hex_color").notNull().default("#F49737"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+}, (t) => [
+    primaryKey({ columns: [t.userId, t.userType] }),
+]);
+
 export type Subject = InferSelectModel<typeof subjects>;
 export type NewSubject = InferInsertModel<typeof subjects>;
 
@@ -203,9 +214,11 @@ export type NewHomework = InferInsertModel<typeof homeworks>;
 export type Session = InferSelectModel<typeof sessions>;
 export type NewSession = InferInsertModel<typeof sessions>;
 
+export type Postit = InferSelectModel<typeof postits>;
+export type NewPostit = InferInsertModel<typeof postits>;
+
 /**
  * TODO : 
- * - One teacher or student can have one postit
  * - Optionnal courses (up to 3 per student)
  * - Birth date, birth city, birth country per student and teacher
  */

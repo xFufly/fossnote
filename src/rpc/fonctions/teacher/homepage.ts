@@ -6,7 +6,8 @@ import {
     subjects, 
     evaluations, 
     homeworks, 
-    students 
+    students, 
+    postits
 } from "../../../db/schema";
 import { eq, and, sql } from "drizzle-orm";
 import type { RpcContext } from "../../types";
@@ -154,7 +155,16 @@ export const handleTeacherHomepage = async (_body: any, ctx: RpcContext) => {
         });
     }
 
+    const postitData = await db.query.postits.findFirst({
+        where: and(eq(postits.userId, teacherId), eq(postits.userType, 1)),
+    });
+
+    const postitContent = postitData ? postitData.content : "";
+
     return {
+        penseBete: {
+            libelle: postitContent,
+        },
         conseilDeClasse: {
             avecNotes: true,
             avecCompetences: true,

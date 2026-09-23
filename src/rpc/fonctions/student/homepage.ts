@@ -1,6 +1,6 @@
 import { db } from "../../../db";
-import { students, grades, evaluations, subjects, homeworks } from "../../../db/schema";
-import { eq, desc } from "drizzle-orm";
+import { students, grades, evaluations, subjects, homeworks, postits } from "../../../db/schema";
+import { eq, desc, and } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
 
@@ -159,11 +159,20 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
         });
     }
 
+    const postitData = await db.query.postits.findFirst({
+        where: and(eq(postits.userId, studentId), eq(postits.userType, 3)),
+    });
+
+    const postitContent = postitData ? postitData.content : "";
+
     const now = new Date();
     const tomorrow = new Date(now);
     tomorrow.setDate(now.getDate() + 1);
 
     return {
+        penseBete: {
+            libelle: postitContent,
+        },
         notes: {
             avecDetailDevoir: true,
             avecDetailService: true,

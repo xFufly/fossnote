@@ -4,6 +4,7 @@ import type { RpcHandler, RpcContext } from "./types";
 import { handleParametres } from "./fonctions/parametres";
 import { handleIdentification } from "./fonctions/identification";
 import { handleAuthentification } from "./fonctions/authentification";
+import { handleSaisiePostit } from "./fonctions/postit";
 
 // Student-specific handlers (space 3)
 import { handleStudentSettings } from "./fonctions/student/settings";
@@ -15,7 +16,6 @@ import { handleStudentHomeworks } from "./fonctions/student/homeworks";
 // Teacher-specific handlers (space 1)
 import { handleTeacherSettings } from "./fonctions/teacher/settings";
 import { handleTeacherHomepage } from "./fonctions/teacher/homepage";
-//import { handleTeacherPostIt } from "./fonctions/teacher/postit";
 import { handleTeacherClasses } from "./fonctions/teacher/classes";
 import { handleTeacherPeriodes } from "./fonctions/teacher/periodes";
 import { handleTeacherResources } from "./fonctions/teacher/resources";
@@ -43,8 +43,8 @@ import { handleTeacherPrivateInfo } from "./fonctions/teacher/privateInfo";
 const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
 	Identification: handleIdentification,
-	Authentification: handleAuthentification
-	// SaisiePenseBete: handlePostIt,
+	Authentification: handleAuthentification,
+	SaisiePenseBete: handleSaisiePostit
 };
 
 const studentHandlers: Record<string, RpcHandler> = {
