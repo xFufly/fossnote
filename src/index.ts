@@ -7,6 +7,8 @@ import { handleAppelPolling } from "./routes/appelpolling";
 import { handleStudentView } from "./routes/student";
 import { handleTeacherView } from "./routes/teacher";
 
+import { startTcpServer } from "./tcp/server";
+
 const PUBLIC_DIR = resolve("./public");
 
 const server = Bun.serve({
@@ -41,3 +43,5 @@ const server = Bun.serve({
 });
 
 console.log(`Server running at ${server.url}`);
+
+startTcpServer(49300);
