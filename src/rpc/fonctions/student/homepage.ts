@@ -3,6 +3,7 @@ import { students, grades, evaluations, subjects, homeworks, postits, lessons, r
 import { eq, desc, and } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
+import { getNewsList } from "../news";
 
 import metadata from "../../../../config/metadata.json";
 import staticHomepageData from "../../../../config/constants/student/homepage.json";
@@ -313,6 +314,29 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
             V: formatPronoteDate(selectedDate),
         },
         ...staticHomepageData,
+        actualites: {
+            listeModesAff: [
+                {
+                    G: 0,
+                    listeActualites: {
+                        _T: 24,
+                        V: await getNewsList(ctx.espaceId),
+                    }
+                },
+                {
+                    G: 1,
+                    listeActualites: { _T: 24, V: [] }
+                },
+                {
+                    G: 2,
+                    listeActualites: { _T: 24, V: [] }
+                },
+                {
+                    G: 3,
+                    listeActualites: { _T: 24, V: [] }
+                }
+            ]
+        },
         ListeCours: listeCours,
     };
 };

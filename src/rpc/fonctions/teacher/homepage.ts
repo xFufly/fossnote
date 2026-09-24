@@ -12,6 +12,7 @@ import {
 import { eq, and, sql } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
+import { getNewsList } from "../news";
 
 import metadata from "../../../../config/metadata.json";
 import staticHomepageData from "../../../../config/constants/teacher/homepage.json";
@@ -189,5 +190,16 @@ export const handleTeacherHomepage = async (_body: any, ctx: RpcContext) => {
         },
         ListeCours: [],
         ...staticHomepageData,
+        actualites: {
+            listeModesAff: [
+                {
+                    G: 0,
+                    listeActualites: {
+                        _T: 24,
+                        V: await getNewsList(ctx.espaceId),
+                    }
+                }
+            ]
+        }
     };
 };

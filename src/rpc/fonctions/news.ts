@@ -4,78 +4,82 @@ import { eq, desc } from "drizzle-orm";
 import type { RpcContext } from "../types";
 import newsTypes from "../../../config/constants/newsTypes.json";
 
+export const getNewsList = async (espaceId: number) => {
+    const allNews = await db.query.news.findMany({
+        where: (news, { or, eq, isNull }) => or(
+            isNull(news.targetUserType),
+            eq(news.targetUserType, espaceId)
+        ),
+        orderBy: [desc(news.createdAt)],
+    });
+
+    return allNews.map((n) => {
+        const categoryObj = (newsTypes as any[]).find(c => c.L === n.category) || newsTypes[3];
+        
+        // Format dates
+        const startDate = n.startDate ? n.startDate.split("-").reverse().join("/") : "01/01/2020";
+        const endDate = n.endDate ? n.endDate.split("-").reverse().join("/") : "31/12/2099";
+        
+        // Basic formatting for creation date
+        const d = new Date(n.createdAt);
+        const dateCreation = `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`;
+
+        return {
+            L: n.title,
+            N: `65#${n.id}`,
+            reponseAnonyme: false,
+            estInformation: n.isInformation,
+            estSondage: n.isSurvey,
+            nature: {
+                _T: 24,
+                V: {
+                    L: categoryObj?.L,
+                    N: categoryObj?.N,
+                },
+            },
+            lue: false, // Could track read status in a separate table later
+            dateDebut: { _T: 7, V: startDate },
+            dateFin: { _T: 7, V: endDate },
+            estProlonge: false, // Fake it
+            dateCreation: { _T: 7, V: dateCreation },
+            auteur: n.author || "Administration",
+            estAuteur: false,
+            elmauteur: {
+                _T: 24,
+                V: {
+                    L: n.author || "Administration",
+                    N: "106#admin",
+                    G: 34,
+                },
+            },
+            prenom: n.author ? n.author.split(' ')[0] : "Admin",
+            public: {
+                _T: 24,
+                V: {
+                    L: n.targetUserType === 1 ? "Professeurs" : n.targetUserType === 3 ? "Elèves" : "Tout le monde",
+                    N: "46#public",
+                    G: n.targetUserType ?? 4,
+                },
+            },
+            genrePublic: n.targetUserType ?? 4,
+            estPublic: true,
+            estPartage: false,
+            informationListeContenu: {
+                avecPJ: n.hasAttachments,
+                aToutRepondu: false,
+                avecCommandeVisuResultat: n.isSurvey,
+            },
+        };
+    });
+};
+
 export const handleNewsPage = async (body: any, ctx: RpcContext) => {
     const data = body?.donneesSec?.donnees || body?.dataSec?.data;
     const genre = data?.genreRequeteActualite;
 
     if (genre === 0) {
         // Return list of news
-        const allNews = await db.query.news.findMany({
-            where: (news, { or, eq, isNull }) => or(
-                isNull(news.targetUserType),
-                eq(news.targetUserType, ctx.espaceId)
-            ),
-            orderBy: [desc(news.createdAt)],
-        });
-
-        const listeActualites = allNews.map((n) => {
-            const categoryObj = (newsTypes as any[]).find(c => c.L === n.category) || newsTypes[3];
-            
-            // Format dates
-            const startDate = n.startDate ? n.startDate.split("-").reverse().join("/") : "01/01/2020";
-            const endDate = n.endDate ? n.endDate.split("-").reverse().join("/") : "31/12/2099";
-            
-            // Basic formatting for creation date
-            const d = new Date(n.createdAt);
-            const dateCreation = `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`;
-
-            return {
-                L: n.title,
-                N: `65#${n.id}`,
-                reponseAnonyme: false,
-                estInformation: n.isInformation,
-                estSondage: n.isSurvey,
-                nature: {
-                    _T: 24,
-                    V: {
-                        L: categoryObj?.L,
-                        N: categoryObj?.N,
-                    },
-                },
-                lue: false, // Could track read status in a separate table later
-                dateDebut: { _T: 7, V: startDate },
-                dateFin: { _T: 7, V: endDate },
-                estProlonge: false,
-                dateCreation: { _T: 7, V: dateCreation },
-                auteur: n.author || "Administration",
-                estAuteur: false,
-                elmauteur: {
-                    _T: 24,
-                    V: {
-                        L: n.author || "Administration",
-                        N: "106#admin",
-                        G: 34,
-                    },
-                },
-                prenom: n.author ? n.author.split(' ')[0] : "Admin",
-                public: {
-                    _T: 24,
-                    V: {
-                        L: n.targetUserType === 1 ? "Professeurs" : n.targetUserType === 3 ? "Elèves" : "Tout le monde",
-                        N: "46#public",
-                        G: n.targetUserType ?? 4,
-                    },
-                },
-                genrePublic: n.targetUserType ?? 4,
-                estPublic: true,
-                estPartage: false,
-                informationListeContenu: {
-                    avecPJ: n.hasAttachments,
-                    aToutRepondu: false,
-                    avecCommandeVisuResultat: n.isSurvey, // Only show results button if it's a survey
-                },
-            };
-        });
+        const listeActualites = await getNewsList(ctx.espaceId);
 
         return {
             listeNatures: {

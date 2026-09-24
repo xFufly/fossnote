@@ -13,11 +13,11 @@ L'application est divisée entre des interfaces web (front-end) et une API émul
 
 ### Espaces Web (Front-end)
 - **Portail d'index** : Page de sélection des différents espaces (`/fossnote/`).
-- **Espace Élèves** : Panel de connexion implémenté avec accès à la page d'accueil, aux informations personnelles, aux notes et au cahier de textes (`/fossnote/eleve.html`).
+- **Espace Élèves** : Panel de connexion implémenté avec accès à la page d'accueil, aux informations personnelles, aux notes, au cahier de textes, à l'emploi du temps (avec le détail des cours) et aux actualités (`/fossnote/eleve.html`).
   
   ![Accueil Élève](docs/student-homepage.png)
   
-- **Espace Professeurs** : Panel de connexion implémenté avec accès à la page d'accueil (`/fossnote/professeur.html`).
+- **Espace Professeurs** : Panel de connexion implémenté avec accès à la page d'accueil et aux actualités (`/fossnote/professeur.html`).
 
   ![Accueil Professeur](docs/teacher-homepage.png)
 
@@ -30,8 +30,8 @@ Fossnote implémente le système de communication de PRONOTE :
   - Résolution du défi d'authentification (génération et vérification de `alea` et `challenge`).
   - Stockage des sessions via SQLite (`database.db`).
 - **Requêtes système partagées** : Prise en charge de `FonctionParametres`, `Identification`, `Authentification` et `ParametresUtilisateur`.
-- **Méthodes Espace Élèves** : Prise en charge de `PageAccueil`, `DernieresNotes`, `PageInfosPerso` et `PageCahierDeTexte`.
-- **Méthodes Espace Professeurs** : Prise en charge de `PageAccueil`, `listeClassesGroupes`, `ListePeriodes` et `ListeRessources`.
+- **Méthodes Espace Élèves** : Prise en charge de `PageAccueil`, `DernieresNotes`, `PageInfosPerso`, `PageCahierDeTexte`, `PageEmploiDuTemps`, `FicheCours` et `PageActualites`.
+- **Méthodes Espace Professeurs** : Prise en charge de `PageAccueil`, `listeClassesGroupes`, `ListePeriodes`, `ListeRessources` et `PageActualites`.
 - **Méthodes générales** : Gestion basique de la `Navigation` et de la `Presence` pour le maintien de session.
 
 ---
@@ -52,7 +52,7 @@ Fossnote utilise **[Bun](https://bun.sh/)** comme environnement d'exécution, of
    ```
 
 3. **Initialiser la base de données :**
-   Cette étape crée les tables requises et injecte les données de test.
+   Cette étape crée les tables requises et injecte un jeu de données de test complet (élèves, professeurs, notes, devoirs, actualités, et un emploi du temps généré dynamiquement sur toute l'année scolaire).
    ```bash
    bun run db:push
    bun run db:seed
