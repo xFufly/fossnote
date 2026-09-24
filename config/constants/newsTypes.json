@@ -1,0 +1,47 @@
+[
+    {
+        "L": "Sorties",
+        "N": "70#q2nd5rGMjadiSDYWVX0pNlUBGMS1-pbNkBnt6dprq3k",
+        "estDefaut": false
+    },
+    {
+        "L": "Sports",
+        "N": "70#Kz_nZIEZDe-FC-HrSYWju4Tp9B_eBgAKZ_1ruVI9_Pg",
+        "estDefaut": false
+    },
+    {
+        "L": "Arts",
+        "N": "70#XaMBP-YrlrVpL-DUpyRak7Xdrz-Bm-ap4wt4ZyNWbtA",
+        "estDefaut": false
+    },
+    {
+        "L": "Divers",
+        "N": "70#9L3nQoHmK7uA5GMgLTCaFoTnjSAy-a7Qc5nHjox5KJs",
+        "estDefaut": true
+    },
+    {
+        "L": "Stage",
+        "N": "70#Mh6eQ10xzNqcgflaBF05Fu-Xb1YnPJSEJrn4e-qiIP8",
+        "estDefaut": false
+    },
+    {
+        "L": "Administration",
+        "N": "70#HiixjHwO-MIx7o8_uU03sguMkA0zRlWqYBFefjhbK4A",
+        "estDefaut": false
+    },
+    {
+        "L": "Vie scolaire",
+        "N": "70#npaNK_cvbAqChIm_BuccU2DdTsNdUtGVckE0iX5NIBg",
+        "estDefaut": false
+    },
+    {
+        "L": "Autorisation de sortie",
+        "N": "70#I9PuQ5pOuTz46SVkGm4GG_Rhp5wsE7pxSMjK-RBBz3Y",
+        "estDefaut": false
+    },
+    {
+        "L": "GEVA-Sco",
+        "N": "70#cMM7KWozl8iG4zZOOt0aZo5QJ3H06xOlTmiVsNEAeRk",
+        "estDefaut": false
+    }
+]

@@ -165,6 +165,27 @@ async function seed() {
         hexColor: "#F49737",
         isLocked: false
     });
+
+    await db.insert(schema.news).values([
+        {
+            title: "Réunion parents-profs",
+            content: "La réunion parents-professeurs pour les classes de 3ème aura lieu ce vendredi.",
+            category: "Administration",
+            isInformation: true,
+            isSurvey: false,
+            author: "Direction",
+            targetUserType: 1,
+        },
+        {
+            title: "Fête de fin d'année",
+            content: "N'oubliez pas de vous inscrire pour la fête du collège !",
+            category: "Divers",
+            isInformation: true,
+            isSurvey: false,
+            author: "Vie Scolaire",
+            targetUserType: 3,
+        }
+    ]);
 }
 
 seed();

@@ -5,6 +5,7 @@ import { handleParametres } from "./fonctions/parametres";
 import { handleIdentification } from "./fonctions/identification";
 import { handleAuthentification } from "./fonctions/authentification";
 import { handleSaisiePostit } from "./fonctions/postit";
+import { handleNewsPage } from "./fonctions/news";
 
 // Student-specific handlers (space 3)
 import { handleStudentSettings } from "./fonctions/student/settings";
@@ -30,7 +31,6 @@ import { handleTeacherPrivateInfo } from "./fonctions/teacher/privateInfo";
  *  - ListeMessagerie
  * Student
  * 	- DocumentsATelecharger
- *  - PageActualites
  *  - PageReleve
  *  - ForumPedagogique
  *  - PageBulletins
@@ -44,7 +44,8 @@ const sharedHandlers: Record<string, RpcHandler> = {
 	FonctionParametres: handleParametres,
 	Identification: handleIdentification,
 	Authentification: handleAuthentification,
-	SaisiePenseBete: handleSaisiePostit
+	SaisiePenseBete: handleSaisiePostit,
+    PageActualites: handleNewsPage
 };
 
 const studentHandlers: Record<string, RpcHandler> = {

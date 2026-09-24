@@ -166,7 +166,7 @@ export const sessions = sqliteTable("sessions", {
 
 export const postits = sqliteTable("postits", {
     userId: integer("user_id").notNull(),
-    userType: integer("user_type").notNull(), // 0 for teacher, 3 for student...
+    userType: integer("user_type").notNull(), // 1 for teacher, 3 for student...
     content: text("content").notNull(),
     hexColor: text("hex_color").notNull().default("#F49737"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
@@ -174,6 +174,87 @@ export const postits = sqliteTable("postits", {
 }, (t) => [
     primaryKey({ columns: [t.userId, t.userType] }),
 ]);
+
+export const news = sqliteTable("news", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    title: text("title").notNull(),
+    content: text("content").notNull().default(""),
+    category: text("category").notNull().default("Divers"), // nature.V.L (Divers, etc.)
+    isInformation: integer("is_information", { mode: "boolean" }).notNull().default(true), // estInformation
+    isSurvey: integer("is_survey", { mode: "boolean" }).notNull().default(false), // estSondage
+    hasAttachments: integer("has_attachments", { mode: "boolean" }).notNull().default(false), // informationListeContenu.avecPJ
+    author: text("author"), // auteur
+    targetUserType: integer("target_user_type"),
+    startDate: text("start_date"), // dateDebut (YYYY-MM-DD)
+    endDate: text("end_date"), // dateFin (YYYY-MM-DD)
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
+export const surveyQuestions = sqliteTable("survey_questions", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    newsId: integer("news_id").notNull().references(() => news.id, { onDelete: "cascade" }),
+    title: text("title").notNull().default(""),
+    text: text("text").notNull(),
+    rank: integer("rank").notNull().default(1),
+    responseType: integer("response_type").notNull().default(2), // genreReponse
+    responseSize: integer("response_size").notNull().default(200), // tailleReponse
+    hasMaximum: integer("has_maximum", { mode: "boolean" }).notNull().default(false), // avecMaximum
+    maxAnswers: integer("max_answers").notNull().default(0), // nombreReponsesMax
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
+export const surveyPossibleAnswers = sqliteTable("survey_possible_answers", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    questionId: integer("question_id").notNull().references(() => surveyQuestions.id, { onDelete: "cascade" }),
+    text: text("text").notNull(),
+    rank: integer("rank").notNull().default(1),
+    isFreeText: integer("is_free_text", { mode: "boolean" }).notNull().default(false), // estReponseLibre
+});
+
+export const surveyUserAnswers = sqliteTable("survey_user_answers", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    questionId: integer("question_id").notNull().references(() => surveyQuestions.id, { onDelete: "cascade" }),
+    userId: integer("user_id").notNull(),
+    userType: integer("user_type").notNull(),
+    selectedAnswerId: integer("selected_answer_id").references(() => surveyPossibleAnswers.id, { onDelete: "cascade" }), // Nullable if the user provided a free text response
+    freeTextResponse: text("free_text_response"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
+import { relations } from "drizzle-orm";
+
+export const newsRelations = relations(news, ({ many }) => ({
+    surveyQuestions: many(surveyQuestions),
+}));
+
+export const surveyQuestionsRelations = relations(surveyQuestions, ({ one, many }) => ({
+    news: one(news, {
+        fields: [surveyQuestions.newsId],
+        references: [news.id],
+    }),
+    possibleAnswers: many(surveyPossibleAnswers),
+    userAnswers: many(surveyUserAnswers),
+}));
+
+export const surveyPossibleAnswersRelations = relations(surveyPossibleAnswers, ({ one }) => ({
+    question: one(surveyQuestions, {
+        fields: [surveyPossibleAnswers.questionId],
+        references: [surveyQuestions.id],
+    }),
+}));
+
+export const surveyUserAnswersRelations = relations(surveyUserAnswers, ({ one }) => ({
+    question: one(surveyQuestions, {
+        fields: [surveyUserAnswers.questionId],
+        references: [surveyQuestions.id],
+    }),
+    selectedAnswer: one(surveyPossibleAnswers, {
+        fields: [surveyUserAnswers.selectedAnswerId],
+        references: [surveyPossibleAnswers.id],
+    }),
+}));
 
 export type Subject = InferSelectModel<typeof subjects>;
 export type NewSubject = InferInsertModel<typeof subjects>;
@@ -216,6 +297,18 @@ export type NewSession = InferInsertModel<typeof sessions>;
 
 export type Postit = InferSelectModel<typeof postits>;
 export type NewPostit = InferInsertModel<typeof postits>;
+
+export type News = InferSelectModel<typeof news>;
+export type NewNews = InferInsertModel<typeof news>;
+
+export type SurveyQuestion = InferSelectModel<typeof surveyQuestions>;
+export type NewSurveyQuestion = InferInsertModel<typeof surveyQuestions>;
+
+export type SurveyPossibleAnswer = InferSelectModel<typeof surveyPossibleAnswers>;
+export type NewSurveyPossibleAnswer = InferInsertModel<typeof surveyPossibleAnswers>;
+
+export type SurveyUserAnswer = InferSelectModel<typeof surveyUserAnswers>;
+export type NewSurveyUserAnswer = InferInsertModel<typeof surveyUserAnswers>;
 
 /**
  * TODO : 
