@@ -1,5 +1,5 @@
 import { db } from "../../../db";
-import { students, grades, evaluations, subjects, homeworks, postits } from "../../../db/schema";
+import { students, grades, evaluations, subjects, homeworks, postits, lessons, rooms, teachers } from "../../../db/schema";
 import { eq, desc, and } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
@@ -169,6 +169,114 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
     const tomorrow = new Date(now);
     tomorrow.setDate(now.getDate() + 1);
 
+    // Find the next day with upcoming lessons
+    let listeCours: any[] = [];
+    let selectedDate = new Date(now);
+
+    if (student.classId) {
+        const allClassLessons = await db.query.lessons.findMany({
+            where: eq(lessons.classId, student.classId),
+            with: {
+                subject: true,
+                teacher: true,
+                room: true
+            }
+        });
+
+        // We want to find the first day (starting from today) that has at least one lesson in the future
+        // Or if today has no lessons, tomorrow, etc.
+        let daysOffset = 0;
+        let foundLessonsForDay: any[] = [];
+
+        while (daysOffset < 14) { // Look ahead up to 2 weeks
+            const checkDate = new Date(now);
+            checkDate.setDate(now.getDate() + daysOffset);
+            
+            const checkStr = `${checkDate.getFullYear()}-${(checkDate.getMonth() + 1).toString().padStart(2, '0')}-${checkDate.getDate().toString().padStart(2, '0')}`;
+            
+            const dayLessons = allClassLessons.filter(lesson => {
+                const lessonDate = new Date(lesson.date);
+                const lessonStr = `${lessonDate.getFullYear()}-${(lessonDate.getMonth() + 1).toString().padStart(2, '0')}-${lessonDate.getDate().toString().padStart(2, '0')}`;
+                return lessonStr === checkStr;
+            });
+
+            // If it's today, we only count it if there is at least one lesson that hasn't finished yet
+            // Assuming lessons last a few hours, we can check if the lesson start time is after 'now',
+            // or just simple rule: if it's past 17:00, we just skip today.
+            let hasUpcoming = false;
+            if (daysOffset === 0) {
+                hasUpcoming = dayLessons.some(lesson => {
+                    const lDate = new Date(lesson.date);
+                    // Lesson end time = start time + duration (30 mins per duration unit)
+                    const endTime = new Date(lDate.getTime() + lesson.duration * 30 * 60000);
+                    return endTime > now;
+                });
+            } else {
+                hasUpcoming = dayLessons.length > 0;
+            }
+
+            if (hasUpcoming) {
+                foundLessonsForDay = dayLessons;
+                selectedDate = checkDate;
+                break;
+            }
+            daysOffset++;
+        }
+
+        listeCours = foundLessonsForDay.map((lesson) => {
+            const dateObj = new Date(lesson.date);
+            const dateStr = `${dateObj.getDate().toString().padStart(2, '0')}/${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getFullYear()} ${dateObj.getHours().toString().padStart(2, '0')}:${dateObj.getMinutes().toString().padStart(2, '0')}:00`;
+
+            const ListeContenus = [];
+            
+            if (lesson.subject) {
+                ListeContenus.push({
+                    L: lesson.subject.name.toUpperCase(),
+                    N: `79#${lesson.subject.id}`,
+                    G: 16
+                });
+            }
+            
+            if (lesson.teacher) {
+                ListeContenus.push({
+                    L: `${lesson.teacher.lastName.toUpperCase()} ${lesson.teacher.firstName[0]}.`,
+                    G: 3
+                });
+            }
+            
+            if (lesson.room) {
+                ListeContenus.push({
+                    L: lesson.room.name,
+                    N: `129#${lesson.room.id}`,
+                    G: 17
+                });
+            }
+
+            return {
+                N: `29#${lesson.id}`,
+                G: 0,
+                P: lesson.id,
+                place: lesson.startSlot,
+                duree: lesson.duration,
+                DateDuCours: {
+                    _T: 7,
+                    V: dateStr
+                },
+                CouleurFond: lesson.hexColor,
+                ListeContenus: {
+                    _T: 24,
+                    V: ListeContenus
+                },
+                AvecTafPublie: false,
+                AvecCdT: false,
+                ...(lesson.isCancelled ? {
+                    estAnnule: true,
+                    Statut: lesson.status || "Cours annulé"
+                } : {})
+            };
+        });
+    }
+
     return {
         penseBete: {
             libelle: postitContent,
@@ -202,8 +310,9 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
         },
         dateSelectionnee: {
             _T: 7,
-            V: formatPronoteDate(now),
+            V: formatPronoteDate(selectedDate),
         },
         ...staticHomepageData,
+        ListeCours: listeCours,
     };
 };

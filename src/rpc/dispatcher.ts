@@ -13,6 +13,7 @@ import { handleStudentHomepage } from "./fonctions/student/homepage";
 import { handleStudentGrades } from "./fonctions/student/grades";
 import { handleStudentPrivateInfo } from "./fonctions/student/privateInfo";
 import { handleStudentHomeworks } from "./fonctions/student/homeworks";
+import { handlePageEmploiDuTemps, handlePageEmploiDuTempsDomainePresence, handleFicheCours } from "./fonctions/student/timetable";
 
 // Teacher-specific handlers (space 1)
 import { handleTeacherSettings } from "./fonctions/teacher/settings";
@@ -53,7 +54,10 @@ const studentHandlers: Record<string, RpcHandler> = {
 	PageAccueil: handleStudentHomepage,
 	DernieresNotes: handleStudentGrades,
 	PageInfosPerso: handleStudentPrivateInfo,
-	PageCahierDeTexte: handleStudentHomeworks
+	PageCahierDeTexte: handleStudentHomeworks,
+	PageEmploiDuTemps: handlePageEmploiDuTemps,
+	PageEmploiDuTemps_DomainePresence: handlePageEmploiDuTempsDomainePresence,
+	FicheCours: handleFicheCours
 };
 
 const teacherHandlers: Record<string, RpcHandler> = {

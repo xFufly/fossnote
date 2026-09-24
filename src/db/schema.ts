@@ -150,6 +150,31 @@ export const homeworks = sqliteTable("homeworks", {
     updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
 
+export const rooms = sqliteTable("rooms", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    name: text("name").notNull(),
+    capacity: integer("capacity"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
+export const lessons = sqliteTable("lessons", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    classId: integer("class_id").references(() => classes.id),
+    groupId: integer("group_id").references(() => groups.id),
+    subjectId: integer("subject_id").notNull().references(() => subjects.id),
+    teacherId: integer("teacher_id").notNull().references(() => teachers.id),
+    roomId: integer("room_id").references(() => rooms.id),
+    date: text("date").notNull(), // YYYY-MM-DD HH:MM:SS
+    startSlot: integer("start_slot").notNull(), // Place in the week grid
+    duration: integer("duration").notNull().default(2), // Duration in slots (e.g. 2 = 1 hour)
+    isCancelled: integer("is_cancelled", { mode: "boolean" }).notNull().default(false),
+    status: text("status"), // e.g. "Prof. absent"
+    hexColor: text("hex_color").notNull().default("#E0E5A4"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
 export const sessions = sqliteTable("sessions", {
     id: integer("id").primaryKey(),
     userId: integer("user_id"),
@@ -309,6 +334,39 @@ export type NewSurveyPossibleAnswer = InferInsertModel<typeof surveyPossibleAnsw
 
 export type SurveyUserAnswer = InferSelectModel<typeof surveyUserAnswers>;
 export type NewSurveyUserAnswer = InferInsertModel<typeof surveyUserAnswers>;
+
+export type Room = InferSelectModel<typeof rooms>;
+export type NewRoom = InferInsertModel<typeof rooms>;
+
+export type Lesson = InferSelectModel<typeof lessons>;
+export type NewLesson = InferInsertModel<typeof lessons>;
+
+export const roomsRelations = relations(rooms, ({ many }) => ({
+    lessons: many(lessons),
+}));
+
+export const lessonsRelations = relations(lessons, ({ one }) => ({
+    class: one(classes, {
+        fields: [lessons.classId],
+        references: [classes.id],
+    }),
+    group: one(groups, {
+        fields: [lessons.groupId],
+        references: [groups.id],
+    }),
+    subject: one(subjects, {
+        fields: [lessons.subjectId],
+        references: [subjects.id],
+    }),
+    teacher: one(teachers, {
+        fields: [lessons.teacherId],
+        references: [teachers.id],
+    }),
+    room: one(rooms, {
+        fields: [lessons.roomId],
+        references: [rooms.id],
+    }),
+}));
 
 /**
  * TODO : 

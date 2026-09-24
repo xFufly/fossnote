@@ -66,11 +66,32 @@ export function getCurrentPeriodKey(periodes: Record<string, { from: string; to:
 	
 	return Object.keys(periodes)[0] ?? "p1";
 }
-function getStartOfISOWeek(d: Date): Date {
+export function getStartOfISOWeek(d: Date): Date {
     const date = new Date(d);
     const day = date.getDay();
     const diff = date.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(date.setDate(diff));
+}
+
+export function getPronoteWeekNumber(d: Date): number {
+    const date = new Date(d.getTime());
+    date.setHours(0, 0, 0, 0);
+
+    // Get the school year start year for the given date
+    const year = date.getMonth() >= 7 ? date.getFullYear() : date.getFullYear() - 1;
+    
+    // Find Week 1: The week containing September 1st.
+    // So we find Sept 1st of 'year', and get the Monday of that week.
+    const sept1 = new Date(year, 8, 1);
+    const day = sept1.getDay();
+    const diff = sept1.getDate() - day + (day === 0 ? -6 : 1);
+    const week1Monday = new Date(sept1.setDate(diff));
+    week1Monday.setHours(0, 0, 0, 0);
+
+    // Calculate the difference in weeks
+    const diffTime = date.getTime() - week1Monday.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    return 1 + Math.floor(diffDays / 7);
 }
 
 function getEndOfISOWeek(d: Date): Date {
