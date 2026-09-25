@@ -122,8 +122,6 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
             const rawDesc = hw.description ?? hw.title;
             const htmlDesc = `<div>${rawDesc.replace(/\n/g, "<br/>")}</div>`;
 
-            console.log(`Processing homework: ${hw.title}, subject: ${hw.subjectName}, givenDate: ${hw.givenDate}, dueDate: ${hw.dueDate}`);
-
             // Check if the student has marked this homework as done
             const submission = await db.query.homeworkSubmissions.findFirst({
                 where: and(
@@ -133,9 +131,7 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
             });
 
             const isDone = submission ? submission.isDone : false;
-
-            console.log(`Homework ID: ${hw.id}, isDone: ${isDone}`);
-
+            
             return {
                 G: 0,
                 ordre: index + 1,
@@ -173,8 +169,6 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
             };
         }));
     }
-
-    console.log(`Transformed homeworks: ${JSON.stringify(transformedHomeworks, null, 2)}`);
 
     const postitData = await db.query.postits.findFirst({
         where: and(eq(postits.userId, studentId), eq(postits.userType, 3)),
