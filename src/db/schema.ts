@@ -150,6 +150,20 @@ export const homeworks = sqliteTable("homeworks", {
     updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
 
+export const homeworkSubmissions = sqliteTable("homework_submissions", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    homeworkId: integer("homework_id").notNull().references(() => homeworks.id),
+    studentId: integer("student_id").notNull().references(() => students.id),
+    submissionDate: text("submission_date").notNull(), // YYYY-MM-DD
+    content: text("content"),
+    isDone: integer("is_done", {"mode": "boolean"}).notNull().default(false),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+}, (t) => [
+        unique().on(t.homeworkId, t.studentId)
+    ]
+);
+
 export const rooms = sqliteTable("rooms", {
     id: integer("id").primaryKey({ autoIncrement: true }),
     name: text("name").notNull(),
@@ -316,6 +330,9 @@ export type NewGrade = InferInsertModel<typeof grades>;
 
 export type Homework = InferSelectModel<typeof homeworks>;
 export type NewHomework = InferInsertModel<typeof homeworks>;
+
+export type HomeworkSubmission = InferSelectModel<typeof homeworkSubmissions>;
+export type NewHomeworkSubmission = InferInsertModel<typeof homeworkSubmissions>;
 
 export type Session = InferSelectModel<typeof sessions>;
 export type NewSession = InferInsertModel<typeof sessions>;

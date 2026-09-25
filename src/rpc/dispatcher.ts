@@ -12,7 +12,7 @@ import { handleStudentSettings } from "./fonctions/student/settings";
 import { handleStudentHomepage } from "./fonctions/student/homepage";
 import { handleStudentGrades } from "./fonctions/student/grades";
 import { handleStudentPrivateInfo } from "./fonctions/student/privateInfo";
-import { handleStudentHomeworks } from "./fonctions/student/homeworks";
+import { handleSetHomeworkIsDoneStatus, handleStudentHomeworks } from "./fonctions/student/homeworks";
 import { handlePageEmploiDuTemps, handlePageEmploiDuTempsDomainePresence, handleFicheCours } from "./fonctions/student/timetable";
 
 // Teacher-specific handlers (space 1)
@@ -57,7 +57,8 @@ const studentHandlers: Record<string, RpcHandler> = {
 	PageCahierDeTexte: handleStudentHomeworks,
 	PageEmploiDuTemps: handlePageEmploiDuTemps,
 	PageEmploiDuTemps_DomainePresence: handlePageEmploiDuTempsDomainePresence,
-	FicheCours: handleFicheCours
+	FicheCours: handleFicheCours,
+	SaisieTAFFaitEleve: handleSetHomeworkIsDoneStatus
 };
 
 const teacherHandlers: Record<string, RpcHandler> = {

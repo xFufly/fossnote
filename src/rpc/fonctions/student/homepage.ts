@@ -1,5 +1,5 @@
 import { db } from "../../../db";
-import { students, grades, evaluations, subjects, homeworks, postits, lessons, rooms, teachers } from "../../../db/schema";
+import { students, grades, evaluations, subjects, homeworks, postits, lessons, rooms, teachers, homeworkSubmissions } from "../../../db/schema";
 import { eq, desc, and } from "drizzle-orm";
 import type { RpcContext } from "../../types";
 import { getCurrentPeriodKey, toPronoteDateFormat } from "../../../helpers/date";
@@ -114,13 +114,27 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
         let serviceOrder = 12;
         const servicesMap: Record<string, number> = {};
 
-        transformedHomeworks = homeworkRows.map((hw, index) => {
+        transformedHomeworks = await Promise.all(homeworkRows.map(async (hw, index) => {
             if (!servicesMap[hw.subjectName]) {
                 servicesMap[hw.subjectName] = serviceOrder++;
             }
 
             const rawDesc = hw.description ?? hw.title;
             const htmlDesc = `<div>${rawDesc.replace(/\n/g, "<br/>")}</div>`;
+
+            console.log(`Processing homework: ${hw.title}, subject: ${hw.subjectName}, givenDate: ${hw.givenDate}, dueDate: ${hw.dueDate}`);
+
+            // Check if the student has marked this homework as done
+            const submission = await db.query.homeworkSubmissions.findFirst({
+                where: and(
+                    eq(homeworkSubmissions.homeworkId, hw.id),
+                    eq(homeworkSubmissions.studentId, studentId)
+                ),
+            });
+
+            const isDone = submission ? submission.isDone : false;
+
+            console.log(`Homework ID: ${hw.id}, isDone: ${isDone}`);
 
             return {
                 G: 0,
@@ -146,8 +160,8 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
                         N: `8200${servicesMap[hw.subjectName]}`,
                     },
                 },
-                N: `1500${index + 2}`,
-                TAFFait: hw.isLocked,
+                N: `${hw.id}`,
+                TAFFait: Boolean(isDone),
                 avecRendu: false,
                 peuRendre: false,
                 descriptif: {
@@ -157,8 +171,10 @@ export const handleStudentHomepage = async (_body: any, ctx: RpcContext) => {
                 duree: 0,
                 niveauDifficulte: 0,
             };
-        });
+        }));
     }
+
+    console.log(`Transformed homeworks: ${JSON.stringify(transformedHomeworks, null, 2)}`);
 
     const postitData = await db.query.postits.findFirst({
         where: and(eq(postits.userId, studentId), eq(postits.userType, 3)),
