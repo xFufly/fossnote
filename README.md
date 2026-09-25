@@ -121,6 +121,12 @@ Afin de garantir un environnement sain et bienveillant pour tous les contributeu
 
 ---
 
+## AI Notice
+
+Dans le cadre du développement de Fossnote (notamment lors de la migration de Node.js vers Bun), l'Intelligence Artificielle a été utilisée pour assister à la rédaction de la documentation, automatiser certaines tâches redondantes et aider à la réécriture de certaines fonctions.
+
+---
+
 ## Crédits
 
 Ce projet open-source a été créé et est maintenu par **[Tim DIDELOT](https://timdidelot.fr)**.

@@ -103,7 +103,6 @@ export function generateListeComboPeriodes() {
     }
 
     // Semestres can be skipped if not explicitly in metadata (or we can just hardcode semester 1 & 2 logic if needed, but PRONOTE uses trimesters for this demo)
-    // Wait, the user example has Semestres! So let's generate them based on the year.
     const s1Start = new Date(startYear, 6, 1);
     const s1End = new Date(startYear, 10, 17);
     periodes.push({
