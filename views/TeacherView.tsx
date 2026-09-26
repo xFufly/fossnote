@@ -1,3 +1,5 @@
+import config from "../config/general.json";
+
 export interface Metadata {
     title: string;
     description: string;
@@ -103,6 +105,54 @@ export function TeacherView({ metadata, sessionParams, nonce }: TeacherProps) {
                 >
                     FOSSNOTE gestion de vie scolaire, notes, compétences, absences/retards/dispenses, incidents/punitions/sanctions, stages...
                 </a>
+
+                {config.showBackButtonOnLogin && (
+                    <>
+                        <style>{`
+                            #fossnote-back-btn {
+                                position: fixed;
+                                top: 60px;
+                                left: 15px;
+                                padding: 8px 16px;
+                                background: rgba(0,0,0,0.5);
+                                color: white;
+                                text-decoration: none;
+                                border-radius: 4px;
+                                z-index: 999999;
+                                font-family: sans-serif;
+                                font-size: 14px;
+                                transition: opacity 0.3s;
+                                display: none;
+                            }
+                            #fossnote-back-btn:hover {
+                                background: rgba(0,0,0,0.8);
+                            }
+                        `}</style>
+                        <a href="/fossnote/" id="fossnote-back-btn" target="_self">Retour</a>
+                        <script dangerouslySetInnerHTML={{ __html: `
+                            (function() {
+                                var btn = document.getElementById('fossnote-back-btn');
+                                if (!btn) return;
+                                
+                                function checkLoginScreen() {
+                                    var hasPassword = document.querySelector('input[type="password"]');
+                                    var hasLoginBtn = Array.from(document.querySelectorAll('button, div')).some(el => el.textContent && el.textContent.trim().toLowerCase() === 'se connecter');
+                                    
+                                    if (hasPassword || hasLoginBtn) {
+                                        btn.style.display = 'block';
+                                    } else {
+                                        btn.style.display = 'none';
+                                    }
+                                }
+
+                                var observer = new MutationObserver(checkLoginScreen);
+                                observer.observe(document.body, { childList: true, subtree: true });
+                                
+                                setTimeout(checkLoginScreen, 500);
+                            })();
+                        `}} />
+                    </>
+                )}
             </body>
         </html>
     );
